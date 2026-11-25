@@ -1,0 +1,280 @@
+# School Website Port
+
+A premium, responsive school website built with Next.js App Router. The current build uses clearly marked placeholder content because verified school identity, imagery, contact details, achievements and statistics were not supplied.
+
+> **Status:** The code, CMS schemas and form integrations are implemented. Sanity and Formspree have not been tested against real accounts, and the project has not been deployed to Vercel.
+
+---
+
+## 1. Technology stack
+
+| Area | Technology |
+| --- | --- |
+| Framework | Next.js 16 (App Router), React 19 |
+| Language | Strict TypeScript |
+| Styling | Tailwind CSS 4 with custom design tokens |
+| UI | shadcn-style reusable components, Lucide React icons |
+| Animation | Framer Motion, GSAP + ScrollTrigger |
+| CMS | Sanity Studio, Sanity JavaScript client, GROQ, image URL builder |
+| Forms | Formspree, Zod validation, React Testing Library |
+| Testing | Vitest, React Testing Library, Playwright |
+| SEO | Next.js Metadata API, sitemap, robots, JSON-LD |
+| Security | CSP and security headers in `next.config.ts`, explicit image hosts |
+| Deployment | GitHub + Vercel (instructions below) |
+
+### Design direction
+
+**Academic Elegance — Navy, Gold and Ivory.** Design tokens are defined in `src/app/globals.css`. Headings use Playfair Display; body and navigation use Manrope.
+
+---
+
+## 2. Local setup
+
+### Requirements
+
+- Node.js 24 LTS (or a version supported by Next.js 16)
+- npm 11 or compatible
+- Git
+
+### Install
+
+```bash
+git clone https://github.com/KaamilAmeen/port_web_school.git
+cd port_web_school
+cp .env.example .env.local
+npm install
+npm run dev
+```
+
+Open <http://localhost:3000>. Sanity Studio is available at <http://localhost:3000/studio>.
+
+### Environment variables
+
+Copy `.env.example` to `.env.local`. Never commit `.env.local` or real credentials.
+
+| Variable | Purpose | Notes |
+| --- | --- | --- |
+| `NEXT_PUBLIC_SANITY_PROJECT_ID` | Sanity project ID | From <https://www.sanity.io/manage>. Leave blank to run with empty CMS states. |
+| `NEXT_PUBLIC_SANITY_DATASET` | Sanity dataset | Usually `production`. Drafts are excluded from all public queries. |
+| `NEXT_PUBLIC_SANITY_API_VERSION` | Sanity API date version | ISO date, for example `2026-11-01`. |
+| `NEXT_PUBLIC_FORMSPREE_CONTACT_ID` | Contact form endpoint | Form ID is the part after `/f/` in the Formspree URL. |
+| `NEXT_PUBLIC_FORMSPREE_ADMISSION_ID` | Admission form endpoint | Must be a separate Formspree form. |
+| `NEXT_PUBLIC_SITE_URL` | Public origin | No trailing slash. Used for canonical URLs, Open Graph and the sitemap. |
+| `SANITY_API_READ_TOKEN` | Optional, server-only | Only needed if live preview/draft mode is added later. Never prefix private tokens with `NEXT_PUBLIC_`. |
+
+### Replace placeholder content
+
+All unverified school information is centralised for replacement:
+
+- `src/content/site.ts` — school name, tagline, email, address, navigation and social links
+- `src/content/pages.ts` — page copy, highlight labels, grade/year options and FAQs
+- `src/content/images.ts` — references to local SVG placeholders in `public/images/placeholders/`; replace with approved school imagery
+- `src/lib/seo/structured-data.tsx` — structured data; add factual details only after verification
+
+Search the repository for `PLACEHOLDER`, `placeholder` and `to be supplied` before launch.
+
+---
+
+## 3. Routes
+
+| Route | Purpose |
+| --- | --- |
+| `/` | Homepage with storytelling sections and CMS previews |
+| `/about` | Introduction, vision, mission and leadership placeholders |
+| `/academics` | Programmes, curriculum and teaching approach |
+| `/achievements` | CMS-powered achievement listings with empty state |
+| `/campus-life` | Facilities, activities and events |
+| `/gallery` | CMS-powered gallery with filters and accessible lightbox |
+| `/admissions` | Admission process, FAQ and enquiry form |
+| `/contact` | Contact information, form and optional map location |
+| `/blog` | CMS-powered article listing, search, categories and pagination |
+| `/blog/[slug]` | Dynamic article detail with Portable Text and related posts |
+| `/studio` | Sanity Studio with setup fallback when unconfigured |
+
+Loading, error and not-found states are implemented in `src/app/(website)/loading.tsx`, `src/app/(website)/error.tsx` and `src/app/not-found.tsx`.
+
+---
+
+## 4. Project structure
+
+```text
+src/
+  app/
+    (website)/          Public website routes and route-level states
+    studio/             Sanity Studio route
+    layout.tsx          Root layout, fonts, metadata
+    globals.css         Design tokens and global styles
+    icon.svg            Generated app icon
+    robots.ts           robots.txt
+    sitemap.ts          XML sitemap
+  components/
+    animations/         Framer Motion and GSAP wrappers
+    blog/               Blog cards and safe Portable Text renderer
+    forms/              Contact and admission forms, accessible fields
+    gallery/            Filters, responsive grid, lightbox
+    home/               Modular homepage sections
+    layout/             Header, footer, CTA
+    ui/                 Buttons, headings, breadcrumbs, state views
+  content/              Centralised copy and placeholder image references
+public/
+  images/placeholders/  Local SVG placeholders awaiting approved school imagery
+  hooks/                Formspree submission hook
+  lib/                  Content helpers, SEO, validation, utilities, types
+  sanity/
+    lib/                Environment, client, GROQ queries, image URL builder
+    schemas/            Blog, category, author, achievement, gallery
+tests/
+  unit/                 Vitest and React Testing Library tests
+  e2e/                  Playwright tests
+```
+
+---
+
+## 5. Reusable components
+
+- `Button`, `SectionHeading`, `PageHeading`, `Breadcrumbs`, `PlaceholderNotice`
+- `EmptyState`, `ErrorMessage`, `LoadingIndicator`
+- `FadeIn`, `StaggerReveal`, `AnimatedText`, `GsapReveal`, `ScrollProgress`
+- `Header`, `Footer`, `CtaSection`, `FaqAccordion`
+- `ContactForm`, `AdmissionForm`, accessible `TextField`, `TextAreaField`, `SelectField`, `Honeypot`
+- `BlogCard`, `PortableText`, `GalleryGrid`
+- Homepage sections: hero, introduction, highlights, academics, achievements preview, campus preview, gallery preview, blog preview
+
+---
+
+## 6. Sanity CMS
+
+### Schemas
+
+| Document type | Important fields |
+| --- | --- |
+| `blog` | title, slug, excerpt, coverImage, Portable Text body, author, category, publishedAt, featured, SEO fields |
+| `category` | title, slug, description |
+| `author` | name, designation, profileImage, biography |
+| `achievement` | title, slug, description, category, achievementDate, coverImage, featured, publishedAt |
+| `gallery` | title, slug, image, category, altText, eventDate, featured |
+
+Schemas are grouped in Sanity Studio structure under **Blog Management**, **Achievements**, **Gallery**, **Authors** and **Categories**.
+
+### Publishing workflow
+
+1. Add the Sanity project ID to `.env.local`.
+2. Visit `/studio` and sign in with an authorised Sanity account.
+3. Create authors and categories first, then publish blogs, achievements and gallery images.
+4. Public queries exclude `drafts.**` and only return published documents.
+5. Public content is revalidated every 60 seconds and tagged for cache invalidation.
+
+The Portable Text renderer in `src/components/blog/portable-text.tsx` renders known block types explicitly; it does not inject raw HTML.
+
+---
+
+## 7. Formspree configuration
+
+1. Create two forms in Formspree: one for contact enquiries and one for admission enquiries.
+2. Copy each form ID (the part after `https://formspree.io/f/`) into the matching environment variable.
+3. In Formspree, configure the notification email and spam settings for each form.
+4. Submit a real test enquiry and confirm it appears in Formspree before launch.
+
+The client posts JSON to `https://formspree.io/f/{ID}` with `Accept: application/json`. A success message is shown only when Formspree returns an OK response. Validation is performed with Zod, duplicate submissions are blocked while a request is pending, and a honeypot field is included.
+
+---
+
+## 8. Testing
+
+### Commands
+
+```bash
+npm run typecheck
+npm run lint
+npm run test
+npm run build
+npm run test:e2e
+```
+
+`npm run test:e2e` starts a local dev server on port 3100 using test-only Formspree IDs. Formspree requests are intercepted by Playwright, so no real account is contacted.
+
+### Coverage
+
+Unit tests cover:
+
+- Contact and admission schema validation
+- Formspree endpoint construction
+- Inline validation, accessible errors, mocked success and provider failure states
+- Gallery lightbox, keyboard navigation and category filters
+- GROQ query draft exclusions and structure
+- CMS helper behaviour without credentials
+- Metadata and JSON-LD generation
+
+Playwright tests cover:
+
+- Homepage rendering and desktop navigation
+- Mobile menu and horizontal overflow
+- All approved routes
+- Blog empty state and dynamic not-found handling
+- Invalid and successfully mocked contact/admission submissions
+- Custom not-found page
+- Optional configured-CMS article and gallery tests (skipped unless environment fixtures are supplied)
+
+### Optional E2E fixtures
+
+When a real Sanity dataset is configured, set these before running Playwright:
+
+```bash
+E2E_TEST_BLOG_SLUG=your-published-article-slug
+E2E_GALLERY_FIRST_TITLE="Title of a published gallery image"
+```
+
+Gallery keyboard tests require at least two published gallery images.
+
+### Recorded results
+
+See `TEST_RESULTS.md` for the commands executed in this delivery and their outcomes.
+
+---
+
+## 9. Deployment
+
+### Vercel
+
+1. Push `main` to the GitHub repository.
+2. In Vercel, choose **Add New → Project** and import the GitHub repository.
+3. Keep the default Next.js framework settings.
+4. Add every variable from `.env.example` under **Project Settings → Environment Variables**.
+5. Set `NEXT_PUBLIC_SITE_URL` to the final production origin.
+6. Deploy. Vercel will run `npm run build` automatically.
+7. Confirm `/sitemap.xml`, `/robots.txt`, `/studio`, forms and CMS content on the deployed domain.
+8. Add the production domain to Sanity CORS and to the Formspree allowed origins if required by those providers.
+
+No deployment has been performed as part of this delivery because no Vercel account, token or production domain was supplied.
+
+### Sanity hosted content
+
+- Create a hosted Sanity project and dataset.
+- Add its project ID to Vercel and local `.env.local`.
+- Invite only authorised school content administrators to Studio.
+- Public visitors do not receive editor permissions.
+
+---
+
+## 10. Known limitations
+
+- School identity, history, contact details, photographs and achievements are placeholders and must be replaced before launch.
+- Contact and admission forms are coded but have not been tested with real Formspree accounts.
+- Sanity schemas, queries and Studio are coded but have not been connected to a real project/dataset.
+- No Google Maps embed is rendered because no verified address/map URL was supplied.
+- No testimonials or statistics are displayed because none were verified.
+- Lighthouse scores and real Core Web Vitals have not been measured in production.
+- E2E tests for published blog details and gallery lightboxes are skipped unless CMS fixtures are provided; their component logic is covered by unit tests.
+- npm may report engine warnings from transitive `jsdom` and `isomorphic-dompurify` packages on some Node 24 minor versions. Checks still run; use a supported Node LTS release in CI.
+
+---
+
+## 11. Future improvements
+
+- Add verified school branding, photography, maps and editorial content.
+- Configure real Formspree forms and Sanity project credentials.
+- Add an Open Graph image generated from approved school imagery.
+- Add Sanity live preview with a server-only read token if editorial preview is required.
+- Add automated Lighthouse and accessibility audits in CI.
+- Add analytics only after privacy and consent requirements are confirmed.
+- Add on-demand revalidation webhooks so published CMS content appears immediately.

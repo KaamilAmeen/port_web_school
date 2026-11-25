@@ -1,0 +1,35 @@
+<svg xmlns="http://www.w3.org/2000/svg" viewBox="0 0 1600 1000" role="img" aria-labelledby="title">
+  <title id="title">Placeholder illustration representing a classroom</title>
+  <defs>
+    <linearGradient id="bg" x1="0" y1="0" x2="1" y2="1">
+      <stop offset="0" stop-color="#081c30"/>
+      <stop offset="1" stop-color="#1b526b"/>
+    </linearGradient>
+    <radialGradient id="glow" cx="80%" cy="25%" r="60%">
+      <stop offset="0" stop-color="#d4af37" stop-opacity=".2"/>
+      <stop offset="1" stop-color="#d4af37" stop-opacity="0"/>
+    </radialGradient>
+    <pattern id="grid" width="80" height="80" patternUnits="userSpaceOnUse">
+      <path d="M80 0H0V80" fill="none" stroke="#fff" stroke-opacity=".05" stroke-width="2"/>
+    </pattern>
+  </defs>
+  <rect width="1600" height="1000" fill="url(#bg)"/>
+  <rect width="1600" height="1000" fill="url(#glow)"/>
+  <rect width="1600" height="1000" fill="url(#grid)"/>
+  <g opacity=".28" fill="none" stroke="#f5f0e6" stroke-width="10" stroke-linejoin="round">
+    <rect x="430" y="200" width="740" height="340" rx="16"/>
+    <path d="M500 300h330M500 370h250M500 440h290"/>
+    <circle cx="1030" cy="350" r="70"/>
+    <path d="M470 660h660M540 660v160m520-160v160"/>
+    <circle cx="620" cy="600" r="55"/>
+    <circle cx="980" cy="600" r="55"/>
+  </g>
+  <g opacity=".2" fill="#d4af37">
+    <rect x="220" y="250" width="130" height="500" rx="12"/>
+    <rect x="1250" y="250" width="130" height="500" rx="12"/>
+  </g>
+  <g font-family="Arial, Helvetica, sans-serif">
+    <text x="90" y="845" fill="#d4af37" font-size="34" letter-spacing="7">CLASSROOM · PLACEHOLDER IMAGE</text>
+    <text x="90" y="900" fill="#f5f0e6" fill-opacity=".75" font-size="26">Replace with a school-approved photograph</text>
+  </g>
+</svg>

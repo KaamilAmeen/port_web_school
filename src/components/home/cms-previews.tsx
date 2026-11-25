@@ -1,0 +1,166 @@
+import Image from "next/image";
+import Link from "next/link";
+import { ArrowRight } from "lucide-react";
+import { BlogCard, formatDate } from "@/components/blog/blog-card";
+import { FadeIn } from "@/components/animations/fade-in";
+import { SectionHeading } from "@/components/ui/section-heading";
+import { EmptyState } from "@/components/ui/state-views";
+import type {
+  SanityAchievement,
+  SanityBlogCard,
+  SanityGalleryItem,
+} from "@/lib/types/sanity";
+
+export function AchievementsPreview({
+  achievements,
+}: {
+  achievements: SanityAchievement[] | null;
+}) {
+  return (
+    <section className="section-space">
+      <div className="container-site">
+        <SectionHeading
+          eyebrow="Achievements"
+          title="Milestones worth celebrating"
+          description="Published achievements are managed in Sanity so the school can update them without changing code."
+        />
+        {achievements && achievements.length > 0 ? (
+          <div className="mt-12 grid gap-6 md:grid-cols-3">
+            {achievements.map((achievement) => (
+              <FadeIn as="article" key={achievement._id} className="border border-navy/10 bg-white/60">
+                <div className="image-frame aspect-[4/3]">
+                  {achievement.coverImageUrl ? (
+                    <Image
+                      src={achievement.coverImageUrl}
+                      alt={achievement.coverImageAlt ?? achievement.title}
+                      fill
+                      sizes="(max-width: 768px) 100vw, 33vw"
+                      className="object-cover"
+                    />
+                  ) : null}
+                </div>
+                <div className="p-6">
+                  <p className="text-[11px] uppercase tracking-widest text-navy/55">
+                    {achievement.category ?? "Achievement"}
+                    {achievement.achievementDate
+                      ? ` · ${formatDate(achievement.achievementDate)}`
+                      : ""}
+                  </p>
+                  <h3 className="mt-3 font-display text-xl text-navy">
+                    {achievement.title}
+                  </h3>
+                  {achievement.description ? (
+                    <p className="mt-3 line-clamp-3 text-sm text-charcoal/70">
+                      {achievement.description}
+                    </p>
+                  ) : null}
+                </div>
+              </FadeIn>
+            ))}
+          </div>
+        ) : (
+          <EmptyState
+            className="mt-12"
+            title="No published achievements yet"
+            description="Add published achievements in Sanity Studio to display them here. No achievements are invented in this demonstration."
+          />
+        )}
+        <Link
+          href="/achievements"
+          className="mt-8 inline-flex items-center gap-2 border-b border-gold pb-1 text-sm font-semibold text-navy"
+        >
+          View all achievements
+          <ArrowRight aria-hidden="true" className="size-4 text-gold" />
+        </Link>
+      </div>
+    </section>
+  );
+}
+
+export function GalleryPreview({
+  images,
+}: {
+  images: SanityGalleryItem[] | null;
+}) {
+  return (
+    <section className="border-y border-navy/10 bg-white/50 section-space">
+      <div className="container-site">
+        <SectionHeading
+          eyebrow="Gallery"
+          title="Moments from school life"
+          description="A selection of published gallery images. Student photographs require school approval and consent before publication."
+        />
+        {images && images.length > 0 ? (
+          <div className="mt-12 grid grid-cols-2 gap-4 md:grid-cols-3">
+            {images.map((item) => (
+              <Link
+                key={item._id}
+                href="/gallery"
+                className="image-frame aspect-[4/3] first:col-span-2 first:md:col-span-2"
+              >
+                {item.imageUrl ? (
+                  <Image
+                    src={item.imageUrl}
+                    alt={item.altText ?? item.title}
+                    fill
+                    sizes="(max-width: 768px) 50vw, 33vw"
+                    className="object-cover"
+                  />
+                ) : null}
+              </Link>
+            ))}
+          </div>
+        ) : (
+          <EmptyState
+            className="mt-12"
+            title="No published gallery images yet"
+            description="Publish gallery images in Sanity Studio to display them here."
+          />
+        )}
+        <Link
+          href="/gallery"
+          className="mt-8 inline-flex items-center gap-2 border-b border-gold pb-1 text-sm font-semibold text-navy"
+        >
+          View the complete gallery
+          <ArrowRight aria-hidden="true" className="size-4 text-gold" />
+        </Link>
+      </div>
+    </section>
+  );
+}
+
+export function BlogPreview({ posts }: { posts: SanityBlogCard[] | null }) {
+  return (
+    <section className="section-space">
+      <div className="container-site">
+        <SectionHeading
+          eyebrow="From the blog"
+          title="Latest stories and insights"
+          description="Articles are written and published by the school through Sanity Studio."
+        />
+        {posts && posts.length > 0 ? (
+          <div className="mt-12 grid gap-6 md:grid-cols-3">
+            {posts.map((post) => (
+              <FadeIn key={post._id}>
+                <BlogCard post={post} />
+              </FadeIn>
+            ))}
+          </div>
+        ) : (
+          <EmptyState
+            className="mt-12"
+            title="No published articles yet"
+            description="Published blog articles will appear here automatically."
+          />
+        )}
+        <Link
+          href="/blog"
+          className="mt-8 inline-flex items-center gap-2 border-b border-gold pb-1 text-sm font-semibold text-navy"
+        >
+          Visit the blog
+          <ArrowRight aria-hidden="true" className="size-4 text-gold" />
+        </Link>
+      </div>
+    </section>
+  );
+}

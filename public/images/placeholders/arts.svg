@@ -1,0 +1,36 @@
+<svg xmlns="http://www.w3.org/2000/svg" viewBox="0 0 1600 1000" role="img" aria-labelledby="title">
+  <title id="title">Placeholder illustration representing creative arts</title>
+  <defs>
+    <linearGradient id="bg" x1="0" y1="0" x2="1" y2="1">
+      <stop offset="0" stop-color="#0a2036"/>
+      <stop offset="1" stop-color="#1d5870"/>
+    </linearGradient>
+    <radialGradient id="glow" cx="30%" cy="30%" r="60%">
+      <stop offset="0" stop-color="#d4af37" stop-opacity=".2"/>
+      <stop offset="1" stop-color="#d4af37" stop-opacity="0"/>
+    </radialGradient>
+    <pattern id="grid" width="80" height="80" patternUnits="userSpaceOnUse">
+      <path d="M80 0H0V80" fill="none" stroke="#fff" stroke-opacity=".05" stroke-width="2"/>
+    </pattern>
+  </defs>
+  <rect width="1600" height="1000" fill="url(#bg)"/>
+  <rect width="1600" height="1000" fill="url(#glow)"/>
+  <rect width="1600" height="1000" fill="url(#grid)"/>
+  <g opacity=".28" fill="none" stroke="#f5f0e6" stroke-width="10">
+    <path d="M880 480c0-150 120-270 270-270s250 110 250 245c0 100-80 135-170 135-75 0-105-45-105-90 0-60 55-80 100-80 35 0 60 20 60 55"/>
+    <circle cx="880" cy="390" r="18" fill="#f5f0e6"/>
+    <circle cx="1000" cy="300" r="18" fill="#f5f0e6"/>
+    <circle cx="1130" cy="300" r="18" fill="#f5f0e6"/>
+    <circle cx="1260" cy="360" r="18" fill="#f5f0e6"/>
+    <path d="M560 260 790 700m-330-260 240 300"/>
+    <path d="m430 760 120 120 130-40 40-130-120-120z"/>
+  </g>
+  <g opacity=".2" fill="#d4af37">
+    <circle cx="250" cy="230" r="80"/>
+    <rect x="160" y="430" width="180" height="180" rx="24"/>
+  </g>
+  <g font-family="Arial, Helvetica, sans-serif">
+    <text x="90" y="845" fill="#d4af37" font-size="34" letter-spacing="7">ARTS · PLACEHOLDER IMAGE</text>
+    <text x="90" y="900" fill="#f5f0e6" fill-opacity=".75" font-size="26">Replace with a school-approved photograph</text>
+  </g>
+</svg>

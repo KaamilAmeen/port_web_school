@@ -1,0 +1,33 @@
+<svg xmlns="http://www.w3.org/2000/svg" viewBox="0 0 1600 1000" role="img" aria-labelledby="title">
+  <title id="title">Placeholder illustration representing a library</title>
+  <defs>
+    <linearGradient id="bg" x1="0" y1="0" x2="1" y2="1">
+      <stop offset="0" stop-color="#092036"/>
+      <stop offset="1" stop-color="#205069"/>
+    </linearGradient>
+    <radialGradient id="glow" cx="25%" cy="75%" r="60%">
+      <stop offset="0" stop-color="#d4af37" stop-opacity=".18"/>
+      <stop offset="1" stop-color="#d4af37" stop-opacity="0"/>
+    </radialGradient>
+    <pattern id="grid" width="80" height="80" patternUnits="userSpaceOnUse">
+      <path d="M80 0H0V80" fill="none" stroke="#fff" stroke-opacity=".05" stroke-width="2"/>
+    </pattern>
+  </defs>
+  <rect width="1600" height="1000" fill="url(#bg)"/>
+  <rect width="1600" height="1000" fill="url(#glow)"/>
+  <rect width="1600" height="1000" fill="url(#grid)"/>
+  <g opacity=".28" fill="none" stroke="#f5f0e6" stroke-width="9">
+    <rect x="430" y="220" width="740" height="560" rx="12"/>
+    <path d="M430 400h740M430 590h740"/>
+    <path d="M500 260v120m55-120v120m55-120v120m55-120v120m70-120v120m55-120v120m55-120v120m70-120v120m55-120v120m55-120v120m70-120v120m55-120v120"/>
+    <path d="M500 440v130m60-130v130m60-130v130m65-130v130m60-130v130m65-130v130m60-130v130m65-130v130m60-130v130m65-130v130m60-130v130m65-130v130"/>
+    <path d="M500 630v130m70-130v130m70-130v130m70-130v130m70-130v130m70-130v130m70-130v130m70-130v130"/>
+  </g>
+  <g opacity=".2" fill="#d4af37">
+    <circle cx="1330" cy="200" r="70"/>
+  </g>
+  <g font-family="Arial, Helvetica, sans-serif">
+    <text x="90" y="845" fill="#d4af37" font-size="34" letter-spacing="7">LIBRARY · PLACEHOLDER IMAGE</text>
+    <text x="90" y="900" fill="#f5f0e6" fill-opacity=".75" font-size="26">Replace with a school-approved photograph</text>
+  </g>
+</svg>

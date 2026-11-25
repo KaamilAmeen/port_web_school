@@ -1,0 +1,35 @@
+<svg xmlns="http://www.w3.org/2000/svg" viewBox="0 0 1600 1000" role="img" aria-labelledby="title">
+  <title id="title">Placeholder illustration representing a campus walkway</title>
+  <defs>
+    <linearGradient id="bg" x1="0" y1="0" x2="1" y2="1">
+      <stop offset="0" stop-color="#071b2e"/>
+      <stop offset="1" stop-color="#174a61"/>
+    </linearGradient>
+    <radialGradient id="glow" cx="50%" cy="15%" r="65%">
+      <stop offset="0" stop-color="#d4af37" stop-opacity=".2"/>
+      <stop offset="1" stop-color="#d4af37" stop-opacity="0"/>
+    </radialGradient>
+    <pattern id="grid" width="80" height="80" patternUnits="userSpaceOnUse">
+      <path d="M80 0H0V80" fill="none" stroke="#fff" stroke-opacity=".05" stroke-width="2"/>
+    </pattern>
+  </defs>
+  <rect width="1600" height="1000" fill="url(#bg)"/>
+  <rect width="1600" height="1000" fill="url(#glow)"/>
+  <rect width="1600" height="1000" fill="url(#grid)"/>
+  <g opacity=".28" fill="none" stroke="#f5f0e6" stroke-width="10" stroke-linejoin="round">
+    <path d="M600 1000 760 420h80l160 580"/>
+    <path d="M760 420h80M690 590h220M640 780h320"/>
+    <rect x="300" y="360" width="260" height="420" rx="10"/>
+    <rect x="1040" y="300" width="280" height="480" rx="10"/>
+    <path d="M360 460h60m60 0h60m-180 100h60m60 0h60m-180 100h60m60 0h60"/>
+    <path d="M1100 400h60m60 0h60m-180 100h60m60 0h60m-180 100h60m60 0h60"/>
+    <circle cx="300" cy="280" r="75"/>
+    <path d="M300 350v190"/>
+    <circle cx="1330" cy="240" r="90"/>
+    <path d="M1330 330v210"/>
+  </g>
+  <g font-family="Arial, Helvetica, sans-serif">
+    <text x="90" y="870" fill="#d4af37" font-size="34" letter-spacing="7">CAMPUS · PLACEHOLDER IMAGE</text>
+    <text x="90" y="925" fill="#f5f0e6" fill-opacity=".75" font-size="26">Replace with a school-approved photograph</text>
+  </g>
+</svg>
