@@ -3,7 +3,6 @@ import Image from "next/image";
 import { CtaSection } from "@/components/layout/cta-section";
 import { SectionHeading } from "@/components/ui/section-heading";
 import { PageHeading } from "@/components/ui/page-heading";
-import { PlaceholderNotice } from "@/components/ui/placeholder-notice";
 import { StaggerReveal } from "@/components/animations/stagger-reveal";
 import { campusCopy } from "@/content/pages";
 import { demoImages } from "@/content/images";
@@ -29,12 +28,11 @@ export default function CampusLifePage() {
 
       <section className="section-space">
         <div className="container-site">
-          <PlaceholderNotice />
           <SectionHeading
             className="mt-12"
             eyebrow="Facilities"
             title="Spaces for learning and belonging"
-            description="Illustrative facility categories. Confirm names, access and photography permissions before publication."
+            description="Spaces that support independent study, collaboration and hands-on learning."
           />
           <StaggerReveal className="mt-12 grid gap-px border border-navy/10 bg-navy/10 sm:grid-cols-2">
             {campusCopy.facilities.map((facility) => (
@@ -93,7 +91,7 @@ export default function CampusLifePage() {
             />
           </div>
           <p className="text-xs text-charcoal/55 md:col-span-2">
-            Fictional demo illustrations — replace with approved school photography.
+            A glimpse of the spaces where students learn, create and spend time together.
           </p>
         </div>
       </section>
@@ -101,7 +99,7 @@ export default function CampusLifePage() {
       <CtaSection
         eyebrow="Events"
         title="See the full gallery."
-        description="Photographs and event details will appear once the school approves what may be shared."
+        description="Explore photographs from across our school community."
         primaryHref="/gallery"
         primaryLabel="View gallery"
       />

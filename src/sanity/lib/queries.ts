@@ -104,3 +104,33 @@ export const featuredGalleryQuery = defineQuery(`*[
   && !(_id in path("drafts.**"))
   && defined(slug.current)
 ]|order(eventDate desc)[0...6]${galleryFields}`);
+
+const announcementFields = `{
+  _id,
+  title,
+  "slug": slug.current,
+  category,
+  summary,
+  body,
+  publishedAt,
+  expiresAt,
+  pinned,
+  featured,
+  "imageUrl": image.asset->url,
+  "imageAlt": image.alt
+}`;
+
+export const announcementListQuery = defineQuery(`*[
+  _type == "announcement"
+  && !(_id in path("drafts.**"))
+  && defined(slug.current)
+  && (!defined(expiresAt) || expiresAt >= $now)
+]|order(pinned desc, publishedAt desc)${announcementFields}`);
+
+export const featuredAnnouncementsQuery = defineQuery(`*[
+  _type == "announcement"
+  && !(_id in path("drafts.**"))
+  && defined(slug.current)
+  && featured == true
+  && (!defined(expiresAt) || expiresAt >= $now)
+]|order(pinned desc, publishedAt desc)[0...3]${announcementFields}`);

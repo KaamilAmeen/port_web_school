@@ -4,16 +4,35 @@ import userEvent from "@testing-library/user-event";
 import { AdmissionForm } from "@/components/forms/admission-form";
 import { ContactForm } from "@/components/forms/contact-form";
 
+type ServerError = { field?: string; message: string };
+
 function mockFormspreeResponse(options: {
-  ok: boolean;
-  errors?: Array<{ field?: string; message: string }>;
+  success: boolean;
+  errors?: ServerError[];
+  error?: string;
 }) {
+  const payload = options.success
+    ? { next: "/thanks" }
+    : options.error
+      ? { error: options.error }
+      : { errors: options.errors ?? [] };
+
   const fetchMock = vi.fn().mockResolvedValue({
-    ok: options.ok,
-    json: async () => ({ errors: options.errors ?? [] }),
+    json: async () => payload,
   });
   vi.stubGlobal("fetch", fetchMock);
   return fetchMock;
+}
+
+async function fillContactForm(user: ReturnType<typeof userEvent.setup>) {
+  await user.type(screen.getByRole("textbox", { name: /full name/i }), "Test Parent");
+  await user.type(screen.getByRole("textbox", { name: /^email/i }), "parent@example.test");
+  await user.type(screen.getByRole("textbox", { name: /phone number/i }), "+1 555 010 1234");
+  await user.type(screen.getByRole("textbox", { name: /subject/i }), "Admission question");
+  await user.type(
+    screen.getByRole("textbox", { name: /message/i }),
+    "Please send the confirmed admission dates for next year.",
+  );
 }
 
 describe("ContactForm", () => {
@@ -22,7 +41,7 @@ describe("ContactForm", () => {
   });
 
   it("blocks an invalid submission and shows inline validation errors", async () => {
-    const fetchMock = mockFormspreeResponse({ ok: true });
+    const fetchMock = mockFormspreeResponse({ success: true });
     const user = userEvent.setup();
     render(<ContactForm />);
 
@@ -38,19 +57,11 @@ describe("ContactForm", () => {
     expect(fetchMock).not.toHaveBeenCalled();
   });
 
-  it("submits a valid enquiry through the mocked Formspree endpoint", async () => {
-    const fetchMock = mockFormspreeResponse({ ok: true });
+  it("submits a valid enquiry through @formspree/react", async () => {
+    const fetchMock = mockFormspreeResponse({ success: true });
     const user = userEvent.setup();
     render(<ContactForm />);
-
-    await user.type(screen.getByRole("textbox", { name: /full name/i }), "Test Parent");
-    await user.type(screen.getByRole("textbox", { name: /^email/i }), "parent@example.test");
-    await user.type(screen.getByRole("textbox", { name: /phone number/i }), "+1 555 010 1234");
-    await user.type(screen.getByRole("textbox", { name: /subject/i }), "Admission question");
-    await user.type(
-      screen.getByRole("textbox", { name: /message/i }),
-      "Please send the confirmed admission dates for next year.",
-    );
+    await fillContactForm(user);
     await user.click(screen.getByRole("button", { name: "Send message" }));
 
     expect(await screen.findByRole("status")).toHaveTextContent("Message received");
@@ -58,27 +69,22 @@ describe("ContactForm", () => {
       "https://formspree.io/f/test-contact-form",
       expect.objectContaining({
         method: "POST",
-        headers: expect.objectContaining({ Accept: "application/json" }),
+        headers: expect.objectContaining({
+          Accept: "application/json",
+          "Content-Type": "application/json",
+        }),
       }),
     );
   });
 
   it("does not claim success when the provider rejects the submission", async () => {
     const fetchMock = mockFormspreeResponse({
-      ok: false,
+      success: false,
       errors: [{ message: "The form is currently unavailable." }],
     });
     const user = userEvent.setup();
     render(<ContactForm />);
-
-    await user.type(screen.getByRole("textbox", { name: /full name/i }), "Test Parent");
-    await user.type(screen.getByRole("textbox", { name: /^email/i }), "parent@example.test");
-    await user.type(screen.getByRole("textbox", { name: /phone number/i }), "+1 555 010 1234");
-    await user.type(screen.getByRole("textbox", { name: /subject/i }), "Admission question");
-    await user.type(
-      screen.getByRole("textbox", { name: /message/i }),
-      "Please send the confirmed admission dates for next year.",
-    );
+    await fillContactForm(user);
     await user.click(screen.getByRole("button", { name: "Send message" }));
 
     expect(await screen.findByRole("alert")).toHaveTextContent(
@@ -86,6 +92,41 @@ describe("ContactForm", () => {
     );
     expect(screen.queryByText("Message received")).not.toBeInTheDocument();
     expect(fetchMock).toHaveBeenCalledTimes(1);
+  });
+
+  it("maps provider field errors onto the matching input", async () => {
+    mockFormspreeResponse({
+      success: false,
+      errors: [
+        { field: "email", message: "Formspree rejected this email address." },
+      ],
+    });
+    const user = userEvent.setup();
+    render(<ContactForm />);
+    await fillContactForm(user);
+    await user.click(screen.getByRole("button", { name: "Send message" }));
+
+    expect(
+      await screen.findByText("Formspree rejected this email address."),
+    ).toBeInTheDocument();
+    expect(screen.getByRole("textbox", { name: /^email/i })).toHaveAttribute(
+      "aria-invalid",
+      "true",
+    );
+  });
+
+  it("does not post when the form ID is still a placeholder", async () => {
+    vi.stubEnv("NEXT_PUBLIC_FORMSPREE_CONTACT_ID", "YOUR_FORMSPREE_CONTACT_FORM_ID");
+    const fetchMock = mockFormspreeResponse({ success: true });
+    const user = userEvent.setup();
+    render(<ContactForm />);
+    await fillContactForm(user);
+    await user.click(screen.getByRole("button", { name: "Send message" }));
+
+    expect(await screen.findByRole("alert")).toHaveTextContent(
+      "This form is temporarily unavailable",
+    );
+    expect(fetchMock).not.toHaveBeenCalled();
   });
 });
 
@@ -95,7 +136,7 @@ describe("AdmissionForm", () => {
   });
 
   it("blocks an invalid enquiry with accessible field errors", async () => {
-    const fetchMock = mockFormspreeResponse({ ok: true });
+    const fetchMock = mockFormspreeResponse({ success: true });
     const user = userEvent.setup();
     render(<AdmissionForm />);
 
@@ -113,8 +154,8 @@ describe("AdmissionForm", () => {
     expect(nameInput).toHaveAccessibleDescription("Parent/guardian name is required.");
   });
 
-  it("submits a valid enquiry through the mocked Formspree endpoint", async () => {
-    const fetchMock = mockFormspreeResponse({ ok: true });
+  it("submits a valid enquiry through @formspree/react", async () => {
+    const fetchMock = mockFormspreeResponse({ success: true });
     const user = userEvent.setup();
     render(<AdmissionForm />);
 

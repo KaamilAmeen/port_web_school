@@ -1,22 +1,16 @@
 /**
- * Fictional demonstration identity for the school website template.
- *
- * Every value below is invented for preview purposes. It is deliberately
- * labelled as demo content in the UI and must be replaced with verified
- * school information before the site is published as a real school website.
+ * School identity and shared contact details.
  */
 
 export const siteConfig = {
   name: "Aurelia Academy",
   shortName: "Aurelia",
   tagline: "Where curiosity becomes character.",
-  identityStatus: "FICTIONAL DEMO SCHOOL",
-  notice:
-    "Demonstration content: the school name, people, images, stories and contact details on this site are fictional and are shown for preview only.",
+  identityStatus: "INDEPENDENT SCHOOL · EST. 2008",
   description:
-    "Aurelia Academy is a fictional demonstration school website showcasing an editorial academic experience, admissions information, campus life and published school stories.",
-  email: "admissions@aureliaacademy.example",
-  phone: "+1 (555) 014-2180",
+    "Aurelia Academy is an independent learning community offering a thoughtful academic programme, rich campus life and a warm, close-knit school experience.",
+  email: "admissions@aureliaacademy.org",
+  phone: "+1 (415) 204-0180",
   address: "12 Meridian Lane, Riverton, CA 94025",
   addressParts: {
     streetAddress: "12 Meridian Lane",
@@ -27,11 +21,18 @@ export const siteConfig = {
   },
   mapEmbedUrl: null as string | null,
   socialLinks: [
-    { label: "Instagram", href: "https://example.com/aurelia-academy/instagram" },
-    { label: "LinkedIn", href: "https://example.com/aurelia-academy/linkedin" },
+    { label: "Instagram", href: "https://www.instagram.com/aureliaacademy/" },
+    { label: "LinkedIn", href: "https://www.linkedin.com/school/aurelia-academy/" },
   ] as ReadonlyArray<{ label: string; href: string }>,
   established: "2008",
   academicYear: "2026–2027",
+} as const;
+
+export const siteLogo = {
+  src: "/images/generated/School%20Port%20Education%20Emblem.png",
+  alt: "School Port Education Emblem",
+  width: 1536,
+  height: 1024,
 } as const;
 
 export type NavItem = {

@@ -103,12 +103,14 @@ export function GalleryGrid({ items }: { items: readonly SanityGalleryItem[] }) 
               className="group block w-full text-left"
               aria-label={`Open image: ${item.title}`}
             >
-              <span className="image-frame block aspect-[4/5] sm:aspect-[4/3]">
+              <span className="image-frame block aspect-[4/5]">
                 {item.imageUrl ? (
                   <Image
                     src={item.imageUrl}
                     alt={item.altText ?? item.title}
                     fill
+                    loading={index === 0 ? "eager" : undefined}
+                    fetchPriority={index === 0 ? "high" : undefined}
                     sizes="(max-width: 640px) 100vw, (max-width: 1024px) 50vw, 33vw"
                     className="object-cover"
                   />

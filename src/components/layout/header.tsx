@@ -1,12 +1,13 @@
 "use client";
 
 import { useEffect, useState } from "react";
+import Image from "next/image";
 import Link from "next/link";
 import { usePathname } from "next/navigation";
 import { AnimatePresence, motion, useReducedMotion } from "framer-motion";
-import { ArrowUpRight, GraduationCap, Menu, X } from "lucide-react";
+import { ArrowUpRight, Menu, X } from "lucide-react";
 import { buttonVariants } from "@/components/ui/button";
-import { mainNavigation, siteConfig } from "@/content/site";
+import { mainNavigation, siteConfig, siteLogo } from "@/content/site";
 import { cn } from "@/lib/utils";
 
 export function Header() {
@@ -42,13 +43,21 @@ export function Header() {
     >
       <div className="container-site flex h-[4.75rem] items-center justify-between gap-6">
         <Link href="/" className="group flex shrink-0 items-center gap-3" aria-label={`${siteConfig.name} home`}>
-          <span className="grid size-11 place-items-center border border-navy/25 bg-white text-navy transition-colors group-hover:border-gold">
-            <GraduationCap aria-hidden="true" className="size-6" />
+          <span className="grid h-11 w-14 shrink-0 place-items-center border border-navy/25 bg-white p-1.5 transition-colors group-hover:border-gold">
+            <Image
+              src={siteLogo.src}
+              alt=""
+              width={siteLogo.width}
+              height={siteLogo.height}
+              sizes="56px"
+              loading="eager"
+              className="h-full w-full object-contain"
+            />
           </span>
           <span className="leading-tight">
             <span className="block font-display text-lg text-navy">{siteConfig.name}</span>
             <span className="block text-[9px] font-semibold uppercase tracking-[0.24em] text-gold">
-              Fictional demo school
+              Independent school
             </span>
           </span>
         </Link>

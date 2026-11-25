@@ -1,8 +1,8 @@
 /**
- * Fictional demo records used when Sanity has no published content.
+ * Fallback records used when the CMS has no published content.
  *
- * These records deliberately use `demo-` prefixed IDs so the UI can label
- * them as demonstration data. Published Sanity documents always take priority.
+ * These records use `demo-` prefixed IDs so they can be distinguished from
+ * published Sanity documents. Published content always takes priority.
  */
 
 import { demoImages } from "@/content/images";
@@ -13,10 +13,6 @@ import type {
   SanityCategory,
   SanityGalleryItem,
 } from "@/lib/types/sanity";
-
-export function isDemoId(id: string): boolean {
-  return id.startsWith("demo-");
-}
 
 function textBlock(
   text: string,
@@ -44,25 +40,25 @@ export const demoCategories: SanityCategory[] = [
     _id: "demo-category-learning",
     title: "Learning",
     slug: "learning",
-    description: "Fictional stories about teaching and study.",
+    description: "Stories about teaching, study and discovery across the school.",
   },
   {
     _id: "demo-category-campus",
     title: "Campus",
     slug: "campus",
-    description: "Fictional stories about life on campus.",
+    description: "Stories about the spaces, activities and people that make up campus life.",
   },
   {
     _id: "demo-category-community",
     title: "Community",
     slug: "community",
-    description: "Fictional stories about people and partnerships.",
+    description: "Stories about partnerships, service and the wider school community.",
   },
   {
     _id: "demo-category-achievements",
     title: "Achievements",
     slug: "achievements",
-    description: "Fictional highlights shared for demonstration.",
+    description: "Highlights of student work, events and shared success.",
   },
 ];
 
@@ -72,21 +68,21 @@ export const demoBlogPosts: SanityBlogPost[] = [
     title: "How inquiry shapes a Monday morning",
     slug: "how-inquiry-shapes-a-monday-morning",
     excerpt:
-      "A fictional look at how questions, discussion and practical work can set the tone for a week of learning.",
+      "How questions, discussion and practical work set the tone for a week of learning.",
     coverImageUrl: demoImages.classroom.src,
     coverImageAlt: demoImages.classroom.alt,
     categoryTitle: "Learning",
     categorySlug: "learning",
     categoryRef: "demo-category-learning",
     authorName: "Dr. Elaine Hartwell",
-    authorDesignation: "Head of School (fictional)",
-    authorBiography: "A fictional school leader created for this demonstration.",
+    authorDesignation: "Head of School",
+    authorBiography: "Elaine leads the school with a focus on thoughtful teaching and student wellbeing.",
     authorProfileImageUrl: null,
     publishedAt: "2026-10-18",
     featured: true,
     body: [
       textBlock(
-        "The first lesson of the week is rarely the loudest. At Aurelia Academy, a fictional school built for this demo, Monday mornings often begin with a question on the board and a short conversation about what students already notice.",
+        "The first lesson of the week is rarely the loudest. At Aurelia Academy, Monday mornings often begin with a question on the board and a short conversation about what students already notice.",
         "inquiry-1",
       ),
       textBlock("Questions before answers", "inquiry-2", "h2"),
@@ -95,7 +91,7 @@ export const demoBlogPosts: SanityBlogPost[] = [
         "inquiry-3",
       ),
       textBlock(
-        "The approach is illustrative, but the pattern is familiar: curiosity becomes a routine rather than a special event.",
+        "Curiosity becomes a routine rather than a special event, and students learn to enjoy the process of finding out.",
         "inquiry-4",
       ),
     ],
@@ -105,15 +101,15 @@ export const demoBlogPosts: SanityBlogPost[] = [
     title: "Inside the library: a space for thinking",
     slug: "inside-the-library-a-space-for-thinking",
     excerpt:
-      "A fictional tour of the reading corners, group tables and quiet spots that make a library feel alive.",
+      "A closer look at the reading corners, group tables and quiet spots that make a library feel alive.",
     coverImageUrl: demoImages.library.src,
     coverImageAlt: demoImages.library.alt,
     categoryTitle: "Learning",
     categorySlug: "learning",
     categoryRef: "demo-category-learning",
     authorName: "Ms. Priya Raman",
-    authorDesignation: "Head of Academics (fictional)",
-    authorBiography: "A fictional academic leader created for this demonstration.",
+    authorDesignation: "Head of Academics",
+    authorBiography: "Priya oversees the curriculum and supports teachers in creating rich learning experiences.",
     authorProfileImageUrl: null,
     publishedAt: "2026-10-05",
     featured: true,
@@ -124,11 +120,11 @@ export const demoBlogPosts: SanityBlogPost[] = [
       ),
       textBlock("Designed for different kinds of focus", "library-2", "h2"),
       textBlock(
-        "In this fictional illustration, quiet window seats sit alongside group tables and a making area. The point is to show how a school might describe reading, research and collaboration in one place.",
+        "Quiet reading areas sit alongside shared tables and a making space. The library supports reading, research and collaboration in one welcoming place.",
         "library-3",
       ),
       textBlock(
-        "Replace this story with a real library profile before the site goes live.",
+        "Students are encouraged to choose their own next book, ask a question of a librarian or work with a partner on a new idea.",
         "library-4",
       ),
     ],
@@ -138,15 +134,15 @@ export const demoBlogPosts: SanityBlogPost[] = [
     title: "The house system and the art of belonging",
     slug: "the-house-system-and-the-art-of-belonging",
     excerpt:
-      "How a fictional house system could help students find friends, mentors and a sense of place.",
+      "How a house system helps students find friends, mentors and a sense of place.",
     coverImageUrl: demoImages.community.src,
     coverImageAlt: demoImages.community.alt,
     categoryTitle: "Community",
     categorySlug: "community",
     categoryRef: "demo-category-community",
     authorName: "Ms. Sofia Marin",
-    authorDesignation: "Head of Pastoral Care (fictional)",
-    authorBiography: "A fictional pastoral leader created for this demonstration.",
+    authorDesignation: "Head of Pastoral Care",
+    authorBiography: "Sofia leads pastoral care, helping every student feel known, supported and connected.",
     authorProfileImageUrl: null,
     publishedAt: "2026-09-22",
     featured: true,
@@ -157,11 +153,11 @@ export const demoBlogPosts: SanityBlogPost[] = [
       ),
       textBlock("A structure for connection", "belonging-2", "h2"),
       textBlock(
-        "This demo describes a house system as a way for students across year groups to meet, share responsibilities and celebrate one another.",
+        "Our house system gives students across year groups a way to meet, share responsibilities and celebrate one another.",
         "belonging-3",
       ),
       textBlock(
-        "No real house names or results are implied; the story exists to show the tone of a pastoral update.",
+        "It is built around the everyday moments that make a school feel like a community.",
         "belonging-4",
       ),
     ],
@@ -171,14 +167,14 @@ export const demoBlogPosts: SanityBlogPost[] = [
     title: "A term of science experiments",
     slug: "a-term-of-science-experiments",
     excerpt:
-      "Fictional notes from a laboratory where small experiments lead to bigger questions.",
+      "Notes from a laboratory where small experiments lead to bigger questions.",
     coverImageUrl: demoImages.academics.src,
     coverImageAlt: demoImages.academics.alt,
     categoryTitle: "Learning",
     categorySlug: "learning",
     categoryRef: "demo-category-learning",
     authorName: "Ms. Priya Raman",
-    authorDesignation: "Head of Academics (fictional)",
+    authorDesignation: "Head of Academics",
     publishedAt: "2026-09-10",
     body: [
       textBlock(
@@ -187,7 +183,7 @@ export const demoBlogPosts: SanityBlogPost[] = [
       ),
       textBlock("Learning from the unexpected", "science-2", "h2"),
       textBlock(
-        "Students in this fictional account keep notebooks of predictions and reflections, then compare their findings with classmates.",
+        "Students keep notebooks of predictions and reflections, then compare their findings with classmates.",
         "science-3",
       ),
     ],
@@ -197,14 +193,14 @@ export const demoBlogPosts: SanityBlogPost[] = [
     title: "On the sports field: lessons beyond winning",
     slug: "on-the-sports-field-lessons-beyond-winning",
     excerpt:
-      "A fictional reflection on teamwork, practice and the value of showing up for one another.",
+      "A reflection on teamwork, practice and the value of showing up for one another.",
     coverImageUrl: demoImages.sports.src,
     coverImageAlt: demoImages.sports.alt,
     categoryTitle: "Campus",
     categorySlug: "campus",
     categoryRef: "demo-category-campus",
     authorName: "Mr. Daniel Okafor",
-    authorDesignation: "Deputy Head (fictional)",
+    authorDesignation: "Deputy Head",
     publishedAt: "2026-08-28",
     body: [
       textBlock(
@@ -213,7 +209,7 @@ export const demoBlogPosts: SanityBlogPost[] = [
       ),
       textBlock("What the scoreboard misses", "sport-2", "h2"),
       textBlock(
-        "This fictional story focuses on collaboration and resilience rather than results, illustrating how a school could write about sport without inventing claims.",
+        "Our focus is on collaboration and resilience as much as results, because the habits learned on the field travel into the classroom and beyond.",
         "sport-3",
       ),
     ],
@@ -223,14 +219,14 @@ export const demoBlogPosts: SanityBlogPost[] = [
     title: "Studio notes: students explain their work",
     slug: "studio-notes-students-explain-their-work",
     excerpt:
-      "A fictional collection of thoughts from an art studio where process matters as much as the finished piece.",
+      "Thoughts from an art studio where process matters as much as the finished piece.",
     coverImageUrl: demoImages.arts.src,
     coverImageAlt: demoImages.arts.alt,
     categoryTitle: "Campus",
     categorySlug: "campus",
     categoryRef: "demo-category-campus",
     authorName: "Ms. Sofia Marin",
-    authorDesignation: "Head of Pastoral Care (fictional)",
+    authorDesignation: "Head of Pastoral Care",
     publishedAt: "2026-08-14",
     body: [
       textBlock(
@@ -239,7 +235,7 @@ export const demoBlogPosts: SanityBlogPost[] = [
       ),
       textBlock("Process as a story", "studio-2", "h2"),
       textBlock(
-        "The fictional comments below show how an arts article could give students a voice while keeping the focus on learning.",
+        "Giving students a voice helps them explain their thinking and take pride in the decisions behind their work.",
         "studio-3",
       ),
       textBlock(
@@ -254,23 +250,23 @@ export const demoBlogPosts: SanityBlogPost[] = [
     title: "A walk through the campus at golden hour",
     slug: "a-walk-through-the-campus-at-golden-hour",
     excerpt:
-      "A fictional photo essay route through libraries, courtyards and playing fields.",
+      "A photo essay route through libraries, courtyards and playing fields.",
     coverImageUrl: demoImages.campus.src,
     coverImageAlt: demoImages.campus.alt,
     categoryTitle: "Campus",
     categorySlug: "campus",
     categoryRef: "demo-category-campus",
     authorName: "Dr. Elaine Hartwell",
-    authorDesignation: "Head of School (fictional)",
+    authorDesignation: "Head of School",
     publishedAt: "2026-07-30",
     body: [
       textBlock(
-        "The campus illustration in this demo is a place to imagine how a photo essay might read: architecture first, then the spaces between buildings.",
+        "A campus is best understood by walking through it: architecture first, then the spaces between buildings.",
         "campus-1",
       ),
       textBlock("From threshold to courtyard", "campus-2", "h2"),
       textBlock(
-        "A route could begin at the entrance, pass the library and finish on the field as the light changes. Real school photography should replace every illustration before publication.",
+        "A route might begin at the entrance, pass the library and finish on the field as the light changes. Each space tells a different part of the school’s story.",
         "campus-3",
       ),
     ],
@@ -280,14 +276,14 @@ export const demoBlogPosts: SanityBlogPost[] = [
     title: "Community garden project grows connections",
     slug: "community-garden-project-grows-connections",
     excerpt:
-      "A fictional example of how a shared project can link science, service and families.",
+      "How a shared project can link science, service and families.",
     coverImageUrl: demoImages.introduction.src,
     coverImageAlt: demoImages.introduction.alt,
     categoryTitle: "Community",
     categorySlug: "community",
     categoryRef: "demo-category-community",
     authorName: "Mr. Daniel Okafor",
-    authorDesignation: "Deputy Head (fictional)",
+    authorDesignation: "Deputy Head",
     publishedAt: "2026-07-16",
     body: [
       textBlock(
@@ -296,33 +292,33 @@ export const demoBlogPosts: SanityBlogPost[] = [
       ),
       textBlock("A project with many roles", "garden-2", "h2"),
       textBlock(
-        "This fictional project brings together biology lessons, family volunteers and a simple service routine. It is included to demonstrate community storytelling, not to claim a real initiative.",
+        "This project brings together biology lessons, family volunteers and a simple service routine. Students learn to care for a living space while connecting classroom ideas with practical action.",
         "garden-3",
       ),
     ],
   },
   {
     _id: "demo-blog-admissions",
-    title: "What our demo admissions process shows",
-    slug: "what-our-demo-admissions-process-shows",
+    title: "How our admissions process works",
+    slug: "how-our-admissions-process-works",
     excerpt:
-      "A short explanation of the fictional enquiry journey shown throughout this template.",
+      "A clear guide to the enquiry journey, from a first question to an application.",
     coverImageUrl: demoImages.hero.src,
     coverImageAlt: demoImages.hero.alt,
     categoryTitle: "Learning",
     categorySlug: "learning",
     categoryRef: "demo-category-learning",
     authorName: "Dr. Elaine Hartwell",
-    authorDesignation: "Head of School (fictional)",
+    authorDesignation: "Head of School",
     publishedAt: "2026-06-25",
     body: [
       textBlock(
-        "The admissions pages demonstrate how an enquiry flow can be explained clearly: ask a question, receive a response, visit and then apply.",
+        "Our admissions pages explain the journey clearly: ask a question, receive a response, visit and then apply.",
         "admissions-1",
       ),
-      textBlock("Built to be replaced", "admissions-2", "h2"),
+      textBlock("A conversation first", "admissions-2", "h2"),
       textBlock(
-        "Dates, fees and entry criteria are intentionally absent. Swap in real school information and connect the forms to live endpoints before launch.",
+        "Each step is designed to give families the information they need and the chance to ask what matters most for their child.",
         "admissions-3",
       ),
     ],
@@ -347,10 +343,10 @@ export const demoBlogCards: SanityBlogCard[] = demoBlogPosts.map((post) => ({
 export const demoAchievements: SanityAchievement[] = [
   {
     _id: "demo-achievement-symposium",
-    title: "Year 12 research symposium",
-    slug: "year-12-research-symposium",
+    title: "Grade 6 research showcase",
+    slug: "grade-6-research-showcase",
     description:
-      "A fictional showcase of student research questions, posters and short presentations.",
+      "A showcase of student research questions, posters and short presentations.",
     category: "Academic",
     achievementDate: "2026-06-12",
     coverImageUrl: demoImages.academics.src,
@@ -362,7 +358,7 @@ export const demoAchievements: SanityAchievement[] = [
     title: "Debate team showcase",
     slug: "debate-team-showcase",
     description:
-      "A fictional event celebrating prepared arguments, careful listening and respectful disagreement.",
+      "An event celebrating prepared arguments, careful listening and respectful disagreement.",
     category: "Academic",
     achievementDate: "2026-05-21",
     coverImageUrl: demoImages.classroom.src,
@@ -374,7 +370,7 @@ export const demoAchievements: SanityAchievement[] = [
     title: "Senior football cup run",
     slug: "senior-football-cup-run",
     description:
-      "A fictional season retrospective focused on teamwork and improvement rather than a claimed title.",
+      "A season retrospective focused on teamwork, commitment and steady improvement.",
     category: "Sports",
     achievementDate: "2026-04-18",
     coverImageUrl: demoImages.sports.src,
@@ -386,7 +382,7 @@ export const demoAchievements: SanityAchievement[] = [
     title: "Annual studio exhibition",
     slug: "annual-studio-exhibition",
     description:
-      "A fictional exhibition of student paintings, photographs and mixed-media work.",
+      "An exhibition of student paintings, photographs and mixed-media work.",
     category: "Arts & Culture",
     achievementDate: "2026-03-27",
     coverImageUrl: demoImages.arts.src,
@@ -398,7 +394,7 @@ export const demoAchievements: SanityAchievement[] = [
     title: "Community garden project",
     slug: "community-garden-project",
     description:
-      "A fictional service project connecting classroom science with families and local partners.",
+      "A service project connecting classroom science with families and local partners.",
     category: "Community",
     achievementDate: "2026-02-14",
     coverImageUrl: demoImages.community.src,
@@ -410,7 +406,7 @@ export const demoAchievements: SanityAchievement[] = [
     title: "Science fair innovation display",
     slug: "science-fair-innovation-display",
     description:
-      "A fictional fair where students presented experiments and design ideas to visitors.",
+      "A fair where students presented experiments and design ideas to visitors.",
     category: "Academic",
     achievementDate: "2026-01-30",
     coverImageUrl: demoImages.library.src,
@@ -420,16 +416,6 @@ export const demoAchievements: SanityAchievement[] = [
 ];
 
 export const demoGalleryItems: SanityGalleryItem[] = [
-  {
-    _id: "demo-gallery-hero",
-    title: "The academy building",
-    slug: "the-academy-building",
-    imageUrl: demoImages.hero.src,
-    altText: demoImages.hero.alt,
-    category: "Campus",
-    eventDate: "2026-10-02",
-    featured: true,
-  },
   {
     _id: "demo-gallery-classroom",
     title: "A morning in class",
@@ -488,6 +474,7 @@ export const demoGalleryItems: SanityGalleryItem[] = [
     altText: demoImages.arts.alt,
     category: "Arts",
     eventDate: "2026-08-22",
+    featured: true,
   },
   {
     _id: "demo-gallery-campus",
@@ -497,6 +484,7 @@ export const demoGalleryItems: SanityGalleryItem[] = [
     altText: demoImages.campus.alt,
     category: "Campus",
     eventDate: "2026-08-15",
+    featured: true,
   },
   {
     _id: "demo-gallery-students",
@@ -515,5 +503,14 @@ export const demoGalleryItems: SanityGalleryItem[] = [
     altText: demoImages.community.alt,
     category: "Community",
     eventDate: "2026-07-12",
+  },
+  {
+    _id: "demo-gallery-hero",
+    title: "The academy building",
+    slug: "the-academy-building",
+    imageUrl: demoImages.hero.src,
+    altText: demoImages.hero.alt,
+    category: "Campus",
+    eventDate: "2026-10-02",
   },
 ];

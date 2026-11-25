@@ -52,3 +52,12 @@ export function formspreeEndpoint(id: string | undefined): string | null {
   if (/^https?:\/\//i.test(value)) return value;
   return `https://formspree.io/f/${encodeURIComponent(value)}`;
 }
+
+/** Returns the hashid expected by `@formspree/react`, or null when unconfigured. */
+export function formspreeFormId(id: string | undefined): string | null {
+  const endpoint = formspreeEndpoint(id);
+  if (!endpoint) return null;
+
+  const match = endpoint.match(/\/f\/([^/?#]+)/)?.[1];
+  return match ? decodeURIComponent(match) : null;
+}

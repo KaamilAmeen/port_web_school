@@ -3,7 +3,6 @@ import Image from "next/image";
 import { CtaSection } from "@/components/layout/cta-section";
 import { StaggerReveal } from "@/components/animations/stagger-reveal";
 import { PageHeading } from "@/components/ui/page-heading";
-import { PlaceholderNotice } from "@/components/ui/placeholder-notice";
 import { SectionHeading } from "@/components/ui/section-heading";
 import { academicsCopy } from "@/content/pages";
 import { demoImages } from "@/content/images";
@@ -29,12 +28,11 @@ export default function AcademicsPage() {
 
       <section className="section-space">
         <div className="container-site">
-          <PlaceholderNotice />
           <SectionHeading
             className="mt-12"
             eyebrow="Programmes"
             title="Programme structure"
-            description="Illustrative programme headings only. Confirm age ranges, subjects and qualifications with the school."
+            description="Three stages give families a clear view of learning from early years through to secondary school."
           />
           <StaggerReveal className="mt-12 grid gap-6 lg:grid-cols-3">
             {academicsCopy.programmes.map((programme, index) => (
@@ -81,7 +79,7 @@ export default function AcademicsPage() {
       <CtaSection
         eyebrow="Admissions"
         title="Ask about the right programme for your child."
-        description="Our admissions form collects an initial enquiry. Programme details will be added when approved by the school."
+        description="Our admissions form is the easiest way to ask about a programme and arrange a conversation."
       />
     </main>
   );

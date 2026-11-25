@@ -17,7 +17,7 @@ export default function NotFound() {
         <h1 className="display-title mt-6">We could not find that page.</h1>
         <p className="lede mt-6">
           The address may be incorrect, or the page may have moved. Start again
-          from the homepage or browse the published articles.
+          from the homepage or browse our latest stories.
         </p>
         <div className="mt-10 flex flex-wrap justify-center gap-4">
           <Link href="/" className={cn(buttonVariants())}>

@@ -2,8 +2,8 @@ import { AlertCircle, Inbox, LoaderCircle } from "lucide-react";
 import { cn } from "@/lib/utils";
 
 export function EmptyState({
-  title = "Nothing published yet",
-  description = "Content will appear here once it has been published in Sanity.",
+  title = "Nothing to show yet",
+  description = "Please check back soon for updates.",
   className,
 }: {
   title?: string;

@@ -1,5 +1,6 @@
 import type { SchemaTypeDefinition } from "sanity";
 import { achievement } from "./achievement";
+import { announcement } from "./announcement";
 import { author } from "./author";
 import { blog } from "./blog";
 import { blockContent } from "./block-content";
@@ -13,4 +14,5 @@ export const schemaTypes: SchemaTypeDefinition[] = [
   author,
   achievement,
   gallery,
+  announcement,
 ];

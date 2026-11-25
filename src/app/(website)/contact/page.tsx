@@ -1,7 +1,6 @@
 import type { Metadata } from "next";
 import { ContactForm } from "@/components/forms/contact-form";
 import { PageHeading } from "@/components/ui/page-heading";
-import { PlaceholderNotice } from "@/components/ui/placeholder-notice";
 import { contactCopy } from "@/content/pages";
 import { siteConfig } from "@/content/site";
 import { createPageMetadata } from "@/lib/seo";
@@ -27,7 +26,6 @@ export default function ContactPage() {
       <section className="section-space">
         <div className="container-site grid gap-12 lg:grid-cols-[0.72fr_1fr] lg:gap-20">
           <div>
-            <PlaceholderNotice />
             <h2 className="section-title mt-10">Contact details</h2>
             <dl className="mt-8 divide-y divide-navy/15 border-y border-navy/15">
               <div className="py-5">
@@ -41,7 +39,7 @@ export default function ContactPage() {
               <div className="py-5">
                 <dt className="text-xs uppercase tracking-widest text-navy/55">Phone</dt>
                 <dd className="mt-2 font-display text-xl text-navy">
-                  {siteConfig.phone ?? "To be supplied by the school"}
+                  {siteConfig.phone ?? "Available on request"}
                 </dd>
               </div>
               <div className="py-5">
@@ -64,8 +62,7 @@ export default function ContactPage() {
                 />
               ) : (
                 <p className="mt-3 text-sm text-charcoal/70">
-                  A Google Maps embed will appear here once the school supplies its
-                  verified location.
+                  Find us at the address above. Directions are available on request.
                 </p>
               )}
             </div>

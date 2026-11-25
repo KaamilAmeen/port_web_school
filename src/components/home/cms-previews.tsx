@@ -22,7 +22,7 @@ export function AchievementsPreview({
         <SectionHeading
           eyebrow="Achievements"
           title="Milestones worth celebrating"
-          description="Managed in Sanity when connected; fictional demo highlights appear here until real achievements are published."
+          description="Celebrating the milestones and projects that shape our school community."
         />
         {achievements && achievements.length > 0 ? (
           <div className="mt-12 grid gap-6 md:grid-cols-3">
@@ -61,8 +61,8 @@ export function AchievementsPreview({
         ) : (
           <EmptyState
             className="mt-12"
-            title="No published achievements yet"
-            description="Add published achievements in Sanity Studio to display them here. No achievements are invented in this demonstration."
+            title="No achievements to show yet"
+            description="Check back soon for the latest highlights from our community."
           />
         )}
         <Link
@@ -88,7 +88,7 @@ export function GalleryPreview({
         <SectionHeading
           eyebrow="Gallery"
           title="Moments from school life"
-          description="A selection of published gallery images or fictional demo illustrations. Student photographs require approval and consent before publication."
+          description="A selection of moments from learning, events and everyday school life."
         />
         {images && images.length > 0 ? (
           <div className="mt-12 grid grid-cols-2 gap-4 md:grid-cols-3">
@@ -113,8 +113,8 @@ export function GalleryPreview({
         ) : (
           <EmptyState
             className="mt-12"
-            title="No published gallery images yet"
-            description="Publish gallery images in Sanity Studio to display them here."
+            title="No gallery images to show yet"
+            description="Check back soon for new photographs from school life."
           />
         )}
         <Link
@@ -136,7 +136,7 @@ export function BlogPreview({ posts }: { posts: SanityBlogCard[] | null }) {
         <SectionHeading
           eyebrow="From the blog"
           title="Latest stories and insights"
-          description="Articles come from Sanity Studio, with fictional demo stories shown until real posts are published."
+          description="The latest news, learning stories and updates from our school."
         />
         {posts && posts.length > 0 ? (
           <div className="mt-12 grid gap-6 md:grid-cols-3">
@@ -149,8 +149,8 @@ export function BlogPreview({ posts }: { posts: SanityBlogCard[] | null }) {
         ) : (
           <EmptyState
             className="mt-12"
-            title="No published articles yet"
-            description="Published blog articles will appear here automatically."
+            title="No articles to show yet"
+            description="Check back soon for new stories from the school."
           />
         )}
         <Link

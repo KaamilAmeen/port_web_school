@@ -3,7 +3,6 @@ import Image from "next/image";
 import { CtaSection } from "@/components/layout/cta-section";
 import { FadeIn } from "@/components/animations/fade-in";
 import { PageHeading } from "@/components/ui/page-heading";
-import { PlaceholderNotice } from "@/components/ui/placeholder-notice";
 import { SectionHeading } from "@/components/ui/section-heading";
 import { aboutCopy } from "@/content/pages";
 import { demoImages } from "@/content/images";
@@ -29,10 +28,9 @@ export default function AboutPage() {
 
       <section className="section-space">
         <div className="container-site">
-          <PlaceholderNotice />
           <div className="mt-12 grid gap-12 lg:grid-cols-[1fr_0.85fr] lg:gap-20">
             <div>
-              <SectionHeading eyebrow="Introduction" title="A story waiting to be told accurately" />
+              <SectionHeading eyebrow="Introduction" title="A story built around relationships" />
               <div className="mt-8 space-y-6">
                 {aboutCopy.sections.map((section) => (
                   <FadeIn key={section.title} className="border-t border-navy/15 pt-6">
@@ -53,7 +51,7 @@ export default function AboutPage() {
                 />
               </div>
               <p className="mt-3 text-xs text-charcoal/55">
-                Fictional demo illustration — replace with an approved school photograph.
+                Moments from our school community.
               </p>
             </div>
           </div>
@@ -65,7 +63,7 @@ export default function AboutPage() {
           <SectionHeading
             eyebrow="Leadership and faculty"
             title="The people who will lead the story"
-            description="Names, portraits and biographies will be added once the school confirms who may be presented publicly."
+            description="Our leadership team works together to shape learning, wellbeing and community life."
           />
           <div className="mt-12 grid gap-px border border-navy/10 bg-navy/10 sm:grid-cols-2 lg:grid-cols-4">
             {aboutCopy.leadership.map((person) => (
@@ -84,7 +82,7 @@ export default function AboutPage() {
       <CtaSection
         eyebrow="Visit us"
         title="Get to know the school community."
-        description="Arrange a conversation once the school confirms its visit process and contact details."
+        description="We welcome visitors and would be glad to help you plan a time to see the school."
         secondaryHref="/contact"
         secondaryLabel="Contact the school"
       />

@@ -4,7 +4,6 @@ import Link from "next/link";
 import { CtaSection } from "@/components/layout/cta-section";
 import { EmptyState } from "@/components/ui/state-views";
 import { PageHeading } from "@/components/ui/page-heading";
-import { PlaceholderNotice } from "@/components/ui/placeholder-notice";
 import { formatDate } from "@/components/blog/blog-card";
 import { achievementsCopy } from "@/content/pages";
 import { getAchievements } from "@/lib/content";
@@ -46,7 +45,6 @@ export default async function AchievementsPage({ searchParams }: Props) {
 
       <section className="section-space">
         <div className="container-site">
-          <PlaceholderNotice text="Fictional demo achievements are shown when Sanity has no published items. These examples are not real awards." />
           <div className="mt-10 flex flex-wrap gap-2" role="group" aria-label="Filter achievements by category">
             {["All", ...achievementsCopy.categories].map((option) => (
               <Link
@@ -100,8 +98,8 @@ export default async function AchievementsPage({ searchParams }: Props) {
           ) : (
             <EmptyState
               className="mt-12"
-              title="No published achievements in this category"
-              description="Publish verified achievements in Sanity Studio to display them here."
+              title="No achievements in this category"
+              description="Try another category to explore more of our school community."
             />
           )}
         </div>
@@ -109,7 +107,7 @@ export default async function AchievementsPage({ searchParams }: Props) {
 
       <CtaSection
         title="Be part of the next chapter."
-        description="Ask about joining the school community once admissions information has been confirmed."
+        description="Ask about joining a community where effort, curiosity and contribution are celebrated."
       />
     </main>
   );

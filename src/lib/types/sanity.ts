@@ -53,3 +53,18 @@ export type SanityCategory = {
   slug: string;
   description?: string;
 };
+
+export type SanityAnnouncement = {
+  _id: string;
+  title: string;
+  slug: string;
+  category?: string;
+  summary: string;
+  body?: unknown[];
+  publishedAt?: string;
+  expiresAt?: string;
+  pinned?: boolean;
+  featured?: boolean;
+  imageUrl: string | null;
+  imageAlt?: string;
+};

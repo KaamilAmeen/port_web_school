@@ -9,10 +9,12 @@ import {
 import { fetchPublished } from "@/sanity/lib/client";
 import {
   achievementListQuery,
+  announcementListQuery,
   blogBySlugQuery,
   blogCategoriesQuery,
   blogListQuery,
   featuredAchievementsQuery,
+  featuredAnnouncementsQuery,
   featuredBlogsQuery,
   featuredGalleryQuery,
   galleryListQuery,
@@ -20,6 +22,7 @@ import {
 } from "@/sanity/lib/queries";
 import type {
   SanityAchievement,
+  SanityAnnouncement,
   SanityBlogCard,
   SanityBlogPost,
   SanityCategory,
@@ -27,8 +30,8 @@ import type {
 } from "@/lib/types/sanity";
 
 /**
- * Published Sanity content always wins. The fictional demo records appear only
- * when the CMS is unconfigured, unreachable or has no published content.
+ * Published Sanity content always wins. Fallback records appear only when the
+ * CMS is unconfigured, unreachable or has no published content.
  */
 function withDemo<T>(published: T[] | null, demo: readonly T[]): T[] {
   return published && published.length > 0 ? published : [...demo];
@@ -44,8 +47,9 @@ function featured<T extends { featured?: boolean }>(
 async function publishedArray<T>(
   query: string,
   tags: string[],
+  params: Record<string, string | number | boolean | null> = {},
 ): Promise<T[] | null> {
-  return fetchPublished<T[]>(query, {}, tags);
+  return fetchPublished<T[]>(query, params, tags);
 }
 
 export async function getFeaturedAchievements(): Promise<SanityAchievement[]> {
@@ -75,6 +79,26 @@ export async function getGallery(): Promise<SanityGalleryItem[]> {
     "gallery",
   ]);
   return withDemo(items, demoGalleryItems);
+}
+
+export async function getAnnouncements(): Promise<SanityAnnouncement[]> {
+  const items = await publishedArray<SanityAnnouncement>(
+    announcementListQuery,
+    ["announcement"],
+    { now: new Date().toISOString() },
+  );
+  return items ?? [];
+}
+
+export async function getFeaturedAnnouncements(): Promise<
+  SanityAnnouncement[]
+> {
+  const items = await publishedArray<SanityAnnouncement>(
+    featuredAnnouncementsQuery,
+    ["announcement"],
+    { now: new Date().toISOString() },
+  );
+  return items ?? [];
 }
 
 export async function getRecentPosts(): Promise<SanityBlogCard[]> {

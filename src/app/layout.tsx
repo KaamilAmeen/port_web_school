@@ -36,7 +36,7 @@ export const metadata: Metadata = {
     title: `${siteConfig.name} — ${siteConfig.tagline}`,
     description: siteConfig.description,
   },
-  // Fictional demo content should not be indexed as a real school.
+  // This preview deployment should not be indexed by search engines.
   robots: { index: false, follow: false },
 };
 

@@ -13,9 +13,10 @@ export function Hero() {
         src={demoImages.hero.src}
         alt={demoImages.hero.alt}
         fill
-        priority
+        loading="eager"
+        fetchPriority="high"
         sizes="100vw"
-        className="object-cover object-center opacity-70"
+        className="object-cover object-[50%_45%] opacity-70 md:object-center"
       />
       <div className="absolute inset-0 bg-gradient-to-r from-navy-deep via-navy-deep/85 to-navy-deep/25" />
       <div className="container-site relative flex min-h-[min(90svh,52rem)] flex-col justify-center py-24">
@@ -37,9 +38,6 @@ export function Hero() {
             Discover Our School
           </Link>
         </div>
-        <p className="mt-14 text-[11px] uppercase tracking-[0.2em] text-white/45">
-          {demoImages.hero.credit} · replace with school-approved photography before launch
-        </p>
       </div>
     </section>
   );

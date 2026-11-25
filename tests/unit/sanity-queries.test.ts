@@ -1,10 +1,12 @@
 import { describe, expect, it } from "vitest";
 import {
   achievementListQuery,
+  announcementListQuery,
   blogBySlugQuery,
   blogCategoriesQuery,
   blogListQuery,
   featuredAchievementsQuery,
+  featuredAnnouncementsQuery,
   featuredBlogsQuery,
   featuredGalleryQuery,
   galleryListQuery,
@@ -21,6 +23,8 @@ const publishedQueries = {
   featuredAchievementsQuery,
   galleryListQuery,
   featuredGalleryQuery,
+  announcementListQuery,
+  featuredAnnouncementsQuery,
 };
 
 describe("Sanity GROQ queries", () => {
@@ -36,6 +40,7 @@ describe("Sanity GROQ queries", () => {
     expect(featuredBlogsQuery).toContain("[0...3]");
     expect(featuredAchievementsQuery).toContain("[0...3]");
     expect(featuredGalleryQuery).toContain("[0...6]");
+    expect(featuredAnnouncementsQuery).toContain("[0...3]");
   });
 
   it("uses a slug parameter for the dynamic blog route", () => {
@@ -55,5 +60,16 @@ describe("Sanity GROQ queries", () => {
     expect(achievementListQuery).toContain("order(achievementDate desc)");
     expect(galleryListQuery).toContain("order(eventDate desc)");
     expect(blogCategoriesQuery).toContain("order(title asc)");
+    expect(announcementListQuery).toContain(
+      "order(pinned desc, publishedAt desc)",
+    );
+  });
+
+  it("excludes expired announcements and exposes portable text", () => {
+    for (const query of [announcementListQuery, featuredAnnouncementsQuery]) {
+      expect(query).toContain("expiresAt >= $now");
+      expect(query).toContain("body");
+      expect(query).toContain("image.asset->url");
+    }
   });
 });

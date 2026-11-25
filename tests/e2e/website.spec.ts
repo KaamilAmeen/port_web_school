@@ -7,7 +7,8 @@ const testFormIds = {
 
 const corsHeaders = {
   "Access-Control-Allow-Origin": "*",
-  "Access-Control-Allow-Headers": "content-type, accept",
+  "Access-Control-Allow-Headers":
+    "content-type, accept, formspree-client, formspree-session-data",
   "Access-Control-Allow-Methods": "POST, OPTIONS",
 };
 
@@ -21,7 +22,7 @@ async function mockFormspree(page: Page, formId: string) {
       status: 200,
       contentType: "application/json",
       headers: corsHeaders,
-      body: JSON.stringify({ ok: true }),
+      body: JSON.stringify({ next: "/thanks" }),
     });
   });
 }
@@ -59,7 +60,10 @@ test("homepage renders and desktop navigation works", async ({ page }) => {
     }),
   ).toBeVisible();
   await expect(
-    page.getByRole("note").filter({ hasText: /fictional demo school/i }).first(),
+    page.locator('header a[aria-label="Aurelia Academy home"] img'),
+  ).toBeVisible();
+  await expect(
+    page.getByText("Independent school", { exact: true }).first(),
   ).toBeVisible();
   await expect(
     page.getByRole("link", { name: "Explore Admissions" }),
@@ -119,12 +123,12 @@ test("all approved routes respond successfully", async ({ request }) => {
   }
 });
 
-test("blog listing renders demo articles when CMS content is unavailable", async ({
+test("blog listing renders fallback articles when CMS content is unavailable", async ({
   page,
 }) => {
   test.skip(
     Boolean(process.env.NEXT_PUBLIC_SANITY_PROJECT_ID),
-    "A configured CMS may contain published articles; this test covers the unconfigured demo state.",
+    "A configured CMS may contain published articles; this test covers the unconfigured fallback state.",
   );
 
   await page.goto("/blog");
@@ -135,9 +139,6 @@ test("blog listing renders demo articles when CMS content is unavailable", async
   await expect(
     page.getByText("How inquiry shapes a Monday morning").first(),
   ).toBeVisible();
-  await expect(
-    page.getByRole("note").filter({ hasText: /fictional demo/i }).first(),
-  ).toBeVisible();
 });
 
 test("unknown blog slugs use the not-found state", async ({ page }) => {
@@ -147,9 +148,7 @@ test("unknown blog slugs use the not-found state", async ({ page }) => {
   ).toBeVisible();
 });
 
-test("blog article detail renders a published or demo article", async ({
-  page,
-}) => {
+test("blog article detail renders the requested article", async ({ page }) => {
   const configured = Boolean(process.env.NEXT_PUBLIC_SANITY_PROJECT_ID);
   const slug =
     process.env.E2E_TEST_BLOG_SLUG ?? "how-inquiry-shapes-a-monday-morning";
@@ -160,16 +159,11 @@ test("blog article detail renders a published or demo article", async ({
 
   await page.goto(`/blog/${slug}`);
   await expect(page.locator("article h1")).toBeVisible();
-  if (!configured) {
-    await expect(
-      page.getByRole("note").filter({ hasText: /fictional demo/i }).first(),
-    ).toBeVisible();
-  }
 });
 
 test("gallery lightbox supports keyboard navigation", async ({ page }) => {
   const configured = Boolean(process.env.NEXT_PUBLIC_SANITY_PROJECT_ID);
-  const firstTitle = process.env.E2E_GALLERY_FIRST_TITLE ?? "The academy building";
+  const firstTitle = process.env.E2E_GALLERY_FIRST_TITLE ?? "A morning in class";
   test.skip(
     configured && !process.env.E2E_GALLERY_FIRST_TITLE,
     "Set E2E_GALLERY_FIRST_TITLE to test an image from the configured CMS.",

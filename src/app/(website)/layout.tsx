@@ -1,7 +1,6 @@
 import { ScrollProgress } from "@/components/animations/scroll-progress";
 import { Footer } from "@/components/layout/footer";
 import { Header } from "@/components/layout/header";
-import { DemoBanner } from "@/components/ui/demo-banner";
 
 export default function WebsiteLayout({
   children,
@@ -15,7 +14,6 @@ export default function WebsiteLayout({
         Skip to main content
       </a>
       <ScrollProgress />
-      <DemoBanner />
       <Header />
       <div className="flex-1">{children}</div>
       <Footer />

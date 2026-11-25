@@ -1,7 +1,8 @@
+import Image from "next/image";
 import Link from "next/link";
-import { ArrowUpRight, GraduationCap, Mail, MapPin } from "lucide-react";
+import { ArrowUpRight, Mail, MapPin } from "lucide-react";
 import { buttonVariants } from "@/components/ui/button";
-import { mainNavigation, siteConfig } from "@/content/site";
+import { mainNavigation, siteConfig, siteLogo } from "@/content/site";
 import { cn } from "@/lib/utils";
 
 export function Footer() {
@@ -10,8 +11,15 @@ export function Footer() {
       <div className="container-site grid gap-12 py-16 md:grid-cols-2 lg:grid-cols-4">
         <div className="lg:col-span-1">
           <div className="flex items-center gap-3 text-white">
-            <span className="grid size-11 place-items-center border border-white/25">
-              <GraduationCap aria-hidden="true" className="size-6 text-gold" />
+            <span className="grid h-11 w-14 shrink-0 place-items-center border border-white/25 bg-white p-1.5">
+              <Image
+                src={siteLogo.src}
+                alt={siteLogo.alt}
+                width={siteLogo.width}
+                height={siteLogo.height}
+                sizes="56px"
+                className="h-full w-full object-contain"
+              />
             </span>
             <span className="font-display text-xl">{siteConfig.name}</span>
           </div>
@@ -88,15 +96,15 @@ export function Footer() {
               ))}
             </ul>
           ) : (
-            <p className="mt-8 text-xs text-white/40">Demo social links shown.</p>
+            <p className="mt-8 text-xs text-white/40">Connect with us.</p>
           )}
         </div>
       </div>
 
       <div className="border-t border-white/10">
         <div className="container-site flex flex-col gap-2 py-6 text-xs text-white/45 sm:flex-row sm:items-center sm:justify-between">
-          <p>© {new Date().getFullYear()} {siteConfig.name}. Demonstration content.</p>
-          <p>Fictional demo details — replace before publishing.</p>
+          <p>© {new Date().getFullYear()} {siteConfig.name}. All rights reserved.</p>
+          <p>{siteConfig.tagline}</p>
         </div>
       </div>
     </footer>

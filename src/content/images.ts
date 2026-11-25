@@ -1,7 +1,8 @@
 /**
- * Locally generated SVG illustrations used by the fictional demo dataset.
- * They are stylised artwork, not photographs, and must be replaced with
- * approved school imagery before the site represents a real institution.
+ * Curated photography used across the website.
+ *
+ * These are Pexels photographs stored locally as WebP files. The original SVG
+ * illustrations remain in `public/images/demo/` as fallbacks.
  */
 
 export type DemoImage = {
@@ -10,37 +11,66 @@ export type DemoImage = {
   credit: string;
 };
 
-const demoImage = (name: string, alt: string): DemoImage => ({
-  src: `/images/demo/${name}.svg`,
+const demoImage = (
+  name: string,
+  alt: string,
+  photographer: string,
+): DemoImage => ({
+  src: `/images/curated/${name}.webp`,
   alt,
-  credit: "Fictional demo illustration",
+  credit: `Photograph by ${photographer} via Pexels`,
 });
 
 export const demoImages = {
   hero: demoImage(
-    "hero",
-    "Fictional illustration of a school building at golden hour",
+    "school-campus-students",
+    "Students and a teacher walking through a school courtyard",
+    "Thirdman",
   ),
   introduction: demoImage(
-    "introduction",
-    "Fictional illustration of students on a campus walkway",
+    "students-walking-campus",
+    "Students walking together along a campus path",
+    "George Pak",
   ),
   academics: demoImage(
-    "academics",
-    "Fictional illustration of a science laboratory",
+    "science-lab-experiment",
+    "Students conducting an experiment in a science laboratory",
+    "MART PRODUCTION",
   ),
-  library: demoImage("library", "Fictional illustration of a school library"),
-  classroom: demoImage("classroom", "Fictional illustration of a classroom"),
+  library: demoImage(
+    "school-library-reading",
+    "Student reading among books in a school library",
+    "Thirdman",
+  ),
+  classroom: demoImage(
+    "bright-classroom-lesson",
+    "Students taking part in a lesson in a bright classroom",
+    "Yan Krukau",
+  ),
   collaboration: demoImage(
-    "collaboration",
-    "Fictional illustration of students collaborating",
+    "students-computer-lab-collaboration",
+    "Students collaborating at computers in a technology lab",
+    "Gustavo Fring",
   ),
-  sports: demoImage("sports", "Fictional illustration of a school sports field"),
-  campus: demoImage("campus", "Fictional illustration of a campus walkway"),
-  arts: demoImage("arts", "Fictional illustration of an art studio"),
+  sports: demoImage(
+    "students-outdoor-sports",
+    "Students playing sport together outdoors",
+    "Joaquin Reyes Ramos",
+  ),
+  campus: demoImage(
+    "school-building-playground",
+    "School building beside an outdoor playground",
+    "Mary Taylor",
+  ),
+  arts: demoImage(
+    "students-art-class",
+    "Students painting and sharing work in an art class",
+    "Pavel Danilyuk",
+  ),
   community: demoImage(
-    "community",
-    "Fictional illustration of a school community gathering",
+    "school-award-ceremony",
+    "Students gathered at a school award ceremony",
+    "Legacy of Fire",
   ),
 } satisfies Record<string, DemoImage>;
 

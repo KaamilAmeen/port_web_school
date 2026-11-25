@@ -8,7 +8,7 @@ import { useFormspree } from "@/hooks/use-formspree";
 import { contactCopy } from "@/content/pages";
 import {
   contactSchema,
-  formspreeEndpoint,
+  formspreeFormId,
   type ContactValues,
 } from "@/lib/formspree";
 
@@ -25,8 +25,8 @@ export function ContactForm() {
   const [values, setValues] = useState<ContactValues>(initialValues);
   const { status, feedback, fieldErrors, submit, reset } = useFormspree({
     schema: contactSchema,
-    endpoint: formspreeEndpoint(process.env.NEXT_PUBLIC_FORMSPREE_CONTACT_ID),
-    successMessage: "Thank you — your message was received by Formspree.",
+    formKey: formspreeFormId(process.env.NEXT_PUBLIC_FORMSPREE_CONTACT_ID),
+    successMessage: "Thank you — your message has been received.",
     toPayload: ({ fullName, email, phone, subject, message, _gotcha }) => ({
       fullName,
       email,

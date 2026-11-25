@@ -3,7 +3,6 @@ import { AdmissionForm } from "@/components/forms/admission-form";
 import { CtaSection } from "@/components/layout/cta-section";
 import { FaqAccordion } from "@/components/ui/faq-accordion";
 import { PageHeading } from "@/components/ui/page-heading";
-import { PlaceholderNotice } from "@/components/ui/placeholder-notice";
 import { SectionHeading } from "@/components/ui/section-heading";
 import { admissionsCopy } from "@/content/pages";
 import { createPageMetadata } from "@/lib/seo";
@@ -28,12 +27,11 @@ export default function AdmissionsPage() {
 
       <section className="section-space">
         <div className="container-site">
-          <PlaceholderNotice />
           <SectionHeading
             className="mt-12"
             eyebrow="Process"
             title="How an enquiry becomes a conversation"
-            description="This framework is illustrative. Dates, entry criteria and fees must be supplied by the school."
+            description="Four simple steps take you from an initial question to a conversation with our team."
           />
           <ol className="mt-12 grid gap-6 md:grid-cols-2 lg:grid-cols-4">
             {admissionsCopy.steps.map((step, index) => (
@@ -55,9 +53,8 @@ export default function AdmissionsPage() {
             <p className="eyebrow">Enquiry form</p>
             <h2 className="section-title mt-5">Tell us what you would like to know</h2>
             <p className="lede mt-6">
-              Fields marked with an asterisk are required. Submissions are delivered
-              through the configured Formspree endpoint; no message is reported as
-              sent until Formspree confirms it.
+              Fields marked with an asterisk are required. We will only use your
+              details to respond to your enquiry.
             </p>
             <p className="mt-6 text-xs text-charcoal/60">
               Please avoid sending sensitive documents through this form.
@@ -74,7 +71,7 @@ export default function AdmissionsPage() {
           <SectionHeading
             eyebrow="FAQ"
             title="Frequently asked questions"
-            description="Answers will be replaced with school-approved information."
+            description="Answers to the questions we hear most often from families."
           />
           <FaqAccordion items={admissionsCopy.faqs} />
         </div>

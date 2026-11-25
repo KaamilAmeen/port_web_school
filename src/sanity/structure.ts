@@ -21,6 +21,9 @@ export const structure: StructureResolver = (S) =>
       S.listItem()
         .title("Gallery")
         .child(S.documentTypeList("gallery").title("Gallery images")),
+      S.listItem()
+        .title("Announcements")
+        .child(S.documentTypeList("announcement").title("Announcements")),
       S.divider(),
       S.documentTypeListItem("category").title("All categories"),
       S.documentTypeListItem("author").title("All authors"),

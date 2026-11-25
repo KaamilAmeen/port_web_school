@@ -1,56 +1,44 @@
 "use client";
 
-import { useState } from "react";
+import { useRef, useState } from "react";
+import { useSubmit } from "@formspree/react";
 import type { z } from "zod";
 
 export type SubmissionStatus = "idle" | "submitting" | "success" | "error";
 
 type FieldErrors<T> = Partial<Record<keyof T, string>>;
 
-type FormspreeErrorItem = { field?: string; message?: string };
+type FormspreePayload = Record<string, string>;
 
-function readErrors(payload: unknown): { fields: FieldErrors<Record<string, string>>; form: string[] } {
-  const fields: FieldErrors<Record<string, string>> = {};
-  const form: string[] = [];
-
-  if (!payload || typeof payload !== "object" || !("errors" in payload)) {
-    return { fields, form };
-  }
-
-  const errors = (payload as { errors: unknown }).errors;
-  if (!Array.isArray(errors)) return { fields, form };
-
-  for (const item of errors) {
-    if (!item || typeof item !== "object") continue;
-    const error = item as FormspreeErrorItem;
-    const message = error.message ?? "This field is invalid.";
-    if (error.field && typeof error.field === "string") {
-      fields[error.field] = message;
-    } else {
-      form.push(message);
-    }
-  }
-
-  return { fields, form };
-}
-
+/**
+ * Zod validates before Formspree is contacted. Once the data is valid, the
+ * request itself is sent by `@formspree/react`, and the library's structured
+ * result is mapped back onto the existing accessible field/general error UI.
+ */
 export function useFormspree<T extends object>({
   schema,
-  endpoint,
+  formKey,
   toPayload,
   successMessage,
 }: {
   schema: z.ZodType<T>;
-  endpoint: string | null;
-  toPayload: (values: T) => Record<string, string>;
+  formKey: string | null;
+  toPayload: (values: T) => FormspreePayload;
   successMessage: string;
 }) {
   const [status, setStatus] = useState<SubmissionStatus>("idle");
   const [feedback, setFeedback] = useState<string | null>(null);
   const [fieldErrors, setFieldErrors] = useState<FieldErrors<T>>({});
+  const submittingRef = useRef(false);
+
+  // useSubmit requires a non-empty key at render time. The guard in submit()
+  // prevents any request from being sent when no real ID is configured.
+  const submitToFormspree = useSubmit<FormspreePayload>(
+    formKey ?? "unconfigured-form",
+  );
 
   async function submit(values: T): Promise<boolean> {
-    if (status === "submitting") return false;
+    if (submittingRef.current) return false;
 
     const validation = schema.safeParse(values);
     if (!validation.success) {
@@ -69,48 +57,48 @@ export function useFormspree<T extends object>({
 
     setFieldErrors({});
 
-    if (!endpoint) {
+    if (!formKey) {
       setStatus("error");
       setFeedback(
-        "This form is not configured yet. Add the Formspree form ID to the environment variables.",
+        "This form is temporarily unavailable. Please contact the school by email.",
       );
       return false;
     }
 
+    submittingRef.current = true;
     setStatus("submitting");
     setFeedback(null);
 
     try {
-      const response = await fetch(endpoint, {
-        method: "POST",
-        headers: {
-          Accept: "application/json",
-          "Content-Type": "application/json",
-        },
-        body: JSON.stringify({ _gotcha: "", ...toPayload(validation.data) }),
-      });
+      const result = await submitToFormspree(toPayload(validation.data));
 
-      const payload: unknown = await response.json().catch(() => null);
-
-      if (!response.ok) {
-        const { fields, form } = readErrors(payload);
-        const serverErrors: FieldErrors<T> = {};
-        for (const [field, message] of Object.entries(fields)) {
-          if (message) serverErrors[field as keyof T] = message;
-        }
-        setFieldErrors(serverErrors);
-        setStatus("error");
-        setFeedback(
-          form.length > 0
-            ? form.join(" ")
-            : "Formspree could not accept your submission. Please try again shortly.",
-        );
-        return false;
+      if (result.kind === "success") {
+        setStatus("success");
+        setFeedback(successMessage);
+        return true;
       }
 
-      setStatus("success");
-      setFeedback(successMessage);
-      return true;
+      const serverErrors: FieldErrors<T> = {};
+      for (const [field, errors] of result.getAllFieldErrors()) {
+        const firstError = errors[0];
+        if (typeof field === "string" && firstError) {
+          serverErrors[field as keyof T] = firstError.message;
+        }
+      }
+
+      const formMessages = result
+        .getFormErrors()
+        .map((error) => error.message)
+        .filter(Boolean);
+
+      setFieldErrors(serverErrors);
+      setStatus("error");
+      setFeedback(
+        formMessages.length > 0
+          ? formMessages.join(" ")
+          : "We could not send your message. Please try again shortly.",
+      );
+      return false;
     } catch (error) {
       setStatus("error");
       setFeedback(
@@ -119,6 +107,8 @@ export function useFormspree<T extends object>({
           : "Something went wrong. Please try again shortly.",
       );
       return false;
+    } finally {
+      submittingRef.current = false;
     }
   }
 

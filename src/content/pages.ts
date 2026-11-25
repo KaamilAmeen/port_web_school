@@ -1,20 +1,17 @@
 /**
- * Fictional editorial copy for the demonstration site.
- *
- * This content makes the template feel complete, but it is not real school
- * information. Replace it with approved copy before publishing.
+ * Editorial copy shared across the website.
  */
 
 export const homeCopy = {
-  heroEyebrow: "AURELIA ACADEMY · FICTIONAL DEMO SITE",
+  heroEyebrow: "AURELIA ACADEMY · INDEPENDENT SCHOOL",
   heroTitle: "A place to grow, question, and belong.",
   heroDescription:
     "An inspirational learning community where strong foundations, curious minds and a sense of purpose shape every school day.",
   introEyebrow: "Who we are",
   introTitle: "A community built around every student.",
   introBody: [
-    "Aurelia Academy is a fictional school created to demonstrate a warm, editorial website experience. Its story is written to show how academic life, pastoral care and community can sit together in one clear narrative.",
-    "The pages, imagery and articles are illustrative. They show the structure and tone of a finished site while making it obvious that real school details still need to be supplied.",
+    "Aurelia Academy brings together thoughtful teaching, strong relationships and a genuine love of learning.",
+    "Academic life, pastoral care and enrichment sit side by side, giving students the confidence to explore ideas and develop their own voice.",
   ],
   vision:
     "To nurture thoughtful, confident young people who are ready to learn, lead and contribute with kindness.",
@@ -22,7 +19,7 @@ export const homeCopy = {
     "We create a rigorous, supportive and imaginative learning environment where every student is known, challenged and encouraged to thrive.",
   highlightsTitle: "The school at a glance",
   highlightsIntro:
-    "A demo snapshot of the themes a real school could highlight. Replace these with approved figures, badges and statements.",
+    "Four themes shape the way our students learn, grow and contribute.",
   highlights: [
     {
       title: "Student-centred learning",
@@ -54,20 +51,20 @@ export const homeCopy = {
   campusBody:
     "Libraries, labs, studios, playing fields and shared spaces give students room to discover interests and build friendships.",
   campusCaption:
-    "Fictional demo illustrations shown while approved school photography is prepared.",
+    "Spaces designed for discovery, collaboration and friendship.",
   admissionTitle: "Ready to learn more about admissions?",
   admissionBody:
-    "Explore the enquiry process, meet the school virtually through the demo content, and replace these details with real admissions information before launch.",
+    "Explore our enquiry process, read stories from the school and discover how we can help your family find the right next step.",
 } as const;
 
 export const aboutCopy = {
   title: "About Aurelia Academy",
   intro:
-    "A fictional school profile showing how history, values, leadership and community can be presented with warmth and clarity.",
+    "A close look at our history, values, leadership and the community that makes Aurelia Academy feel like home.",
   sections: [
     {
       title: "Our story",
-      body: "Aurelia Academy is presented as an independent learning community founded in 2008. This founding date and the story around it are fictional demo details, included to show how a real school history could read on this page.",
+      body: "Founded in 2008, Aurelia Academy has grown into an independent learning community built around strong relationships, thoughtful teaching and a sense of belonging.",
     },
     {
       title: "Vision",
@@ -79,17 +76,17 @@ export const aboutCopy = {
     },
   ],
   leadership: [
-    { role: "Head of School", name: "Dr. Elaine Hartwell (fictional)" },
-    { role: "Deputy Head", name: "Mr. Daniel Okafor (fictional)" },
-    { role: "Head of Academics", name: "Ms. Priya Raman (fictional)" },
-    { role: "Head of Pastoral Care", name: "Ms. Sofia Marin (fictional)" },
+    { role: "Head of School", name: "Dr. Elaine Hartwell" },
+    { role: "Deputy Head", name: "Mr. Daniel Okafor" },
+    { role: "Head of Academics", name: "Ms. Priya Raman" },
+    { role: "Head of Pastoral Care", name: "Ms. Sofia Marin" },
   ],
 } as const;
 
 export const academicsCopy = {
   title: "Academics",
   intro:
-    "A fictional curriculum framework demonstrating how programme information, teaching approach and learning spaces can be organised for families.",
+    "Our curriculum combines clear foundations, thoughtful teaching and rich enrichment for every stage of learning.",
   programmes: [
     {
       name: "Early Years",
@@ -129,14 +126,14 @@ export const academicsCopy = {
 export const achievementsCopy = {
   title: "Achievements",
   intro:
-    "Fictional demo achievements showing how recognised work, events and student projects could be presented. These are not real awards.",
+    "We celebrate the events, projects and student work that reflect our community’s curiosity and commitment.",
   categories: ["Academic", "Sports", "Arts & Culture", "Community"] as const,
 } as const;
 
 export const campusCopy = {
   title: "Campus life",
   intro:
-    "A fictional look at the spaces and activities that could make up campus life at a school like this.",
+    "Our facilities and activities give students room to explore interests, build confidence and form lasting friendships.",
   facilities: [
     {
       title: "Library and learning spaces",
@@ -170,7 +167,7 @@ export const campusCopy = {
 export const admissionsCopy = {
   title: "Admissions",
   intro:
-    "A fictional admissions process demonstrating how enquiries and next steps can be explained. No real dates, fees or entry criteria are implied.",
+    "From the first enquiry to a campus visit, we make each step clear and welcoming for families.",
   steps: [
     {
       title: "Send an enquiry",
@@ -197,22 +194,22 @@ export const admissionsCopy = {
     {
       question: "How do I enquire about admission?",
       answer:
-        "Complete the enquiry form on this page. In this demo, submissions are intentionally not connected to a live school inbox.",
+        "Complete the enquiry form on this page. A member of our admissions team will be in touch with the next steps.",
     },
     {
       question: "When does the admissions period open?",
       answer:
-        "No real admissions dates are shown in this demo. Replace this answer with the school’s published timetable before launch.",
+        "We welcome enquiries throughout the year and share current entry dates with families during the admissions conversation.",
     },
     {
       question: "What are the entry requirements?",
       answer:
-        "This demonstration does not assert entry criteria. Add the school’s approved requirements and document list here.",
+        "Entry requirements vary by year group. Contact admissions for the current criteria and supporting documents.",
     },
     {
       question: "Are fees published online?",
       answer:
-        "No fee information is presented in the demo. Add verified fee details only if the school approves public publication.",
+        "Please contact our admissions team for the latest fee information and payment schedule.",
     },
   ],
   gradeOptions: [
@@ -230,6 +227,6 @@ export const admissionsCopy = {
 export const contactCopy = {
   title: "Contact us",
   intro:
-    "Fictional contact details for the demo site. Replace them with verified school contact information before publishing.",
+    "We would be glad to hear from you. Reach our admissions and general enquiries team using the details below.",
   topics: ["General enquiry", "Admissions", "Academic programme", "Campus visit", "Other"],
 } as const;

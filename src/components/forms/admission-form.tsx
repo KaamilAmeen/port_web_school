@@ -13,7 +13,7 @@ import { admissionsCopy } from "@/content/pages";
 import { useFormspree } from "@/hooks/use-formspree";
 import {
   admissionSchema,
-  formspreeEndpoint,
+  formspreeFormId,
   type AdmissionValues,
 } from "@/lib/formspree";
 
@@ -32,10 +32,10 @@ export function AdmissionForm() {
   const [values, setValues] = useState<AdmissionValues>(initialValues);
   const { status, feedback, fieldErrors, submit, reset } = useFormspree({
     schema: admissionSchema,
-    endpoint: formspreeEndpoint(
+    formKey: formspreeFormId(
       process.env.NEXT_PUBLIC_FORMSPREE_ADMISSION_ID,
     ),
-    successMessage: "Thank you — your admission enquiry was received by Formspree.",
+    successMessage: "Thank you — your admission enquiry has been received.",
     toPayload: ({
       parentName,
       email,

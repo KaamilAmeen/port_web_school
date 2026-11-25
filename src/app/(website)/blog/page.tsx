@@ -4,7 +4,6 @@ import { Search } from "lucide-react";
 import { BlogCard } from "@/components/blog/blog-card";
 import { CtaSection } from "@/components/layout/cta-section";
 import { PageHeading } from "@/components/ui/page-heading";
-import { PlaceholderNotice } from "@/components/ui/placeholder-notice";
 import { EmptyState } from "@/components/ui/state-views";
 import { getBlogCategories, getBlogPosts } from "@/lib/content";
 import { createPageMetadata } from "@/lib/seo";
@@ -79,13 +78,12 @@ export default async function BlogPage({ searchParams }: Props) {
       <PageHeading
         eyebrow="School stories"
         title="Blog"
-        description="News, learning stories and community updates. Fictional demo posts appear until Sanity is connected."
+        description="News, learning stories and community updates from across the school."
         breadcrumbLabel="Blog"
       />
 
       <section className="section-space">
         <div className="container-site">
-          <PlaceholderNotice />
 
           {featured.length > 0 ? (
             <div className="mt-12">
@@ -172,7 +170,7 @@ export default async function BlogPage({ searchParams }: Props) {
             <EmptyState
               className="mt-10"
               title="No articles found"
-              description="There are no published articles matching these filters yet. Try another search or category."
+              description="There are no articles matching these filters yet. Try another search or category."
             />
           )}
         </div>

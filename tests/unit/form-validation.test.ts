@@ -1,5 +1,10 @@
 import { describe, expect, it } from "vitest";
-import { admissionSchema, contactSchema, formspreeEndpoint } from "@/lib/formspree";
+import {
+  admissionSchema,
+  contactSchema,
+  formspreeEndpoint,
+  formspreeFormId,
+} from "@/lib/formspree";
 
 const validContact = {
   fullName: "Test Parent",
@@ -91,5 +96,12 @@ describe("form validation", () => {
     expect(formspreeEndpoint(undefined)).toBeNull();
     expect(formspreeEndpoint("YOUR_FORMSPREE_CONTACT_FORM_ID")).toBeNull();
     expect(formspreeEndpoint("REPLACE_WITH_FORM_ID")).toBeNull();
+  });
+
+  it("extracts the Formspree hashid used by @formspree/react", () => {
+    expect(formspreeFormId(" test-contact-form ")).toBe("test-contact-form");
+    expect(formspreeFormId("https://formspree.io/f/test-form")).toBe("test-form");
+    expect(formspreeFormId("YOUR_FORMSPREE_CONTACT_FORM_ID")).toBeNull();
+    expect(formspreeFormId(undefined)).toBeNull();
   });
 });

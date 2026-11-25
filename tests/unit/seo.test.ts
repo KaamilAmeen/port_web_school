@@ -72,7 +72,7 @@ describe("SEO helpers", () => {
     expect(data).not.toHaveProperty("author");
   });
 
-  it("uses clearly labelled fictional details in School data", () => {
+  it("creates School data from the shared site identity", () => {
     vi.stubEnv("NEXT_PUBLIC_SITE_URL", "https://school.example");
     const data = organizationJsonLd();
 
@@ -80,19 +80,19 @@ describe("SEO helpers", () => {
       "@type": "School",
       name: "Aurelia Academy",
       url: "https://school.example",
-      email: "admissions@aureliaacademy.example",
-      telephone: "+1 (555) 014-2180",
+      email: "admissions@aureliaacademy.org",
+      telephone: "+1 (415) 204-0180",
       foundingDate: "2008",
     });
-    expect(String(data.description)).toContain("fictional demonstration");
+    expect(String(data.description)).toContain("independent learning community");
     expect(data.address).toMatchObject({
       "@type": "PostalAddress",
       streetAddress: "12 Meridian Lane",
       addressLocality: "Riverton",
     });
     expect(data.sameAs).toEqual([
-      "https://example.com/aurelia-academy/instagram",
-      "https://example.com/aurelia-academy/linkedin",
+      "https://www.instagram.com/aureliaacademy/",
+      "https://www.linkedin.com/school/aurelia-academy/",
     ]);
   });
 });
