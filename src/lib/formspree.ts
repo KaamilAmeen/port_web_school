@@ -1,4 +1,5 @@
 import { z } from "zod";
+import { isPlaceholderEnvValue } from "@/lib/env";
 
 const emailPattern = /^[^\s@]+@[^\s@]+\.[^\s@]+$/;
 const phonePattern = /^\+?[\d\s().-]{7,24}$/;
@@ -47,7 +48,7 @@ export type AdmissionValues = z.infer<typeof admissionSchema>;
 /** Accepts either a Formspree form ID or a full endpoint URL. */
 export function formspreeEndpoint(id: string | undefined): string | null {
   const value = id?.trim();
-  if (!value) return null;
+  if (!value || isPlaceholderEnvValue(value)) return null;
   if (/^https?:\/\//i.test(value)) return value;
   return `https://formspree.io/f/${encodeURIComponent(value)}`;
 }

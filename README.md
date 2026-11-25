@@ -41,7 +41,7 @@ A premium, responsive school website built with Next.js App Router. The project 
 ```bash
 git clone https://github.com/KaamilAmeen/port_web_school.git
 cd port_web_school
-cp .env.example .env.local
+cp .env.example .env
 npm install
 npm run dev
 ```
@@ -50,11 +50,11 @@ Open <http://localhost:3000>. Sanity Studio is available at <http://localhost:30
 
 ### Environment variables
 
-Copy `.env.example` to `.env.local`. Never commit `.env.local` or real credentials.
+Copy `.env.example` to `.env` and replace the placeholders with real values when they are available. Both `.env` and `.env.local` are ignored by Git; never commit either file or any real credentials. The `YOUR_*` placeholders are deliberately rejected by the app, so the labelled fictional demo content stays active until real values are supplied. You may use `.env.local` for machine-specific overrides.
 
 | Variable | Purpose | Notes |
 | --- | --- | --- |
-| `NEXT_PUBLIC_SANITY_PROJECT_ID` | Sanity project ID | From <https://www.sanity.io/manage>. Leave blank to use the labelled fictional demo fallback content. |
+| `NEXT_PUBLIC_SANITY_PROJECT_ID` | Sanity project ID | From <https://www.sanity.io/manage>. Leave blank or keep its placeholder to use the labelled fictional demo fallback content. |
 | `NEXT_PUBLIC_SANITY_DATASET` | Sanity dataset | Usually `production`. Drafts are excluded from all public queries. |
 | `NEXT_PUBLIC_SANITY_API_VERSION` | Sanity API date version | ISO date, for example `2026-11-01`. |
 | `NEXT_PUBLIC_FORMSPREE_CONTACT_ID` | Contact form endpoint | Form ID is the part after `/f/` in the Formspree URL. |
@@ -162,7 +162,7 @@ Schemas are grouped in Sanity Studio structure under **Blog Management**, **Achi
 
 ### Publishing workflow
 
-1. Add the Sanity project ID to `.env.local`.
+1. Add the Sanity project ID to `.env` (or `.env.local` for a local-only override).
 2. Visit `/studio` and sign in with an authorised Sanity account.
 3. Create authors and categories first, then publish blogs, achievements and gallery images.
 4. Public queries exclude `drafts.**` and only return published documents.
@@ -256,7 +256,7 @@ No deployment has been performed as part of this delivery because no Vercel acco
 ### Sanity hosted content
 
 - Create a hosted Sanity project and dataset.
-- Add its project ID to Vercel and local `.env.local`.
+- Add its project ID to Vercel and local `.env` (or `.env.local`).
 - Invite only authorised school content administrators to Studio.
 - Public visitors do not receive editor permissions.
 

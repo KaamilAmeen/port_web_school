@@ -26,6 +26,17 @@ describe("Sanity helpers without project credentials", () => {
     expect(sanityConfig.dataset).toBe("production");
   });
 
+  it("treats placeholder project ids as unconfigured", async () => {
+    vi.stubEnv("NEXT_PUBLIC_SANITY_PROJECT_ID", "YOUR_SANITY_PROJECT_ID");
+    const { isSanityConfigured } = await import("@/sanity/lib/env");
+    const { fetchPublished } = await import("@/sanity/lib/client");
+
+    expect(isSanityConfigured).toBe(false);
+    await expect(
+      fetchPublished('*[_type == "blog"]', {}, ["blog"]),
+    ).resolves.toBeNull();
+  });
+
   it("falls back to labelled demo records when the CMS is unavailable", async () => {
     const {
       getAchievements,

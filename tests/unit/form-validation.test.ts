@@ -89,5 +89,7 @@ describe("form validation", () => {
     );
     expect(formspreeEndpoint("  ")).toBeNull();
     expect(formspreeEndpoint(undefined)).toBeNull();
+    expect(formspreeEndpoint("YOUR_FORMSPREE_CONTACT_FORM_ID")).toBeNull();
+    expect(formspreeEndpoint("REPLACE_WITH_FORM_ID")).toBeNull();
   });
 });

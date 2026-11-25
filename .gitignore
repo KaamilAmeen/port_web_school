@@ -3,6 +3,7 @@ node_modules
 out
 build
 coverage
+# Local environment files with secrets. Only the placeholder template is committed.
 .env
 .env*.local
 !.env.example
