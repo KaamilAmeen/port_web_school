@@ -72,17 +72,27 @@ describe("SEO helpers", () => {
     expect(data).not.toHaveProperty("author");
   });
 
-  it("uses an honest placeholder description in Organization data", () => {
+  it("uses clearly labelled fictional details in School data", () => {
     vi.stubEnv("NEXT_PUBLIC_SITE_URL", "https://school.example");
     const data = organizationJsonLd();
 
     expect(data).toMatchObject({
-      "@type": "Organization",
-      name: "Example Academy",
+      "@type": "School",
+      name: "Aurelia Academy",
       url: "https://school.example",
+      email: "admissions@aureliaacademy.example",
+      telephone: "+1 (555) 014-2180",
+      foundingDate: "2008",
     });
-    expect(String(data.description)).toContain("placeholder");
-    expect(data).not.toHaveProperty("telephone");
-    expect(data).not.toHaveProperty("address");
+    expect(String(data.description)).toContain("fictional demonstration");
+    expect(data.address).toMatchObject({
+      "@type": "PostalAddress",
+      streetAddress: "12 Meridian Lane",
+      addressLocality: "Riverton",
+    });
+    expect(data.sameAs).toEqual([
+      "https://example.com/aurelia-academy/instagram",
+      "https://example.com/aurelia-academy/linkedin",
+    ]);
   });
 });

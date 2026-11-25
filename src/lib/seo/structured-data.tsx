@@ -3,13 +3,30 @@ import { getSiteUrl, siteConfig } from "@/content/site";
 type JsonLd = Record<string, unknown>;
 
 export function organizationJsonLd(): JsonLd {
+  const { addressParts } = siteConfig;
+
   return {
     "@context": "https://schema.org",
-    "@type": "Organization",
+    "@type": "School",
     name: siteConfig.name,
+    alternateName: siteConfig.shortName,
     url: getSiteUrl(),
-    description:
-      "Illustrative placeholder school website demonstration. Verified school details must be supplied before launch.",
+    description: siteConfig.description,
+    email: siteConfig.email,
+    telephone: siteConfig.phone,
+    foundingDate: siteConfig.established,
+    address: {
+      "@type": "PostalAddress",
+      ...addressParts,
+    },
+    sameAs: siteConfig.socialLinks.map((link) => link.href),
+    contactPoint: {
+      "@type": "ContactPoint",
+      contactType: "admissions",
+      email: siteConfig.email,
+      telephone: siteConfig.phone,
+      availableLanguage: ["English"],
+    },
   };
 }
 
@@ -55,7 +72,11 @@ export function articleJsonLd({
     ...(image ? { image } : {}),
     ...(publishedAt ? { datePublished: publishedAt } : {}),
     ...(authorName ? { author: { "@type": "Person", name: authorName } } : {}),
-    publisher: { "@type": "Organization", name: siteConfig.name },
+    publisher: {
+      "@type": "Organization",
+      name: siteConfig.name,
+      url: getSiteUrl(),
+    },
   };
 }
 

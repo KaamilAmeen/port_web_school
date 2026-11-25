@@ -46,7 +46,7 @@ export default async function AchievementsPage({ searchParams }: Props) {
 
       <section className="section-space">
         <div className="container-site">
-          <PlaceholderNotice text="Only school-verified achievements should be published. This page displays published Sanity content and invents no awards." />
+          <PlaceholderNotice text="Fictional demo achievements are shown when Sanity has no published items. These examples are not real awards." />
           <div className="mt-10 flex flex-wrap gap-2" role="group" aria-label="Filter achievements by category">
             {["All", ...achievementsCopy.categories].map((option) => (
               <Link

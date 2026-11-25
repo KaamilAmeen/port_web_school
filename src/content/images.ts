@@ -1,64 +1,58 @@
 /**
- * Local SVG placeholders used until verified, school-approved imagery is supplied.
- * These are illustrative graphics, not photographs or representations of real people,
- * events, facilities or achievements.
+ * Locally generated SVG illustrations used by the fictional demo dataset.
+ * They are stylised artwork, not photographs, and must be replaced with
+ * approved school imagery before the site represents a real institution.
  */
 
-export type PlaceholderImage = {
+export type DemoImage = {
   src: string;
   alt: string;
   credit: string;
 };
 
-const placeholder = (name: string, alt: string): PlaceholderImage => ({
-  src: `/images/placeholders/${name}.svg`,
+const demoImage = (name: string, alt: string): DemoImage => ({
+  src: `/images/demo/${name}.svg`,
   alt,
-  credit: "Local placeholder graphic",
+  credit: "Fictional demo illustration",
 });
 
-export const placeholderImages = {
-  hero: placeholder(
+export const demoImages = {
+  hero: demoImage(
     "hero",
-    "Placeholder illustration representing a school building",
+    "Fictional illustration of a school building at golden hour",
   ),
-  introduction: placeholder(
+  introduction: demoImage(
     "introduction",
-    "Placeholder illustration representing student learning",
+    "Fictional illustration of students on a campus walkway",
   ),
-  academics: placeholder(
+  academics: demoImage(
     "academics",
-    "Placeholder illustration representing academic discovery",
+    "Fictional illustration of a science laboratory",
   ),
-  library: placeholder("library", "Placeholder illustration representing a library"),
-  classroom: placeholder(
-    "classroom",
-    "Placeholder illustration representing a classroom",
-  ),
-  collaboration: placeholder(
+  library: demoImage("library", "Fictional illustration of a school library"),
+  classroom: demoImage("classroom", "Fictional illustration of a classroom"),
+  collaboration: demoImage(
     "collaboration",
-    "Placeholder illustration representing student collaboration",
+    "Fictional illustration of students collaborating",
   ),
-  sports: placeholder("sports", "Placeholder illustration representing school sport"),
-  campus: placeholder(
-    "campus",
-    "Placeholder illustration representing a campus walkway",
-  ),
-  arts: placeholder("arts", "Placeholder illustration representing creative arts"),
-  community: placeholder(
+  sports: demoImage("sports", "Fictional illustration of a school sports field"),
+  campus: demoImage("campus", "Fictional illustration of a campus walkway"),
+  arts: demoImage("arts", "Fictional illustration of an art studio"),
+  community: demoImage(
     "community",
-    "Placeholder illustration representing school community",
+    "Fictional illustration of a school community gathering",
   ),
-} satisfies Record<string, PlaceholderImage>;
+} satisfies Record<string, DemoImage>;
 
-export const galleryPlaceholders: readonly PlaceholderImage[] = [
-  placeholderImages.hero,
-  placeholderImages.classroom,
-  placeholderImages.library,
-  placeholderImages.academics,
-  placeholderImages.collaboration,
-  placeholderImages.sports,
-  placeholderImages.arts,
-  placeholderImages.campus,
-  placeholderImages.introduction,
-  placeholderImages.community,
+export const demoGalleryImages: readonly DemoImage[] = [
+  demoImages.hero,
+  demoImages.classroom,
+  demoImages.library,
+  demoImages.academics,
+  demoImages.collaboration,
+  demoImages.sports,
+  demoImages.arts,
+  demoImages.campus,
+  demoImages.introduction,
+  demoImages.community,
 ];

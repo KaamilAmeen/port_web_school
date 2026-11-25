@@ -1,26 +1,37 @@
 /**
- * Central placeholder configuration.
+ * Fictional demonstration identity for the school website template.
  *
- * EVERY value here is illustrative until the school supplies verified details.
- * Search for `PLACEHOLDER` in the codebase before launch and replace these values.
+ * Every value below is invented for preview purposes. It is deliberately
+ * labelled as demo content in the UI and must be replaced with verified
+ * school information before the site is published as a real school website.
  */
 
 export const siteConfig = {
-  name: "Example Academy",
-  shortName: "Example",
-  tagline: "A place where curiosity becomes character.",
-  identityStatus: "PLACEHOLDER SCHOOL IDENTITY" as const,
+  name: "Aurelia Academy",
+  shortName: "Aurelia",
+  tagline: "Where curiosity becomes character.",
+  identityStatus: "FICTIONAL DEMO SCHOOL",
   notice:
-    "Illustrative placeholder content. School name, history, imagery, contact details and achievements must be replaced with verified information before launch.",
+    "Demonstration content: the school name, people, images, stories and contact details on this site are fictional and are shown for preview only.",
   description:
-    "An illustrative school website demonstrating an editorial academic experience, admissions information, campus life and published school stories.",
-  email: "admissions@example.edu",
-  phone: null as string | null,
-  address: "Address to be supplied by the school",
+    "Aurelia Academy is a fictional demonstration school website showcasing an editorial academic experience, admissions information, campus life and published school stories.",
+  email: "admissions@aureliaacademy.example",
+  phone: "+1 (555) 014-2180",
+  address: "12 Meridian Lane, Riverton, CA 94025",
+  addressParts: {
+    streetAddress: "12 Meridian Lane",
+    addressLocality: "Riverton",
+    addressRegion: "CA",
+    postalCode: "94025",
+    addressCountry: "US",
+  },
   mapEmbedUrl: null as string | null,
-  socialLinks: [] as ReadonlyArray<{ label: string; href: string }>,
-  established: null as string | null,
-  academicYear: "Academic year to be confirmed",
+  socialLinks: [
+    { label: "Instagram", href: "https://example.com/aurelia-academy/instagram" },
+    { label: "LinkedIn", href: "https://example.com/aurelia-academy/linkedin" },
+  ] as ReadonlyArray<{ label: string; href: string }>,
+  established: "2008",
+  academicYear: "2026–2027",
 } as const;
 
 export type NavItem = {

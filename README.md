@@ -1,8 +1,8 @@
 # School Website Port
 
-A premium, responsive school website built with Next.js App Router. The current build uses clearly marked placeholder content because verified school identity, imagery, contact details, achievements and statistics were not supplied.
+A premium, responsive school website built with Next.js App Router. The project currently ships in **fictional demo mode**: it presents a complete-looking school called **Aurelia Academy**, but every name, image, story, achievement and contact detail is clearly labelled as demonstration content.
 
-> **Status:** The code, CMS schemas and form integrations are implemented. Sanity and Formspree have not been tested against real accounts, and the project has not been deployed to Vercel.
+> **Status:** The code, CMS schemas and form integrations are implemented. Sanity and Formspree have not been tested against real accounts, and the project has not been deployed to Vercel. Fictional demo content is intentionally not indexed by search engines.
 
 ---
 
@@ -54,7 +54,7 @@ Copy `.env.example` to `.env.local`. Never commit `.env.local` or real credentia
 
 | Variable | Purpose | Notes |
 | --- | --- | --- |
-| `NEXT_PUBLIC_SANITY_PROJECT_ID` | Sanity project ID | From <https://www.sanity.io/manage>. Leave blank to run with empty CMS states. |
+| `NEXT_PUBLIC_SANITY_PROJECT_ID` | Sanity project ID | From <https://www.sanity.io/manage>. Leave blank to use the labelled fictional demo fallback content. |
 | `NEXT_PUBLIC_SANITY_DATASET` | Sanity dataset | Usually `production`. Drafts are excluded from all public queries. |
 | `NEXT_PUBLIC_SANITY_API_VERSION` | Sanity API date version | ISO date, for example `2026-11-01`. |
 | `NEXT_PUBLIC_FORMSPREE_CONTACT_ID` | Contact form endpoint | Form ID is the part after `/f/` in the Formspree URL. |
@@ -62,16 +62,20 @@ Copy `.env.example` to `.env.local`. Never commit `.env.local` or real credentia
 | `NEXT_PUBLIC_SITE_URL` | Public origin | No trailing slash. Used for canonical URLs, Open Graph and the sitemap. |
 | `SANITY_API_READ_TOKEN` | Optional, server-only | Only needed if live preview/draft mode is added later. Never prefix private tokens with `NEXT_PUBLIC_`. |
 
-### Replace placeholder content
+### Fictional demo mode
 
-All unverified school information is centralised for replacement:
+When Sanity is unconfigured, unreachable or empty, the site uses fictional fallback records instead of blank pages:
 
-- `src/content/site.ts` — school name, tagline, email, address, navigation and social links
-- `src/content/pages.ts` — page copy, highlight labels, grade/year options and FAQs
-- `src/content/images.ts` — references to local SVG placeholders in `public/images/placeholders/`; replace with approved school imagery
-- `src/lib/seo/structured-data.tsx` — structured data; add factual details only after verification
+- `src/content/site.ts` — fictional school identity, address, `.example` email and reserved 555 phone number
+- `src/content/pages.ts` — fictional editorial copy, leadership names, programmes, FAQs and form options
+- `src/content/demo.ts` — nine demo articles, four categories, six achievements and ten gallery items with `demo-` IDs
+- `src/content/images.ts` — local SVG demo artwork in `public/images/demo/`
+- `src/components/ui/demo-banner.tsx` — visible notice on every public route
+- `src/app/layout.tsx` — `robots: { index: false, follow: false }` while demo content is active
 
-Search the repository for `PLACEHOLDER`, `placeholder` and `to be supplied` before launch.
+Published Sanity documents always take priority. The demo records disappear automatically once real published content exists. Search the repository for `fictional` and `demo` before launch, and replace the files above with verified school information.
+
+> The generated-image service rejected all image requests with `Invalid credential`, so the artwork is locally authored SVG illustration, not photography. Replace it with approved school photography before launch.
 
 ---
 
@@ -79,15 +83,15 @@ Search the repository for `PLACEHOLDER`, `placeholder` and `to be supplied` befo
 
 | Route | Purpose |
 | --- | --- |
-| `/` | Homepage with storytelling sections and CMS previews |
-| `/about` | Introduction, vision, mission and leadership placeholders |
-| `/academics` | Programmes, curriculum and teaching approach |
-| `/achievements` | CMS-powered achievement listings with empty state |
-| `/campus-life` | Facilities, activities and events |
-| `/gallery` | CMS-powered gallery with filters and accessible lightbox |
-| `/admissions` | Admission process, FAQ and enquiry form |
-| `/contact` | Contact information, form and optional map location |
-| `/blog` | CMS-powered article listing, search, categories and pagination |
+| `/` | Homepage with storytelling sections and CMS/demo previews |
+| `/about` | Fictional school profile, vision, mission and leadership |
+| `/academics` | Fictional programmes, curriculum and teaching approach |
+| `/achievements` | Published achievements, or labelled demo achievements when CMS content is absent |
+| `/campus-life` | Fictional facilities, activities and events |
+| `/gallery` | CMS or demo gallery with filters and accessible lightbox |
+| `/admissions` | Fictional process, FAQ and enquiry form |
+| `/contact` | Fictional contact information, form and optional map location |
+| `/blog` | Published articles or demo stories, search, categories and pagination |
 | `/blog/[slug]` | Dynamic article detail with Portable Text and related posts |
 | `/studio` | Sanity Studio with setup fallback when unconfigured |
 
@@ -102,11 +106,11 @@ src/
   app/
     (website)/          Public website routes and route-level states
     studio/             Sanity Studio route
-    layout.tsx          Root layout, fonts, metadata
+    layout.tsx          Root layout, fonts, metadata and demo noindex setting
     globals.css         Design tokens and global styles
     icon.svg            Generated app icon
     robots.ts           robots.txt
-    sitemap.ts          XML sitemap
+    sitemap.ts          XML sitemap (includes demo article slugs)
   components/
     animations/         Framer Motion and GSAP wrappers
     blog/               Blog cards and safe Portable Text renderer
@@ -114,15 +118,15 @@ src/
     gallery/            Filters, responsive grid, lightbox
     home/               Modular homepage sections
     layout/             Header, footer, CTA
-    ui/                 Buttons, headings, breadcrumbs, state views
-  content/              Centralised copy and placeholder image references
-public/
-  images/placeholders/  Local SVG placeholders awaiting approved school imagery
+    ui/                 Buttons, headings, breadcrumbs, demo banner, state views
+  content/              Centralised copy, demo records and image references
   hooks/                Formspree submission hook
   lib/                  Content helpers, SEO, validation, utilities, types
   sanity/
     lib/                Environment, client, GROQ queries, image URL builder
     schemas/            Blog, category, author, achievement, gallery
+public/
+  images/demo/          Local SVG demo illustrations
 tests/
   unit/                 Vitest and React Testing Library tests
   e2e/                  Playwright tests
@@ -132,7 +136,7 @@ tests/
 
 ## 5. Reusable components
 
-- `Button`, `SectionHeading`, `PageHeading`, `Breadcrumbs`, `PlaceholderNotice`
+- `Button`, `SectionHeading`, `PageHeading`, `Breadcrumbs`, `PlaceholderNotice`, `DemoBanner`
 - `EmptyState`, `ErrorMessage`, `LoadingIndicator`
 - `FadeIn`, `StaggerReveal`, `AnimatedText`, `GsapReveal`, `ScrollProgress`
 - `Header`, `Footer`, `CtaSection`, `FaqAccordion`
@@ -163,6 +167,7 @@ Schemas are grouped in Sanity Studio structure under **Blog Management**, **Achi
 3. Create authors and categories first, then publish blogs, achievements and gallery images.
 4. Public queries exclude `drafts.**` and only return published documents.
 5. Public content is revalidated every 60 seconds and tagged for cache invalidation.
+6. When published content exists, it replaces the fictional demo records automatically.
 
 The Portable Text renderer in `src/components/blog/portable-text.tsx` renders known block types explicitly; it does not inject raw HTML.
 
@@ -175,7 +180,7 @@ The Portable Text renderer in `src/components/blog/portable-text.tsx` renders kn
 3. In Formspree, configure the notification email and spam settings for each form.
 4. Submit a real test enquiry and confirm it appears in Formspree before launch.
 
-The client posts JSON to `https://formspree.io/f/{ID}` with `Accept: application/json`. A success message is shown only when Formspree returns an OK response. Validation is performed with Zod, duplicate submissions are blocked while a request is pending, and a honeypot field is included.
+The client posts JSON to `https://formspree.io/f/{ID}` with `Accept: application/json`. A success message is shown only when Formspree returns an OK response. Validation is performed with Zod, duplicate submissions are blocked while a request is pending, and a honeypot field is included. E2E tests use test-only IDs and intercept requests, so no real Formspree account is contacted.
 
 ---
 
@@ -191,7 +196,7 @@ npm run build
 npm run test:e2e
 ```
 
-`npm run test:e2e` starts a local dev server on port 3100 using test-only Formspree IDs. Formspree requests are intercepted by Playwright, so no real account is contacted.
+`npm run test:e2e` starts a local dev server on port 3100 using test-only Formspree IDs. Playwright intercepts Formspree requests. Stop any other `next dev` server for this project first, because Next.js uses a shared development lock.
 
 ### Coverage
 
@@ -202,18 +207,18 @@ Unit tests cover:
 - Inline validation, accessible errors, mocked success and provider failure states
 - Gallery lightbox, keyboard navigation and category filters
 - GROQ query draft exclusions and structure
-- CMS helper behaviour without credentials
-- Metadata and JSON-LD generation
+- CMS helper behaviour and demo fallbacks without credentials
+- Metadata and demo-labelled JSON-LD generation
 
 Playwright tests cover:
 
 - Homepage rendering and desktop navigation
 - Mobile menu and horizontal overflow
 - All approved routes
-- Blog empty state and dynamic not-found handling
+- Demo article listing, demo article detail and dynamic not-found handling
 - Invalid and successfully mocked contact/admission submissions
+- Gallery lightbox with demo images
 - Custom not-found page
-- Optional configured-CMS article and gallery tests (skipped unless environment fixtures are supplied)
 
 ### Optional E2E fixtures
 
@@ -224,7 +229,7 @@ E2E_TEST_BLOG_SLUG=your-published-article-slug
 E2E_GALLERY_FIRST_TITLE="Title of a published gallery image"
 ```
 
-Gallery keyboard tests require at least two published gallery images.
+Without a CMS, the tests automatically use the demo article slug and the first demo gallery title.
 
 ### Recorded results
 
@@ -244,6 +249,7 @@ See `TEST_RESULTS.md` for the commands executed in this delivery and their outco
 6. Deploy. Vercel will run `npm run build` automatically.
 7. Confirm `/sitemap.xml`, `/robots.txt`, `/studio`, forms and CMS content on the deployed domain.
 8. Add the production domain to Sanity CORS and to the Formspree allowed origins if required by those providers.
+9. Replace all demo content and remove the demo `noindex` setting before publishing as a real school site.
 
 No deployment has been performed as part of this delivery because no Vercel account, token or production domain was supplied.
 
@@ -258,13 +264,13 @@ No deployment has been performed as part of this delivery because no Vercel acco
 
 ## 10. Known limitations
 
-- School identity, history, contact details, photographs and achievements are placeholders and must be replaced before launch.
-- Contact and admission forms are coded but have not been tested with real Formspree accounts.
-- Sanity schemas, queries and Studio are coded but have not been connected to a real project/dataset.
+- All identity, history, contact details, artwork, stories, achievements and leadership names in the current build are fictional demo content and must be replaced before launch.
+- The demo is deliberately noindexed and shows a visible demo banner on every public route.
+- Formspree and Sanity are coded but have not been tested with real accounts or datasets.
 - No Google Maps embed is rendered because no verified address/map URL was supplied.
-- No testimonials or statistics are displayed because none were verified.
+- No testimonials or real statistics are displayed because none were verified.
 - Lighthouse scores and real Core Web Vitals have not been measured in production.
-- E2E tests for published blog details and gallery lightboxes are skipped unless CMS fixtures are provided; their component logic is covered by unit tests.
+- Local SVG illustrations are used because the image-generation service was unavailable; they are not photographs.
 - npm may report engine warnings from transitive `jsdom` and `isomorphic-dompurify` packages on some Node 24 minor versions. Checks still run; use a supported Node LTS release in CI.
 
 ---
@@ -272,6 +278,7 @@ No deployment has been performed as part of this delivery because no Vercel acco
 ## 11. Future improvements
 
 - Add verified school branding, photography, maps and editorial content.
+- Remove the demo banner, demo records and demo `noindex` setting at launch.
 - Configure real Formspree forms and Sanity project credentials.
 - Add an Open Graph image generated from approved school imagery.
 - Add Sanity live preview with a server-only read token if editorial preview is required.

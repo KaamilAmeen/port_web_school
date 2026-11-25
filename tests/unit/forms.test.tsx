@@ -126,11 +126,11 @@ describe("AdmissionForm", () => {
     await user.type(screen.getByRole("textbox", { name: /phone number/i }), "+1 555 010 1234");
     await user.selectOptions(
       screen.getByRole("combobox", { name: /interested grade/i }),
-      "Primary (placeholder)",
+      "Grade 3",
     );
     await user.selectOptions(
       screen.getByRole("combobox", { name: /academic year/i }),
-      "Next academic year (placeholder)",
+      "2026–2027",
     );
     await user.click(screen.getByRole("button", { name: "Submit enquiry" }));
 

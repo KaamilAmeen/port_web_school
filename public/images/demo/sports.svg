@@ -1,0 +1,41 @@
+<svg xmlns="http://www.w3.org/2000/svg" viewBox="0 0 1600 1000" role="img" aria-labelledby="title">
+  <title id="title">Fictional illustration of a school sports field</title>
+  <defs>
+    <linearGradient id="sky" x1="0" y1="0" x2="0" y2="1">
+      <stop offset="0" stop-color="#173f5c"/>
+      <stop offset="1" stop-color="#e2b98c"/>
+    </linearGradient>
+    <linearGradient id="field" x1="0" y1="0" x2="0" y2="1">
+      <stop offset="0" stop-color="#4f7c64"/>
+      <stop offset="1" stop-color="#27523f"/>
+    </linearGradient>
+  </defs>
+  <rect width="1600" height="1000" fill="url(#sky)"/>
+  <circle cx="1260" cy="210" r="70" fill="#ffe3ad" opacity=".9"/>
+  <path d="M0 380h1600v620H0z" fill="url(#field)"/>
+  <g fill="none" stroke="#f2e8d5" stroke-width="10" opacity=".7">
+    <path d="M120 980c260-360 620-520 1360-540"/>
+    <path d="M220 980c240-300 560-430 1180-450"/>
+    <path d="M340 980c210-240 480-340 1000-360"/>
+    <path d="M470 980c180-190 400-260 820-280"/>
+  </g>
+  <g fill="#f6ead6" opacity=".85">
+    <circle cx="780" cy="640" r="60"/>
+    <path d="m780 590 50 36-19 59h-62l-19-59z" fill="#173f5c"/>
+  </g>
+  <g fill="#0f3144">
+    <circle cx="560" cy="540" r="54"/>
+    <path d="M500 660c0-80 27-120 60-120s60 40 60 120v70H500z"/>
+    <circle cx="1030" cy="720" r="50"/>
+    <path d="M975 830c0-75 25-112 55-112s55 37 55 112v60h-110z"/>
+  </g>
+  <g fill="#d4af37" opacity=".32">
+    <circle cx="560" cy="540" r="54"/>
+    <circle cx="1030" cy="720" r="50"/>
+  </g>
+  <g fill="#0f3144" opacity=".7">
+    <rect x="160" y="300" width="300" height="90"/>
+    <rect x="190" y="390" width="16" height="150"/>
+    <rect x="414" y="390" width="16" height="150"/>
+  </g>
+</svg>

@@ -11,7 +11,7 @@ import { JsonLd, breadcrumbJsonLd } from "@/lib/seo/structured-data";
 export const metadata: Metadata = createPageMetadata({
   title: "Gallery",
   description:
-    "Browse school photography published by the school, with category filters and an accessible image lightbox.",
+    "Browse published school photography or fictional demo illustrations, with category filters and an accessible image lightbox.",
   path: "/gallery",
 });
 
@@ -24,13 +24,13 @@ export default async function GalleryPage() {
       <PageHeading
         eyebrow="Visual stories"
         title="Photo gallery"
-        description="Browse published images by category. Use the lightbox to move between images with buttons or the keyboard."
+        description="Browse published images or fictional demo illustrations by category. Use the lightbox to move between images with buttons or the keyboard."
         breadcrumbLabel="Gallery"
       />
 
       <section className="section-space">
         <div className="container-site">
-          <PlaceholderNotice text="Publish only photographs the school has approved for public use, including appropriate student consent." />
+          <PlaceholderNotice text="Fictional demo illustrations are shown when Sanity has no published images. Replace them with approved school photography, with consent where needed." />
           {items && items.length > 0 ? (
             <div className="mt-12">
               <GalleryGrid items={items} />

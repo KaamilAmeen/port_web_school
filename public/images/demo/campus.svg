@@ -1,0 +1,45 @@
+<svg xmlns="http://www.w3.org/2000/svg" viewBox="0 0 1600 1000" role="img" aria-labelledby="title">
+  <title id="title">Fictional illustration of a campus walkway</title>
+  <defs>
+    <linearGradient id="bg" x1="0" y1="0" x2="1" y2="1">
+      <stop offset="0" stop-color="#123b53"/>
+      <stop offset="1" stop-color="#c8a67c"/>
+    </linearGradient>
+    <linearGradient id="path" x1="0" y1="0" x2="0" y2="1">
+      <stop offset="0" stop-color="#f0dfc5"/>
+      <stop offset="1" stop-color="#a98c66"/>
+    </linearGradient>
+  </defs>
+  <rect width="1600" height="1000" fill="url(#bg)"/>
+  <g fill="#0d2c3d" opacity=".8">
+    <rect x="180" y="260" width="420" height="460"/>
+    <rect x="1000" y="210" width="420" height="510"/>
+    <path d="M180 260h420l-210-130z"/>
+    <path d="M1000 210h420l-210-130z"/>
+  </g>
+  <g fill="#f4e8d2" opacity=".65">
+    <rect x="240" y="340" width="120" height="120"/>
+    <rect x="420" y="340" width="120" height="120"/>
+    <rect x="240" y="530" width="120" height="120"/>
+    <rect x="420" y="530" width="120" height="120"/>
+    <rect x="1060" y="300" width="130" height="130"/>
+    <rect x="1240" y="300" width="130" height="130"/>
+    <rect x="1060" y="500" width="130" height="130"/>
+    <rect x="1240" y="500" width="130" height="130"/>
+  </g>
+  <path d="M620 1000 750 480h100l130 520z" fill="url(#path)"/>
+  <g stroke="#f8f0e2" stroke-width="8" stroke-dasharray="30 30" opacity=".75">
+    <path d="M800 480v520"/>
+  </g>
+  <g fill="#0d2c3d">
+    <circle cx="120" cy="620" r="110"/>
+    <rect x="104" y="690" width="32" height="310"/>
+    <circle cx="1480" cy="640" r="120"/>
+    <rect x="1462" y="720" width="36" height="280"/>
+  </g>
+  <g fill="#d4af37" opacity=".35">
+    <circle cx="120" cy="620" r="110"/>
+    <circle cx="1480" cy="640" r="120"/>
+  </g>
+  <rect x="0" y="950" width="1600" height="50" fill="#0d2c3d"/>
+</svg>

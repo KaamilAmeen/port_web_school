@@ -88,7 +88,7 @@ export function Footer() {
               ))}
             </ul>
           ) : (
-            <p className="mt-8 text-xs text-white/40">Social links to be supplied.</p>
+            <p className="mt-8 text-xs text-white/40">Demo social links shown.</p>
           )}
         </div>
       </div>
@@ -96,7 +96,7 @@ export function Footer() {
       <div className="border-t border-white/10">
         <div className="container-site flex flex-col gap-2 py-6 text-xs text-white/45 sm:flex-row sm:items-center sm:justify-between">
           <p>© {new Date().getFullYear()} {siteConfig.name}. Demonstration content.</p>
-          <p>Replace placeholder details before publishing.</p>
+          <p>Fictional demo details — replace before publishing.</p>
         </div>
       </div>
     </footer>

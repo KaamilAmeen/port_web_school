@@ -1,8 +1,6 @@
 import type { MetadataRoute } from "next";
 import { getSiteUrl } from "@/content/site";
-import { fetchPublished } from "@/sanity/lib/client";
-import { blogListQuery } from "@/sanity/lib/queries";
-import type { SanityBlogCard } from "@/lib/types/sanity";
+import { getBlogPosts } from "@/lib/content";
 
 const staticRoutes = [
   "",
@@ -25,8 +23,7 @@ export default async function sitemap(): Promise<MetadataRoute.Sitemap> {
     priority: route === "" ? 1 : 0.7,
   }));
 
-  const posts = await fetchPublished<SanityBlogCard[]>(blogListQuery);
-  if (!posts) return base;
+  const posts = await getBlogPosts();
 
   return [
     ...base,

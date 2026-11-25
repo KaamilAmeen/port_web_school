@@ -3,15 +3,15 @@ import Link from "next/link";
 import { AnimatedText } from "@/components/animations/animated-text";
 import { buttonVariants } from "@/components/ui/button";
 import { homeCopy } from "@/content/pages";
-import { placeholderImages } from "@/content/images";
+import { demoImages } from "@/content/images";
 import { cn } from "@/lib/utils";
 
 export function Hero() {
   return (
     <section className="relative isolate min-h-[min(90svh,52rem)] overflow-hidden bg-navy-deep text-white">
       <Image
-        src={placeholderImages.hero.src}
-        alt={placeholderImages.hero.alt}
+        src={demoImages.hero.src}
+        alt={demoImages.hero.alt}
         fill
         priority
         sizes="100vw"
@@ -38,7 +38,7 @@ export function Hero() {
           </Link>
         </div>
         <p className="mt-14 text-[11px] uppercase tracking-[0.2em] text-white/45">
-          {placeholderImages.hero.credit} · replace with a school-approved photograph
+          {demoImages.hero.credit} · replace with school-approved photography before launch
         </p>
       </div>
     </section>

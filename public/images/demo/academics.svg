@@ -1,0 +1,44 @@
+<svg xmlns="http://www.w3.org/2000/svg" viewBox="0 0 1600 1000" role="img" aria-labelledby="title">
+  <title id="title">Fictional illustration of a science laboratory</title>
+  <defs>
+    <linearGradient id="bg" x1="0" y1="0" x2="1" y2="1">
+      <stop offset="0" stop-color="#0e3248"/>
+      <stop offset="1" stop-color="#2f6b78"/>
+    </linearGradient>
+    <linearGradient id="bench" x1="0" y1="0" x2="0" y2="1">
+      <stop offset="0" stop-color="#f0dfc5"/>
+      <stop offset="1" stop-color="#b99b72"/>
+    </linearGradient>
+  </defs>
+  <rect width="1600" height="1000" fill="url(#bg)"/>
+  <rect x="120" y="120" width="1360" height="560" fill="#d8e2dc" opacity=".12"/>
+  <g fill="none" stroke="#f4e8d2" stroke-width="10" opacity=".55">
+    <ellipse cx="800" cy="330" rx="270" ry="105"/>
+    <ellipse cx="800" cy="330" rx="270" ry="105" transform="rotate(60 800 330)"/>
+    <ellipse cx="800" cy="330" rx="270" ry="105" transform="rotate(120 800 330)"/>
+  </g>
+  <circle cx="800" cy="330" r="44" fill="#d4af37"/>
+  <rect x="100" y="700" width="1400" height="60" fill="url(#bench)"/>
+  <rect x="170" y="760" width="40" height="240" fill="#0b2838"/>
+  <rect x="1390" y="760" width="40" height="240" fill="#0b2838"/>
+  <g fill="#cfe0dd" opacity=".85">
+    <path d="M300 700V540h60v160z"/>
+    <path d="M320 540v-70h20v70z"/>
+    <path d="M380 700V575h55v125z"/>
+    <path d="M395 575v-55h25v55z"/>
+    <path d="M1160 700V555h60v145z"/>
+    <path d="M1180 555v-80h20v80z"/>
+  </g>
+  <g fill="#d4af37" opacity=".75">
+    <path d="M300 640h60v60h-60z"/>
+    <path d="M380 635h55v65h-55z"/>
+    <path d="M1160 625h60v75h-60z"/>
+  </g>
+  <g fill="#0b2838">
+    <circle cx="560" cy="500" r="70"/>
+    <path d="M480 690c0-95 35-150 80-150s80 55 80 150v10H480z"/>
+    <circle cx="1040" cy="500" r="70"/>
+    <path d="M960 690c0-95 35-150 80-150s80 55 80 150v10H960z"/>
+  </g>
+  <rect x="0" y="940" width="1600" height="60" fill="#0b2838"/>
+</svg>

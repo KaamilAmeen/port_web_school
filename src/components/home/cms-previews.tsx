@@ -22,7 +22,7 @@ export function AchievementsPreview({
         <SectionHeading
           eyebrow="Achievements"
           title="Milestones worth celebrating"
-          description="Published achievements are managed in Sanity so the school can update them without changing code."
+          description="Managed in Sanity when connected; fictional demo highlights appear here until real achievements are published."
         />
         {achievements && achievements.length > 0 ? (
           <div className="mt-12 grid gap-6 md:grid-cols-3">
@@ -88,7 +88,7 @@ export function GalleryPreview({
         <SectionHeading
           eyebrow="Gallery"
           title="Moments from school life"
-          description="A selection of published gallery images. Student photographs require school approval and consent before publication."
+          description="A selection of published gallery images or fictional demo illustrations. Student photographs require approval and consent before publication."
         />
         {images && images.length > 0 ? (
           <div className="mt-12 grid grid-cols-2 gap-4 md:grid-cols-3">
@@ -136,7 +136,7 @@ export function BlogPreview({ posts }: { posts: SanityBlogCard[] | null }) {
         <SectionHeading
           eyebrow="From the blog"
           title="Latest stories and insights"
-          description="Articles are written and published by the school through Sanity Studio."
+          description="Articles come from Sanity Studio, with fictional demo stories shown until real posts are published."
         />
         {posts && posts.length > 0 ? (
           <div className="mt-12 grid gap-6 md:grid-cols-3">

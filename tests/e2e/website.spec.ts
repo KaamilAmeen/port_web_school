@@ -44,10 +44,10 @@ async function fillAdmissionForm(page: Page) {
   await page.getByRole("textbox", { name: /phone number/i }).fill("+1 555 010 1234");
   await page
     .getByRole("combobox", { name: /interested grade/i })
-    .selectOption({ label: "Primary (placeholder)" });
+    .selectOption({ label: "Grade 3" });
   await page
     .getByRole("combobox", { name: /academic year/i })
-    .selectOption({ label: "Next academic year (placeholder)" });
+    .selectOption({ label: "2026–2027" });
 }
 
 test("homepage renders and desktop navigation works", async ({ page }) => {
@@ -55,8 +55,11 @@ test("homepage renders and desktop navigation works", async ({ page }) => {
   await expect(
     page.getByRole("heading", {
       level: 1,
-      name: /education that shapes character/i,
+      name: /place to grow, question, and belong/i,
     }),
+  ).toBeVisible();
+  await expect(
+    page.getByRole("note").filter({ hasText: /fictional demo school/i }).first(),
   ).toBeVisible();
   await expect(
     page.getByRole("link", { name: "Explore Admissions" }),
@@ -69,7 +72,7 @@ test("homepage renders and desktop navigation works", async ({ page }) => {
 
   await expect(page).toHaveURL(/\/about$/);
   await expect(
-    page.getByRole("heading", { level: 1, name: /about the school/i }),
+    page.getByRole("heading", { level: 1, name: /about aurelia academy/i }),
   ).toBeVisible();
 });
 
@@ -93,6 +96,8 @@ test("mobile menu opens and navigates without horizontal overflow", async ({ pag
 });
 
 test("all approved routes respond successfully", async ({ request }) => {
+  // Sanity Studio is compiled on first request in development and can be slow.
+  test.setTimeout(120_000);
   const routes = [
     "/",
     "/about",
@@ -114,12 +119,12 @@ test("all approved routes respond successfully", async ({ request }) => {
   }
 });
 
-test("blog listing renders an empty state when CMS content is unavailable", async ({
+test("blog listing renders demo articles when CMS content is unavailable", async ({
   page,
 }) => {
   test.skip(
     Boolean(process.env.NEXT_PUBLIC_SANITY_PROJECT_ID),
-    "A configured CMS may contain published articles; this test covers the unconfigured empty state.",
+    "A configured CMS may contain published articles; this test covers the unconfigured demo state.",
   );
 
   await page.goto("/blog");
@@ -127,7 +132,12 @@ test("blog listing renders an empty state when CMS content is unavailable", asyn
     page.getByRole("heading", { level: 1, name: "Blog" }),
   ).toBeVisible();
   await expect(page.getByRole("search")).toBeVisible();
-  await expect(page.getByText("No articles found")).toBeVisible();
+  await expect(
+    page.getByText("How inquiry shapes a Monday morning").first(),
+  ).toBeVisible();
+  await expect(
+    page.getByRole("note").filter({ hasText: /fictional demo/i }).first(),
+  ).toBeVisible();
 });
 
 test("unknown blog slugs use the not-found state", async ({ page }) => {
@@ -137,26 +147,32 @@ test("unknown blog slugs use the not-found state", async ({ page }) => {
   ).toBeVisible();
 });
 
-test("a configured blog article detail route is available when a slug is supplied", async ({
+test("blog article detail renders a published or demo article", async ({
   page,
 }) => {
-  const slug = process.env.E2E_TEST_BLOG_SLUG;
+  const configured = Boolean(process.env.NEXT_PUBLIC_SANITY_PROJECT_ID);
+  const slug =
+    process.env.E2E_TEST_BLOG_SLUG ?? "how-inquiry-shapes-a-monday-morning";
   test.skip(
-    !slug,
-    "Set E2E_TEST_BLOG_SLUG and Sanity credentials to test a real published article.",
+    configured && !process.env.E2E_TEST_BLOG_SLUG,
+    "Set E2E_TEST_BLOG_SLUG to test an article from the configured CMS.",
   );
 
   await page.goto(`/blog/${slug}`);
   await expect(page.locator("article h1")).toBeVisible();
+  if (!configured) {
+    await expect(
+      page.getByRole("note").filter({ hasText: /fictional demo/i }).first(),
+    ).toBeVisible();
+  }
 });
 
-test("gallery lightbox supports keyboard navigation when published images are supplied", async ({
-  page,
-}) => {
-  const firstTitle = process.env.E2E_GALLERY_FIRST_TITLE;
+test("gallery lightbox supports keyboard navigation", async ({ page }) => {
+  const configured = Boolean(process.env.NEXT_PUBLIC_SANITY_PROJECT_ID);
+  const firstTitle = process.env.E2E_GALLERY_FIRST_TITLE ?? "The academy building";
   test.skip(
-    !firstTitle,
-    "Set E2E_GALLERY_FIRST_TITLE and publish at least two gallery images in Sanity.",
+    configured && !process.env.E2E_GALLERY_FIRST_TITLE,
+    "Set E2E_GALLERY_FIRST_TITLE to test an image from the configured CMS.",
   );
 
   await page.goto("/gallery");

@@ -1,107 +1,127 @@
 /**
- * Illustrative page copy. None of this should be treated as verified school information.
- * Replace with school-approved copy before launch.
+ * Fictional editorial copy for the demonstration site.
+ *
+ * This content makes the template feel complete, but it is not real school
+ * information. Replace it with approved copy before publishing.
  */
 
 export const homeCopy = {
-  heroEyebrow: "PLACEHOLDER SCHOOL WEBSITE",
-  heroTitle: "An education that shapes character and possibility.",
+  heroEyebrow: "AURELIA ACADEMY · FICTIONAL DEMO SITE",
+  heroTitle: "A place to grow, question, and belong.",
   heroDescription:
-    "A premium school website demonstration for parents and students: academic life, achievements, campus stories and admissions in one considered place.",
+    "An inspirational learning community where strong foundations, curious minds and a sense of purpose shape every school day.",
   introEyebrow: "Who we are",
   introTitle: "A community built around every student.",
   introBody: [
-    "This introduction is illustrative. Once the school supplies its history, values and ethos, this space will tell its story in an editorial, welcoming voice.",
-    "The design deliberately leaves room for genuine institutional identity rather than filling the page with invented claims.",
+    "Aurelia Academy is a fictional school created to demonstrate a warm, editorial website experience. Its story is written to show how academic life, pastoral care and community can sit together in one clear narrative.",
+    "The pages, imagery and articles are illustrative. They show the structure and tone of a finished site while making it obvious that real school details still need to be supplied.",
   ],
+  vision:
+    "To nurture thoughtful, confident young people who are ready to learn, lead and contribute with kindness.",
+  mission:
+    "We create a rigorous, supportive and imaginative learning environment where every student is known, challenged and encouraged to thrive.",
   highlightsTitle: "The school at a glance",
   highlightsIntro:
-    "Qualitative highlights are shown here because no verified statistics have been supplied. Replace these with approved figures and badges when available.",
+    "A demo snapshot of the themes a real school could highlight. Replace these with approved figures, badges and statements.",
   highlights: [
     {
       title: "Student-centred learning",
-      description: "An illustrative pillar describing the intended teaching emphasis.",
+      description: "Teaching designed around curiosity, clear foundations and meaningful discussion.",
     },
     {
       title: "Wide-ranging enrichment",
-      description: "An illustrative pillar for sports, arts and student activities.",
+      description: "Sport, arts, clubs and experiences that extend learning beyond the timetable.",
     },
     {
       title: "Pastoral care",
-      description: "An illustrative pillar for student wellbeing and belonging.",
+      description: "A house system and mentoring approach built around belonging and wellbeing.",
     },
     {
       title: "Community partnership",
-      description: "An illustrative pillar for family and community involvement.",
+      description: "Families, staff and local partners working together around student growth.",
     },
   ],
   academicsTitle: "An academic experience with room to grow.",
   academicsBody:
-    "Use this section to explain the curriculum, teaching approach and learning environment with the school's own language and verified programme details.",
+    "A coherent curriculum, thoughtful teaching and rich enrichment give students the confidence to explore ideas and develop their own voice.",
+  academicPillars: [
+    { label: "Programme framework", value: "Early Years to Grade 6" },
+    { label: "Teaching approach", value: "Inquiry and practice" },
+    { label: "Learning environment", value: "Labs, studios and library" },
+  ],
+  academicMotif: "Discover",
   campusTitle: "Life beyond the classroom",
   campusBody:
-    "Facilities, activities and events will live here once the school confirms what should be shown publicly.",
+    "Libraries, labs, studios, playing fields and shared spaces give students room to discover interests and build friendships.",
+  campusCaption:
+    "Fictional demo illustrations shown while approved school photography is prepared.",
   admissionTitle: "Ready to learn more about admissions?",
   admissionBody:
-    "Enquiries are handled through the dedicated admissions form. Dates, entry criteria and fees must be supplied by the school before publication.",
+    "Explore the enquiry process, meet the school virtually through the demo content, and replace these details with real admissions information before launch.",
 } as const;
 
 export const aboutCopy = {
-  title: "About the school",
+  title: "About Aurelia Academy",
   intro:
-    "This page is a structured placeholder for the school's introduction, history, vision and mission, leadership and faculty.",
+    "A fictional school profile showing how history, values, leadership and community can be presented with warmth and clarity.",
   sections: [
     {
       title: "Our story",
-      body: "Add the school's verified history here: founding year, milestones and the people who shaped the institution. No dates or accomplishments are asserted in this demonstration.",
+      body: "Aurelia Academy is presented as an independent learning community founded in 2008. This founding date and the story around it are fictional demo details, included to show how a real school history could read on this page.",
     },
     {
       title: "Vision",
-      body: "Insert the school's approved vision statement here. Keep it concise and in the institution's own voice.",
+      body: homeCopy.vision,
     },
     {
       title: "Mission",
-      body: "Insert the school's approved mission statement here, followed by the practical commitments that bring it to life.",
+      body: homeCopy.mission,
     },
   ],
   leadership: [
-    { role: "Head of School", name: "Name to be supplied" },
-    { role: "Deputy Head", name: "Name to be supplied" },
-    { role: "Head of Academics", name: "Name to be supplied" },
-    { role: "Head of Pastoral Care", name: "Name to be supplied" },
+    { role: "Head of School", name: "Dr. Elaine Hartwell (fictional)" },
+    { role: "Deputy Head", name: "Mr. Daniel Okafor (fictional)" },
+    { role: "Head of Academics", name: "Ms. Priya Raman (fictional)" },
+    { role: "Head of Pastoral Care", name: "Ms. Sofia Marin (fictional)" },
   ],
 } as const;
 
 export const academicsCopy = {
   title: "Academics",
   intro:
-    "An illustrative framework for programme information. Curriculum details, subject lists and assessment approaches require school approval before publication.",
+    "A fictional curriculum framework demonstrating how programme information, teaching approach and learning spaces can be organised for families.",
   programmes: [
     {
       name: "Early Years",
-      description: "Placeholder programme description. Add age range, curriculum and learning approach.",
+      description:
+        "Play-rich foundations in literacy, numeracy and discovery, with a focus on confidence and social learning.",
     },
     {
       name: "Primary",
-      description: "Placeholder programme description. Add year groups, subjects and enrichment.",
+      description:
+        "Broad, balanced learning across core subjects, humanities, science, arts and physical education.",
     },
     {
       name: "Secondary",
-      description: "Placeholder programme description. Add subjects, pathways and qualifications.",
+      description:
+        "Subject specialism, guided pathways and enrichment designed to prepare students for future study and work.",
     },
   ],
   approach: [
     {
       title: "Foundational literacy and numeracy",
-      description: "Illustrative teaching priority — replace with the school's verified approach.",
+      description:
+        "Explicit teaching, regular practice and timely feedback help students build secure core skills.",
     },
     {
       title: "Inquiry and discussion",
-      description: "Illustrative teaching priority — replace with the school's verified approach.",
+      description:
+        "Open questions and structured debate encourage students to explain their thinking and listen well.",
     },
     {
       title: "Assessment for learning",
-      description: "Illustrative teaching priority — replace with the school's verified approach.",
+      description:
+        "Low-stakes checks and thoughtful feedback show what is working and what needs more attention.",
     },
   ],
 } as const;
@@ -109,91 +129,107 @@ export const academicsCopy = {
 export const achievementsCopy = {
   title: "Achievements",
   intro:
-    "Published achievements are managed in Sanity. When no published achievements exist, the page shows an honest empty state rather than invented awards.",
+    "Fictional demo achievements showing how recognised work, events and student projects could be presented. These are not real awards.",
   categories: ["Academic", "Sports", "Arts & Culture", "Community"] as const,
 } as const;
 
 export const campusCopy = {
   title: "Campus life",
   intro:
-    "A placeholder structure for facilities, student activities and events. Confirm which spaces and student photographs may be published.",
+    "A fictional look at the spaces and activities that could make up campus life at a school like this.",
   facilities: [
     {
       title: "Library and learning spaces",
-      description: "Illustrative facility description — confirm name, capacity and access.",
+      description:
+        "Quiet reading areas, group tables and digital resources support independent and collaborative study.",
     },
     {
       title: "Sports facilities",
-      description: "Illustrative facility description — confirm venues and programmes.",
+      description:
+        "Playing fields, courts and a fitness studio host lessons, clubs and friendly competitions.",
     },
     {
       title: "Arts and performance spaces",
-      description: "Illustrative facility description — confirm studios, stages and equipment.",
+      description:
+        "Studios and a flexible performance space give students room to paint, make music and present work.",
     },
     {
       title: "Science and technology rooms",
-      description: "Illustrative facility description — confirm labs and equipment.",
+      description:
+        "Laboratories and creative technology rooms support experiments, design and hands-on problem solving.",
     },
   ],
   activities: [
-    "Student clubs (names to be supplied)",
-    "Arts and performance (details to be supplied)",
-    "Sports and competitions (details to be supplied)",
-    "Community service (details to be supplied)",
+    "Debate and public speaking club",
+    "Studio arts and annual exhibition",
+    "Football, basketball and athletics",
+    "Community garden and service projects",
   ],
 } as const;
 
 export const admissionsCopy = {
   title: "Admissions",
   intro:
-    "This page explains the enquiry process. Entry requirements, term dates, fees and application deadlines are intentionally omitted until the school supplies them.",
+    "A fictional admissions process demonstrating how enquiries and next steps can be explained. No real dates, fees or entry criteria are implied.",
   steps: [
     {
       title: "Send an enquiry",
-      description: "Use the form below so we can understand the student's needs and intended year of entry.",
+      description:
+        "Use the form to tell the school about the student, intended year of entry and any questions you have.",
     },
     {
       title: "Receive a response",
-      description: "A school representative will follow up using the contact details supplied. Response times must be confirmed by the school.",
+      description:
+        "A member of the admissions team follows up with more information and an invitation to talk.",
     },
     {
       title: "Visit and discuss",
-      description: "Add verified arrangements for campus visits and conversations with staff.",
+      description:
+        "Families explore the campus, meet staff and ask about learning, enrichment and pastoral care.",
     },
     {
       title: "Complete the application",
-      description: "Add the school's official application process and required documents.",
+      description:
+        "The school shares the next steps and any documents required for a formal application.",
     },
   ],
   faqs: [
     {
       question: "How do I enquire about admission?",
       answer:
-        "Complete the admission enquiry form on this page. Once Formspree endpoints are configured, submissions will be delivered to the school's configured inbox.",
+        "Complete the enquiry form on this page. In this demo, submissions are intentionally not connected to a live school inbox.",
     },
     {
       question: "When does the admissions period open?",
       answer:
-        "Dates have not been supplied. Publish verified dates here before directing families to apply.",
+        "No real admissions dates are shown in this demo. Replace this answer with the school’s published timetable before launch.",
     },
     {
       question: "What are the entry requirements?",
       answer:
-        "Entry criteria have not been supplied. Add the school's approved requirements and documentation list here.",
+        "This demonstration does not assert entry criteria. Add the school’s approved requirements and document list here.",
     },
     {
       question: "Are fees published online?",
       answer:
-        "No fee information is presented in this demonstration. Add verified fee details only if the school approves public publication.",
+        "No fee information is presented in the demo. Add verified fee details only if the school approves public publication.",
     },
   ],
-  gradeOptions: ["Grade to be confirmed", "Early Years (placeholder)", "Primary (placeholder)", "Secondary (placeholder)"],
-  yearOptions: ["Year to be confirmed", "Next academic year (placeholder)", "Following academic year (placeholder)"],
+  gradeOptions: [
+    "Early Years",
+    "Grade 1",
+    "Grade 2",
+    "Grade 3",
+    "Grade 4",
+    "Grade 5",
+    "Grade 6",
+  ],
+  yearOptions: ["2026–2027", "2027–2028", "2028–2029"],
 } as const;
 
 export const contactCopy = {
   title: "Contact us",
   intro:
-    "Use the form for general questions. Phone, address and map details will appear here only after verified information is supplied.",
+    "Fictional contact details for the demo site. Replace them with verified school contact information before publishing.",
   topics: ["General enquiry", "Admissions", "Academic programme", "Campus visit", "Other"],
 } as const;

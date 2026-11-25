@@ -1,0 +1,60 @@
+<svg xmlns="http://www.w3.org/2000/svg" viewBox="0 0 1600 1000" role="img" aria-labelledby="title">
+  <title id="title">Fictional illustration of a school library</title>
+  <defs>
+    <linearGradient id="bg" x1="0" y1="0" x2="1" y2="1">
+      <stop offset="0" stop-color="#123651"/>
+      <stop offset="1" stop-color="#7c5b43"/>
+    </linearGradient>
+    <linearGradient id="shelf" x1="0" y1="0" x2="0" y2="1">
+      <stop offset="0" stop-color="#e5cda6"/>
+      <stop offset="1" stop-color="#9c744e"/>
+    </linearGradient>
+  </defs>
+  <rect width="1600" height="1000" fill="url(#bg)"/>
+  <rect x="180" y="120" width="1240" height="700" fill="#f2e3ca" opacity=".12"/>
+  <g>
+    <rect x="220" y="150" width="1160" height="620" fill="url(#shelf)"/>
+    <g fill="#0e3046">
+      <rect x="220" y="355" width="1160" height="28"/>
+      <rect x="220" y="560" width="1160" height="28"/>
+      <rect x="220" y="765" width="1160" height="28"/>
+    </g>
+    <g opacity=".95">
+      <g fill="#143e58">
+        <rect x="250" y="190" width="34" height="165"/>
+        <rect x="292" y="215" width="30" height="140"/>
+        <rect x="330" y="180" width="38" height="175"/>
+        <rect x="376" y="230" width="28" height="125"/>
+        <rect x="412" y="200" width="36" height="155"/>
+      </g>
+      <g fill="#b9854e">
+        <rect x="500" y="205" width="34" height="150"/>
+        <rect x="542" y="180" width="30" height="175"/>
+        <rect x="580" y="225" width="38" height="130"/>
+        <rect x="626" y="195" width="28" height="160"/>
+        <rect x="662" y="220" width="36" height="135"/>
+      </g>
+      <g fill="#2f6b70">
+        <rect x="760" y="190" width="36" height="165"/>
+        <rect x="804" y="210" width="30" height="145"/>
+        <rect x="842" y="185" width="38" height="170"/>
+        <rect x="888" y="235" width="28" height="120"/>
+        <rect x="924" y="200" width="36" height="155"/>
+      </g>
+      <g fill="#d4af37">
+        <rect x="1020" y="205" width="34" height="150"/>
+        <rect x="1062" y="180" width="30" height="175"/>
+        <rect x="1100" y="225" width="38" height="130"/>
+        <rect x="1146" y="195" width="28" height="160"/>
+        <rect x="1182" y="220" width="36" height="135"/>
+      </g>
+    </g>
+  </g>
+  <ellipse cx="800" cy="900" rx="420" ry="70" fill="#0b2a3d" opacity=".85"/>
+  <rect x="560" y="760" width="480" height="50" rx="12" fill="#e8d4b3"/>
+  <rect x="600" y="810" width="28" height="150" fill="#0b2a3d"/>
+  <rect x="972" y="810" width="28" height="150" fill="#0b2a3d"/>
+  <g fill="#d4af37" opacity=".6">
+    <circle cx="800" cy="110" r="38"/>
+  </g>
+</svg>

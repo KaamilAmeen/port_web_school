@@ -6,7 +6,7 @@ import { PageHeading } from "@/components/ui/page-heading";
 import { PlaceholderNotice } from "@/components/ui/placeholder-notice";
 import { SectionHeading } from "@/components/ui/section-heading";
 import { academicsCopy } from "@/content/pages";
-import { placeholderImages } from "@/content/images";
+import { demoImages } from "@/content/images";
 import { createPageMetadata } from "@/lib/seo";
 import { JsonLd, breadcrumbJsonLd } from "@/lib/seo/structured-data";
 
@@ -54,8 +54,8 @@ export default function AcademicsPage() {
         <div className="container-site grid gap-12 lg:grid-cols-[0.9fr_1fr] lg:items-center lg:gap-20">
           <div className="image-frame aspect-[4/5]">
             <Image
-              src={placeholderImages.classroom.src}
-              alt={placeholderImages.classroom.alt}
+              src={demoImages.classroom.src}
+              alt={demoImages.classroom.alt}
               fill
               sizes="(max-width: 1024px) 100vw, 45vw"
               className="object-cover"

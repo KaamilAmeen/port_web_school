@@ -40,12 +40,6 @@ export function Header() {
           : "border-transparent bg-ivory",
       )}
     >
-      <div className="bg-navy-deep text-white">
-        <p className="container-site hidden py-2 text-center text-[11px] tracking-wide text-white/70 md:block">
-          {siteConfig.identityStatus} — content shown for demonstration purposes
-        </p>
-      </div>
-
       <div className="container-site flex h-[4.75rem] items-center justify-between gap-6">
         <Link href="/" className="group flex shrink-0 items-center gap-3" aria-label={`${siteConfig.name} home`}>
           <span className="grid size-11 place-items-center border border-navy/25 bg-white text-navy transition-colors group-hover:border-gold">
@@ -54,7 +48,7 @@ export function Header() {
           <span className="leading-tight">
             <span className="block font-display text-lg text-navy">{siteConfig.name}</span>
             <span className="block text-[9px] font-semibold uppercase tracking-[0.24em] text-gold">
-              Placeholder brand
+              Fictional demo school
             </span>
           </span>
         </Link>

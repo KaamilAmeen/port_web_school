@@ -14,8 +14,8 @@ const validAdmission = {
   email: "parent@example.test",
   phone: "+1 555 010 1234",
   studentName: "",
-  grade: "Primary (placeholder)",
-  academicYear: "Next academic year (placeholder)",
+  grade: "Grade 3",
+  academicYear: "2026–2027",
   message: "",
 };
 

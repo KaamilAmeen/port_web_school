@@ -5,7 +5,7 @@ import { FadeIn } from "@/components/animations/fade-in";
 import { StaggerReveal } from "@/components/animations/stagger-reveal";
 import { SectionHeading } from "@/components/ui/section-heading";
 import { homeCopy } from "@/content/pages";
-import { placeholderImages } from "@/content/images";
+import { demoImages } from "@/content/images";
 
 export function IntroductionAndHighlights() {
   return (
@@ -15,8 +15,8 @@ export function IntroductionAndHighlights() {
           <FadeIn className="relative">
             <div className="image-frame aspect-[4/5] lg:aspect-[4/4.6]">
               <Image
-                src={placeholderImages.introduction.src}
-                alt={placeholderImages.introduction.alt}
+                src={demoImages.introduction.src}
+                alt={demoImages.introduction.alt}
                 fill
                 sizes="(max-width: 1024px) 100vw, 45vw"
                 className="object-cover"
@@ -38,13 +38,13 @@ export function IntroductionAndHighlights() {
               <div>
                 <h3 className="font-display text-xl">Vision</h3>
                 <p className="mt-2 text-sm text-charcoal/70">
-                  Approved statement to be supplied by the school.
+                  {homeCopy.vision}
                 </p>
               </div>
               <div>
                 <h3 className="font-display text-xl">Mission</h3>
                 <p className="mt-2 text-sm text-charcoal/70">
-                  Approved statement to be supplied by the school.
+                  {homeCopy.mission}
                 </p>
               </div>
             </div>

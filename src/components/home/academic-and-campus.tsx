@@ -4,7 +4,7 @@ import { ArrowRight } from "lucide-react";
 import { GsapReveal } from "@/components/animations/gsap-reveal";
 import { SectionHeading } from "@/components/ui/section-heading";
 import { homeCopy } from "@/content/pages";
-import { placeholderImages } from "@/content/images";
+import { demoImages } from "@/content/images";
 
 export function AcademicPreview() {
   return (
@@ -18,16 +18,14 @@ export function AcademicPreview() {
             </h2>
             <p className="lede mt-6">{homeCopy.academicsBody}</p>
             <ul className="mt-9 divide-y divide-navy/15 border-t border-navy/15">
-              {["Programme framework", "Teaching approach", "Learning environment"].map(
-                (item) => (
-                  <li key={item} className="flex items-center justify-between py-4">
-                    <span className="font-display text-lg text-navy">{item}</span>
-                    <span className="text-xs uppercase tracking-widest text-charcoal/50">
-                      Details to be supplied
-                    </span>
-                  </li>
-                ),
-              )}
+              {homeCopy.academicPillars.map((item) => (
+                <li key={item.label} className="flex items-center justify-between gap-4 py-4">
+                  <span className="font-display text-lg text-navy">{item.label}</span>
+                  <span className="text-right text-xs uppercase tracking-widest text-charcoal/60">
+                    {item.value}
+                  </span>
+                </li>
+              ))}
             </ul>
             <Link
               href="/academics"
@@ -40,8 +38,8 @@ export function AcademicPreview() {
           <div data-gsap-reveal className="relative">
             <div className="image-frame aspect-[5/6]">
               <Image
-                src={placeholderImages.academics.src}
-                alt={placeholderImages.academics.alt}
+                src={demoImages.academics.src}
+                alt={demoImages.academics.alt}
                 fill
                 sizes="(max-width: 1024px) 100vw, 45vw"
                 className="object-cover"
@@ -50,7 +48,7 @@ export function AcademicPreview() {
             <div className="absolute -bottom-6 -left-6 hidden bg-navy px-8 py-7 text-white md:block" aria-hidden="true">
               <p className="font-display text-3xl">Learn</p>
               <p className="mt-1 text-[10px] uppercase tracking-[0.24em] text-gold">
-                Placeholder motif
+                {homeCopy.academicMotif}
               </p>
             </div>
           </div>
@@ -72,8 +70,8 @@ export function CampusPreview() {
         <div className="mt-12 grid gap-5 md:grid-cols-12">
           <div className="image-frame aspect-[4/3] md:col-span-7 md:aspect-[16/10]">
             <Image
-              src={placeholderImages.library.src}
-              alt={placeholderImages.library.alt}
+              src={demoImages.library.src}
+              alt={demoImages.library.alt}
               fill
               sizes="(max-width: 768px) 100vw, 58vw"
               className="object-cover"
@@ -81,8 +79,8 @@ export function CampusPreview() {
           </div>
           <div className="image-frame aspect-[4/3] md:col-span-5 md:aspect-[4/5]">
             <Image
-              src={placeholderImages.collaboration.src}
-              alt={placeholderImages.collaboration.alt}
+              src={demoImages.collaboration.src}
+              alt={demoImages.collaboration.alt}
               fill
               sizes="(max-width: 768px) 100vw, 42vw"
               className="object-cover"
@@ -90,8 +88,8 @@ export function CampusPreview() {
           </div>
           <div className="image-frame aspect-[4/3] md:col-span-5 md:aspect-[4/3]">
             <Image
-              src={placeholderImages.sports.src}
-              alt={placeholderImages.sports.alt}
+              src={demoImages.sports.src}
+              alt={demoImages.sports.alt}
               fill
               sizes="(max-width: 768px) 100vw, 42vw"
               className="object-cover"
@@ -99,8 +97,8 @@ export function CampusPreview() {
           </div>
           <div className="image-frame aspect-[4/3] md:col-span-7 md:aspect-[16/9]">
             <Image
-              src={placeholderImages.campus.src}
-              alt={placeholderImages.campus.alt}
+              src={demoImages.campus.src}
+              alt={demoImages.campus.alt}
               fill
               sizes="(max-width: 768px) 100vw, 58vw"
               className="object-cover"
@@ -108,7 +106,7 @@ export function CampusPreview() {
           </div>
         </div>
         <p className="mt-5 text-xs text-charcoal/55">
-          Local placeholder graphics — replace with school-approved photographs.
+          {homeCopy.campusCaption}
         </p>
         <Link
           href="/campus-life"

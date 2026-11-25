@@ -1,0 +1,42 @@
+<svg xmlns="http://www.w3.org/2000/svg" viewBox="0 0 1600 1000" role="img" aria-labelledby="title">
+  <title id="title">Fictional illustration of a classroom</title>
+  <defs>
+    <linearGradient id="bg" x1="0" y1="0" x2="1" y2="1">
+      <stop offset="0" stop-color="#10364e"/>
+      <stop offset="1" stop-color="#d9b98f"/>
+    </linearGradient>
+    <linearGradient id="board" x1="0" y1="0" x2="1" y2="1">
+      <stop offset="0" stop-color="#1d5a63"/>
+      <stop offset="1" stop-color="#0d3440"/>
+    </linearGradient>
+  </defs>
+  <rect width="1600" height="1000" fill="url(#bg)"/>
+  <rect x="180" y="140" width="1240" height="380" fill="#f2e3ca" opacity=".2"/>
+  <rect x="260" y="180" width="760" height="300" rx="12" fill="url(#board)" stroke="#e8d4b3" stroke-width="14"/>
+  <g stroke="#f2e3ca" stroke-width="10" opacity=".7">
+    <path d="M320 270h300"/>
+    <path d="M320 330h420"/>
+    <path d="M320 390h250"/>
+  </g>
+  <path d="M360 140h560v40H360z" fill="#0c2a3c"/>
+  <g fill="#0c2a3c">
+    <circle cx="1160" cy="300" r="92"/>
+    <path d="M1040 520c0-120 54-180 120-180s120 60 120 180v80h-240z"/>
+  </g>
+  <g>
+    <rect x="180" y="670" width="1240" height="46" fill="#e6d1ae"/>
+    <rect x="240" y="716" width="34" height="284" fill="#0c2a3c"/>
+    <rect x="1326" y="716" width="34" height="284" fill="#0c2a3c"/>
+    <g fill="#123b53">
+      <circle cx="430" cy="610" r="58"/>
+      <path d="M350 670c0-80 35-125 80-125s80 45 80 125v90H350z"/>
+      <circle cx="780" cy="610" r="58"/>
+      <path d="M700 670c0-80 35-125 80-125s80 45 80 125v90H700z"/>
+    </g>
+  </g>
+  <g fill="#d4af37" opacity=".72">
+    <circle cx="430" cy="610" r="58"/>
+    <circle cx="780" cy="610" r="58"/>
+  </g>
+  <rect x="0" y="950" width="1600" height="50" fill="#0c2a3c"/>
+</svg>

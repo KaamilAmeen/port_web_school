@@ -1,0 +1,47 @@
+<svg xmlns="http://www.w3.org/2000/svg" viewBox="0 0 1600 1000" role="img" aria-labelledby="title">
+  <title id="title">Fictional illustration of students on a campus walkway</title>
+  <defs>
+    <linearGradient id="bg" x1="0" y1="0" x2="1" y2="1">
+      <stop offset="0" stop-color="#123b55"/>
+      <stop offset="1" stop-color="#e8c8a0"/>
+    </linearGradient>
+    <linearGradient id="path" x1="0" y1="0" x2="0" y2="1">
+      <stop offset="0" stop-color="#f0dfc5"/>
+      <stop offset="1" stop-color="#b59c78"/>
+    </linearGradient>
+  </defs>
+  <rect width="1600" height="1000" fill="url(#bg)"/>
+  <g fill="#0f3144" opacity=".75">
+    <rect x="80" y="180" width="250" height="520"/>
+    <rect x="1280" y="140" width="260" height="560"/>
+    <path d="M80 180h250l-125-90z"/>
+    <path d="M1280 140h260l-130-90z"/>
+  </g>
+  <g fill="#f6ead6" opacity=".7">
+    <rect x="130" y="260" width="150" height="120"/>
+    <rect x="130" y="440" width="150" height="120"/>
+    <rect x="1330" y="230" width="160" height="130"/>
+    <rect x="1330" y="420" width="160" height="130"/>
+  </g>
+  <path d="M520 1000 730 430h140l210 570z" fill="url(#path)"/>
+  <path d="M800 430v570" stroke="#f8f0e2" stroke-width="8" stroke-dasharray="36 36" opacity=".8"/>
+  <g fill="#123b55">
+    <circle cx="590" cy="600" r="54"/>
+    <path d="M530 760c0-90 26-140 60-140s60 50 60 140v140H530z"/>
+    <circle cx="770" cy="560" r="62"/>
+    <path d="M700 750c0-105 30-165 70-165s70 60 70 165v150H700z"/>
+    <circle cx="1010" cy="620" r="50"/>
+    <path d="M955 770c0-85 25-130 55-130s55 45 55 130v130H955z"/>
+  </g>
+  <g fill="#d4af37">
+    <circle cx="590" cy="600" r="54" opacity=".25"/>
+    <circle cx="770" cy="560" r="62" opacity=".25"/>
+    <circle cx="1010" cy="620" r="50" opacity=".25"/>
+  </g>
+  <g fill="#0f3144" opacity=".6">
+    <circle cx="300" cy="700" r="85"/>
+    <rect x="284" y="750" width="32" height="250"/>
+    <circle cx="1320" cy="690" r="95"/>
+    <rect x="1302" y="750" width="36" height="250"/>
+  </g>
+</svg>

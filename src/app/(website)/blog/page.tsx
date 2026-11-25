@@ -79,7 +79,7 @@ export default async function BlogPage({ searchParams }: Props) {
       <PageHeading
         eyebrow="School stories"
         title="Blog"
-        description="News, learning stories and community updates written by the school’s editors."
+        description="News, learning stories and community updates. Fictional demo posts appear until Sanity is connected."
         breadcrumbLabel="Blog"
       />
 

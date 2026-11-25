@@ -7,7 +7,9 @@ import { BlogCard, formatDate } from "@/components/blog/blog-card";
 import { PortableText } from "@/components/blog/portable-text";
 import { CtaSection } from "@/components/layout/cta-section";
 import { Breadcrumbs } from "@/components/ui/breadcrumbs";
+import { PlaceholderNotice } from "@/components/ui/placeholder-notice";
 import { EmptyState } from "@/components/ui/state-views";
+import { isDemoId } from "@/content/demo";
 import { getBlogPosts, getPostBySlug, getRelatedPosts } from "@/lib/content";
 import { createPageMetadata } from "@/lib/seo";
 import {
@@ -68,6 +70,12 @@ export default async function BlogArticlePage({ params }: Props) {
           authorName: post.authorName,
         })}
       />
+
+      {isDemoId(post._id) ? (
+        <div className="container-site pt-8">
+          <PlaceholderNotice />
+        </div>
+      ) : null}
 
       <article>
         <header className="border-b border-navy/10 bg-mist/40">

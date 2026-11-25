@@ -18,7 +18,7 @@ export function BlogCard({ post }: { post: SanityBlogCard }) {
             />
           ) : (
             <div className="grid h-full place-items-center bg-mist text-xs uppercase tracking-widest text-navy/50">
-              Image to be supplied
+              Demo illustration unavailable
             </div>
           )}
         </div>

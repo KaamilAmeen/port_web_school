@@ -6,7 +6,7 @@ import { PageHeading } from "@/components/ui/page-heading";
 import { PlaceholderNotice } from "@/components/ui/placeholder-notice";
 import { SectionHeading } from "@/components/ui/section-heading";
 import { aboutCopy } from "@/content/pages";
-import { placeholderImages } from "@/content/images";
+import { demoImages } from "@/content/images";
 import { createPageMetadata } from "@/lib/seo";
 import { JsonLd, breadcrumbJsonLd } from "@/lib/seo/structured-data";
 
@@ -45,15 +45,15 @@ export default function AboutPage() {
             <div className="relative">
               <div className="image-frame aspect-[4/5]">
                 <Image
-                  src={placeholderImages.community.src}
-                  alt={placeholderImages.community.alt}
+                  src={demoImages.community.src}
+                  alt={demoImages.community.alt}
                   fill
                   sizes="(max-width: 1024px) 100vw, 42vw"
                   className="object-cover"
                 />
               </div>
               <p className="mt-3 text-xs text-charcoal/55">
-                Local placeholder graphic — replace with an approved school image.
+                Fictional demo illustration — replace with an approved school photograph.
               </p>
             </div>
           </div>

@@ -6,7 +6,7 @@ import { PageHeading } from "@/components/ui/page-heading";
 import { PlaceholderNotice } from "@/components/ui/placeholder-notice";
 import { StaggerReveal } from "@/components/animations/stagger-reveal";
 import { campusCopy } from "@/content/pages";
-import { placeholderImages } from "@/content/images";
+import { demoImages } from "@/content/images";
 import { createPageMetadata } from "@/lib/seo";
 import { JsonLd, breadcrumbJsonLd } from "@/lib/seo/structured-data";
 
@@ -51,8 +51,8 @@ export default function CampusLifePage() {
         <div className="container-site grid gap-8 lg:grid-cols-12">
           <div className="image-frame aspect-[4/3] lg:col-span-7 lg:aspect-[16/10]">
             <Image
-              src={placeholderImages.arts.src}
-              alt={placeholderImages.arts.alt}
+              src={demoImages.arts.src}
+              alt={demoImages.arts.alt}
               fill
               sizes="(max-width: 1024px) 100vw, 58vw"
               className="object-cover"
@@ -76,8 +76,8 @@ export default function CampusLifePage() {
         <div className="container-site grid gap-8 md:grid-cols-2">
           <div className="image-frame aspect-[4/3]">
             <Image
-              src={placeholderImages.sports.src}
-              alt={placeholderImages.sports.alt}
+              src={demoImages.sports.src}
+              alt={demoImages.sports.alt}
               fill
               sizes="(max-width: 768px) 100vw, 50vw"
               className="object-cover"
@@ -85,15 +85,15 @@ export default function CampusLifePage() {
           </div>
           <div className="image-frame aspect-[4/3]">
             <Image
-              src={placeholderImages.library.src}
-              alt={placeholderImages.library.alt}
+              src={demoImages.library.src}
+              alt={demoImages.library.alt}
               fill
               sizes="(max-width: 768px) 100vw, 50vw"
               className="object-cover"
             />
           </div>
           <p className="text-xs text-charcoal/55 md:col-span-2">
-            Local placeholder graphics — replace with school-approved photographs.
+            Fictional demo illustrations — replace with approved school photography.
           </p>
         </div>
       </section>

@@ -36,7 +36,8 @@ export const metadata: Metadata = {
     title: `${siteConfig.name} — ${siteConfig.tagline}`,
     description: siteConfig.description,
   },
-  robots: { index: true, follow: true },
+  // Fictional demo content should not be indexed as a real school.
+  robots: { index: false, follow: false },
 };
 
 export default function RootLayout({
