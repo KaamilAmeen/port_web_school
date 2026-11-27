@@ -10,7 +10,7 @@ Recorded in `C:\Freelancing\Portfolio\port_web_school` on 2026-11-25.
 - Sanity credentials: not configured (built-in fallback content used; no demo labels in the public UI)
 - Formspree credentials: not configured (test-only IDs used for mocked E2E requests)
 - Environment files: `.env` contains safe placeholders and is Git-ignored; `.env.example` remains the committed template. No write token is exposed to the client.
-- Imagery: ten curated Pexels photographs are stored as WebP in `public/images/curated/`; the supplied `School Port Education Emblem.png` is in `public/images/generated/`. Legacy generated WebPs and original SVGs in `public/images/demo/` are retained as fallbacks.
+- Imagery: fourteen curated Pexels photographs are stored as WebP in `public/images/curated/` (ten for the site/gallery and four leadership portraits); the supplied `School Port Education Emblem.png` is in `public/images/generated/`. Legacy generated WebPs and original SVGs in `public/images/demo/` are retained as fallbacks.
 
 ## Commands
 
@@ -18,7 +18,7 @@ Recorded in `C:\Freelancing\Portfolio\port_web_school` on 2026-11-25.
 | --- | --- | --- |
 | `npm run typecheck` | PASS | Strict TypeScript with `noUncheckedIndexedAccess`; no errors. |
 | `npm run lint` | PASS | ESLint 9 flat config using `eslint-config-next/core-web-vitals` and `eslint-config-next/typescript`. |
-| `npm run test` | PASS | 7 test files, 36 tests passed. Covers schemas, form validation, `@formspree/react` success/field-error/failure mocks, placeholder IDs, curated image paths, Announcement GROQ queries, fallback records, gallery interaction and SEO. Public UI copy contains no demo labels. |
+| `npm run test` | PASS | 7 test files, 37 tests passed. Covers schemas, form validation, `@formspree/react` success/field-error/failure mocks, placeholder IDs, curated image paths, leadership portraits, Announcement GROQ queries, fallback records, gallery interaction and SEO. Public UI copy contains no demo labels. |
 | `npm run build` | PASS | 23 static/dynamic route entries generated, including nine fallback article slugs and `/studio`. |
 | `npx playwright install chromium` | PASS | Chromium installed for Playwright. |
 | `npm run test:e2e` | PASS | Final clean run: 12 passed, 0 failed, 0 skipped, no Next.js Image LCP warning. Requests to Formspree are intercepted with `next: "/thanks"` responses and the required CORS headers. |
@@ -28,6 +28,8 @@ Recorded in `C:\Freelancing\Portfolio\port_web_school` on 2026-11-25.
 Earlier E2E failures were caused by stray `next dev`/`next start` processes sharing the project's `.next` directory. All servers were stopped and `.next` was removed before the final run. The E2E web server started cleanly on port 3100, and no server was left running afterwards.
 
 A final repository grep confirmed that `fictional`, `demonstration`, `demo` (as visible copy), `preview only`, `not real`, `placeholder notice` and `role="note"` do not appear in client-facing strings. Remaining `demo-` IDs and `demoImages` identifiers are internal fallback logic only.
+
+Additional Playwright geometry checks confirmed that the gallery uses aligned lookbook sets (landscape feature, two stacked squares, four-square strip, then a second complete set), the campus-life sliding gallery keeps the active photograph centred with visible neighbours and responds to arrows, dots and keyboard input, the homepage campus section and gallery preview use gapless mosaics, the facility cards and all four "At a glance" cards fill their grid cells at equal height, and the four leadership portraits load as square images. Checks covered 1440, 768, 430 and 375 px viewports with no horizontal overflow or broken images.
 
 ## CMS and form integration checks
 
@@ -79,13 +81,13 @@ All visible demonstration wording was removed from the public UI. The site now r
 
 ## Curated imagery
 
-All ten active images come from `public/images/curated/`, with photographer and source details recorded in `README.md`. Alt text describes the visible subject, and image credits use a simple "Photograph by … via Pexels" format. The supplied emblem is used in the header and footer. Legacy `public/images/generated/*.webp` files and the original SVG illustrations in `public/images/demo/` remain available as fallbacks; no Unsplash URLs remain in `src/content/images.ts`, `next.config.ts` or the CSP.
+All fourteen curated images come from `public/images/curated/`, with photographer and source details recorded in `README.md`. Ten appear across the site and gallery; four square portraits are used in the leadership cards. Alt text describes the visible subject, and image credits use a simple "Photograph by … via Pexels" format. The supplied emblem is used in the header and footer. Legacy `public/images/generated/*.webp` files and the original SVG illustrations in `public/images/demo/` remain available as fallbacks; no Unsplash URLs remain in `src/content/images.ts`, `next.config.ts` or the CSP.
 
 ## Responsive image and logo check
 
 After the final copy cleanup and clean E2E run, the site was re-checked with Playwright at 1440×900, 1920×1080, 768×1024, 375×812 and 430×932:
 
-- No horizontal overflow on `/` or `/gallery`; `scrollWidth` matched `innerWidth` at every viewport.
+- No horizontal overflow on `/`, `/gallery` or `/campus-life`; `scrollWidth` matched `innerWidth` at every viewport.
 - No broken images after scrolling through all lazy-loaded images and no console or page errors.
 - Gallery contains ten items; the first tile is `A morning in class` and the lightbox buttons expose meaningful labels.
 - Hero uses `object-fit: cover`, with `50% 45%` positioning at 375px and 430px and centered positioning from 768px upward. The home hero is `loading="eager"` with `fetchPriority="high"`.

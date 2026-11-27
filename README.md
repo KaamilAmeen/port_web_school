@@ -79,7 +79,7 @@ Published Sanity documents always take priority. The fallback records disappear 
 
 ### Photography credits
 
-The ten WebP files in `public/images/curated/` were resized from Pexels photographs under the [Pexels License](https://www.pexels.com/license/). Attribution is not required by the license, but is recorded here for transparency.
+The fourteen WebP files in `public/images/curated/` were resized from Pexels photographs under the [Pexels License](https://www.pexels.com/license/). Ten are used across the site and gallery; four are leadership portraits. Attribution is not required by the license, but is recorded here for transparency.
 
 | Local file | Pexels photo | Photographer |
 | --- | --- | --- |
@@ -93,6 +93,10 @@ The ten WebP files in `public/images/curated/` were resized from Pexels photogra
 | `school-building-playground.webp` | [5896843](https://www.pexels.com/photo/5896843/) | Mary Taylor |
 | `students-art-class.webp` | [8382373](https://www.pexels.com/photo/8382373/) | Pavel Danilyuk |
 | `school-award-ceremony.webp` | [31772892](https://www.pexels.com/photo/31772892/) | Legacy of Fire |
+| `faculty-elaine.webp` | [39190891](https://www.pexels.com/photo/39190891/) | Vitaly Gariev |
+| `faculty-daniel.webp` | [7942643](https://www.pexels.com/photo/7942643/) | Basil Otshudi |
+| `faculty-priya.webp` | [6256127](https://www.pexels.com/photo/6256127/) | kaboompics |
+| `faculty-sofia.webp` | [6981013](https://www.pexels.com/photo/6981013/) | Mikhail Nilov |
 
 ---
 
@@ -100,12 +104,12 @@ The ten WebP files in `public/images/curated/` were resized from Pexels photogra
 
 | Route | Purpose |
 | --- | --- |
-| `/` | Homepage with storytelling sections and CMS-backed previews |
-| `/about` | School profile, vision, mission and leadership |
+| `/` | Homepage with storytelling sections, a campus CSS gallery and CMS-backed previews |
+| `/about` | School profile, vision, mission and leadership with curated portraits |
 | `/academics` | Programmes, curriculum and teaching approach |
 | `/achievements` | Achievements, with fallback items when CMS content is absent |
-| `/campus-life` | Facilities, activities and events |
-| `/gallery` | Gallery with filters and accessible lightbox |
+| `/campus-life` | Facilities, activities, events and a sliding campus gallery |
+| `/gallery` | Lookbook-style gallery with filters and an accessible lightbox |
 | `/admissions` | Admissions process, FAQ and enquiry form |
 | `/contact` | Contact information, form and optional map location |
 | `/blog` | Articles, search, categories and pagination |

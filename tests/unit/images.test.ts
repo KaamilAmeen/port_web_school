@@ -1,7 +1,7 @@
 import { existsSync } from "node:fs";
 import { resolve } from "node:path";
 import { describe, expect, it } from "vitest";
-import { demoGalleryImages, demoImages } from "@/content/images";
+import { demoGalleryImages, demoImages, facultyImages } from "@/content/images";
 import { siteLogo } from "@/content/site";
 
 const expectedImages = {
@@ -45,6 +45,27 @@ describe("curated image configuration", () => {
     expect(new Set(demoGalleryImages.map((image) => image.src))).toEqual(
       new Set(Object.values(demoImages).map((image) => image.src)),
     );
+  });
+
+  it("ships curated portraits for every leadership card", () => {
+    const expectedFaculty = {
+      elaine: "faculty-elaine",
+      daniel: "faculty-daniel",
+      priya: "faculty-priya",
+      sofia: "faculty-sofia",
+    } as const;
+
+    for (const [name, fileName] of Object.entries(expectedFaculty)) {
+      const image = facultyImages[name as keyof typeof expectedFaculty];
+      expect(image.src).toBe(`/images/curated/${fileName}.webp`);
+      expect(image.alt.length).toBeGreaterThan(10);
+      expect(image.credit).toMatch(/^Photograph by .+ via Pexels$/);
+      expect(
+        existsSync(
+          resolve(process.cwd(), "public/images/curated", `${fileName}.webp`),
+        ),
+      ).toBe(true);
+    }
   });
 
   it("points the site logo at the supplied emblem", () => {

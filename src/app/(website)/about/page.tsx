@@ -68,7 +68,15 @@ export default function AboutPage() {
           <div className="mt-12 grid gap-px border border-navy/10 bg-navy/10 sm:grid-cols-2 lg:grid-cols-4">
             {aboutCopy.leadership.map((person) => (
               <div key={person.role} className="bg-ivory p-7">
-                <div className="aspect-square bg-mist" aria-hidden="true" />
+                <div className="image-frame aspect-square">
+                  <Image
+                    src={person.image.src}
+                    alt={person.image.alt}
+                    fill
+                    sizes="(max-width: 640px) 100vw, (max-width: 1024px) 50vw, 25vw"
+                    className="object-cover"
+                  />
+                </div>
                 <p className="mt-5 text-xs uppercase tracking-widest text-gold">
                   {person.role}
                 </p>

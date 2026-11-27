@@ -1,6 +1,7 @@
 import type { Metadata } from "next";
 import Image from "next/image";
 import { CtaSection } from "@/components/layout/cta-section";
+import { CampusCarousel } from "@/components/campus/campus-carousel";
 import { SectionHeading } from "@/components/ui/section-heading";
 import { PageHeading } from "@/components/ui/page-heading";
 import { StaggerReveal } from "@/components/animations/stagger-reveal";
@@ -14,6 +15,17 @@ export const metadata: Metadata = createPageMetadata({
   description: campusCopy.intro,
   path: "/campus-life",
 });
+
+const campusSlides = [
+  demoImages.classroom,
+  demoImages.library,
+  demoImages.campus,
+  demoImages.academics,
+  demoImages.arts,
+  demoImages.collaboration,
+  demoImages.sports,
+  demoImages.hero,
+];
 
 export default function CampusLifePage() {
   return (
@@ -34,9 +46,12 @@ export default function CampusLifePage() {
             title="Spaces for learning and belonging"
             description="Spaces that support independent study, collaboration and hands-on learning."
           />
-          <StaggerReveal className="mt-12 grid gap-px border border-navy/10 bg-navy/10 sm:grid-cols-2">
+          <StaggerReveal
+            className="mt-12 grid gap-px border border-navy/10 bg-navy/10 sm:grid-cols-2"
+            itemClassName="h-full"
+          >
             {campusCopy.facilities.map((facility) => (
-              <article key={facility.title} className="bg-ivory p-8">
+              <article key={facility.title} className="flex h-full flex-col bg-ivory p-8">
                 <h3 className="font-display text-2xl">{facility.title}</h3>
                 <p className="mt-3 text-sm text-charcoal/70">{facility.description}</p>
               </article>
@@ -47,7 +62,7 @@ export default function CampusLifePage() {
 
       <section className="bg-mist/40 section-space">
         <div className="container-site grid gap-8 lg:grid-cols-12">
-          <div className="image-frame aspect-[4/3] lg:col-span-7 lg:aspect-[16/10]">
+          <div className="image-frame aspect-[4/3] lg:col-span-7 lg:aspect-auto lg:min-h-[24rem]">
             <Image
               src={demoImages.arts.src}
               alt={demoImages.arts.alt}
@@ -56,7 +71,7 @@ export default function CampusLifePage() {
               className="object-cover"
             />
           </div>
-          <div className="lg:col-span-5">
+          <div className="flex flex-col justify-center lg:col-span-5">
             <p className="eyebrow">Student activities</p>
             <h2 className="section-title mt-5">A wide horizon of interests</h2>
             <ul className="mt-8 divide-y divide-navy/15 border-y border-navy/15">
@@ -71,27 +86,17 @@ export default function CampusLifePage() {
       </section>
 
       <section className="section-space">
-        <div className="container-site grid gap-8 md:grid-cols-2">
-          <div className="image-frame aspect-[4/3]">
-            <Image
-              src={demoImages.sports.src}
-              alt={demoImages.sports.alt}
-              fill
-              sizes="(max-width: 768px) 100vw, 50vw"
-              className="object-cover"
-            />
+        <div className="container-site">
+          <SectionHeading
+            eyebrow="Campus gallery"
+            title="A view across the school"
+            description="The places where students learn, create and spend time together."
+          />
+          <div className="mt-12">
+            <CampusCarousel images={campusSlides} />
           </div>
-          <div className="image-frame aspect-[4/3]">
-            <Image
-              src={demoImages.library.src}
-              alt={demoImages.library.alt}
-              fill
-              sizes="(max-width: 768px) 100vw, 50vw"
-              className="object-cover"
-            />
-          </div>
-          <p className="text-xs text-charcoal/55 md:col-span-2">
-            A glimpse of the spaces where students learn, create and spend time together.
+          <p className="mt-4 text-xs text-charcoal/55">
+            Use the arrows or swipe to browse more of our spaces.
           </p>
         </div>
       </section>

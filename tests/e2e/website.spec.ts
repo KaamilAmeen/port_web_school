@@ -78,6 +78,9 @@ test("homepage renders and desktop navigation works", async ({ page }) => {
   await expect(
     page.getByRole("heading", { level: 1, name: /about aurelia academy/i }),
   ).toBeVisible();
+  const facultyPortraits = page.locator('img[src*="faculty-"]');
+  await expect(facultyPortraits).toHaveCount(4);
+  await expect(facultyPortraits.first()).toBeVisible();
 });
 
 test("mobile menu opens and navigates without horizontal overflow", async ({ page }) => {

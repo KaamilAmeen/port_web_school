@@ -66,9 +66,12 @@ export function IntroductionAndHighlights() {
             title={homeCopy.highlightsTitle}
             description={homeCopy.highlightsIntro}
           />
-          <StaggerReveal className="mt-12 grid gap-px overflow-hidden border border-navy/10 bg-navy/10 sm:grid-cols-2 lg:grid-cols-4">
+          <StaggerReveal
+            className="mt-12 grid gap-px overflow-hidden border border-navy/10 bg-navy/10 sm:grid-cols-2 lg:grid-cols-4"
+            itemClassName="h-full"
+          >
             {homeCopy.highlights.map((highlight) => (
-              <div key={highlight.title} className="bg-ivory p-7">
+              <div key={highlight.title} className="flex h-full flex-col bg-ivory p-7">
                 <span aria-hidden="true" className="block h-px w-10 bg-gold" />
                 <h3 className="mt-6 font-display text-xl">{highlight.title}</h3>
                 <p className="mt-3 text-sm leading-relaxed text-charcoal/70">

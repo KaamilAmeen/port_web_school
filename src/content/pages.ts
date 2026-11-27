@@ -2,6 +2,8 @@
  * Editorial copy shared across the website.
  */
 
+import { facultyImages } from "@/content/images";
+
 export const homeCopy = {
   heroEyebrow: "AURELIA ACADEMY · INDEPENDENT SCHOOL",
   heroTitle: "A place to grow, question, and belong.",
@@ -76,10 +78,26 @@ export const aboutCopy = {
     },
   ],
   leadership: [
-    { role: "Head of School", name: "Dr. Elaine Hartwell" },
-    { role: "Deputy Head", name: "Mr. Daniel Okafor" },
-    { role: "Head of Academics", name: "Ms. Priya Raman" },
-    { role: "Head of Pastoral Care", name: "Ms. Sofia Marin" },
+    {
+      role: "Head of School",
+      name: "Dr. Elaine Hartwell",
+      image: facultyImages.elaine,
+    },
+    {
+      role: "Deputy Head",
+      name: "Mr. Daniel Okafor",
+      image: facultyImages.daniel,
+    },
+    {
+      role: "Head of Academics",
+      name: "Ms. Priya Raman",
+      image: facultyImages.priya,
+    },
+    {
+      role: "Head of Pastoral Care",
+      name: "Ms. Sofia Marin",
+      image: facultyImages.sofia,
+    },
   ],
 } as const;
 

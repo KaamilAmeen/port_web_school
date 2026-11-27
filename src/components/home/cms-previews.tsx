@@ -5,6 +5,7 @@ import { BlogCard, formatDate } from "@/components/blog/blog-card";
 import { FadeIn } from "@/components/animations/fade-in";
 import { SectionHeading } from "@/components/ui/section-heading";
 import { EmptyState } from "@/components/ui/state-views";
+import { cn } from "@/lib/utils";
 import type {
   SanityAchievement,
   SanityBlogCard,
@@ -91,19 +92,35 @@ export function GalleryPreview({
           description="A selection of moments from learning, events and everyday school life."
         />
         {images && images.length > 0 ? (
-          <div className="mt-12 grid grid-cols-2 gap-4 md:grid-cols-3">
-            {images.map((item) => (
+          <div
+            className={cn(
+              "mt-12 grid gap-3",
+              images.length >= 5
+                ? "grid-cols-2 md:grid-cols-4"
+                : "grid-cols-1 sm:grid-cols-2 lg:grid-cols-3",
+            )}
+          >
+            {images.slice(0, 5).map((item, index) => (
               <Link
                 key={item._id}
                 href="/gallery"
-                className="image-frame aspect-[4/3] first:col-span-2 first:md:col-span-2"
+                className={cn(
+                  "image-frame aspect-square",
+                  images.length >= 5 && index === 0 && "col-span-2 row-span-2",
+                )}
               >
                 {item.imageUrl ? (
                   <Image
                     src={item.imageUrl}
                     alt={item.altText ?? item.title}
                     fill
-                    sizes="(max-width: 768px) 50vw, 33vw"
+                    loading={index === 0 ? "eager" : undefined}
+                    fetchPriority={index === 0 ? "high" : undefined}
+                    sizes={
+                      images.length >= 5
+                        ? "(max-width: 768px) 100vw, 50vw"
+                        : "(max-width: 768px) 100vw, 33vw"
+                    }
                     className="object-cover"
                   />
                 ) : null}

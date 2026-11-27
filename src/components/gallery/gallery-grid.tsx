@@ -7,6 +7,80 @@ import { ChevronLeft, ChevronRight, X } from "lucide-react";
 import type { SanityGalleryItem } from "@/lib/types/sanity";
 import { cn } from "@/lib/utils";
 
+type Tile = { item: SanityGalleryItem; index: number };
+type TileRole = "feature" | "stack" | "strip" | "side-single";
+
+/** A lookbook set is one landscape feature, two stacked squares and four squares. */
+const LOOKBOOK_SET_SIZE = 7;
+
+function groupIntoSets(tiles: readonly Tile[]): Tile[][] {
+  const sets: Tile[][] = [];
+  for (let index = 0; index < tiles.length; index += LOOKBOOK_SET_SIZE) {
+    sets.push(tiles.slice(index, index + LOOKBOOK_SET_SIZE));
+  }
+  return sets;
+}
+
+function LookbookTile({
+  tile,
+  role,
+  onOpen,
+}: {
+  tile: Tile;
+  role: TileRole;
+  onOpen: (index: number) => void;
+}) {
+  const { item, index } = tile;
+  const fillsSide = role === "stack" || role === "side-single";
+
+  return (
+    <button
+      type="button"
+      onClick={() => onOpen(index)}
+      aria-label={`Open image: ${item.title}`}
+      className={cn("group block w-full text-left", fillsSide && "h-full")}
+    >
+      <span
+        className={cn(
+          "image-frame relative block w-full",
+          role === "feature" ? "aspect-[3/2]" : "aspect-square",
+          fillsSide && "lg:aspect-auto lg:h-full",
+        )}
+      >
+        {item.imageUrl ? (
+          <Image
+            src={item.imageUrl}
+            alt={item.altText ?? item.title}
+            fill
+            loading={index === 0 ? "eager" : undefined}
+            fetchPriority={index === 0 ? "high" : undefined}
+            sizes={
+              role === "feature"
+                ? "(max-width: 1024px) 100vw, 58vw"
+                : "(max-width: 640px) 50vw, (max-width: 1024px) 25vw, 16vw"
+            }
+            className="object-cover"
+          />
+        ) : (
+          <span className="grid h-full place-items-center bg-mist text-xs uppercase tracking-widest text-navy/50">
+            Image unavailable
+          </span>
+        )}
+        <span className="pointer-events-none absolute inset-x-0 bottom-0 bg-gradient-to-t from-navy-deep/85 via-navy-deep/35 to-transparent px-4 pb-3 pt-10">
+          <span className="block truncate font-display text-base text-white sm:text-lg">
+            {item.title}
+          </span>
+          {item.category ? (
+            <span className="block truncate text-[10px] uppercase tracking-widest text-white/70">
+              {item.category}
+            </span>
+          ) : null}
+        </span>
+      </span>
+    </button>
+  );
+}
+
 export function GalleryGrid({ items }: { items: readonly SanityGalleryItem[] }) {
   const [category, setCategory] = useState("All");
   const [activeIndex, setActiveIndex] = useState<number | null>(null);
@@ -25,6 +99,12 @@ export function GalleryGrid({ items }: { items: readonly SanityGalleryItem[] }) 
         ? items
         : items.filter((item) => (item.category ?? "Other") === category),
     [category, items],
+  );
+
+  const sets = useMemo(
+    () =>
+      groupIntoSets(filtered.map((item, index) => ({ item, index }))),
+    [filtered],
   );
 
   const close = useCallback(() => setActiveIndex(null), []);
@@ -94,44 +174,51 @@ export function GalleryGrid({ items }: { items: readonly SanityGalleryItem[] }) 
         ))}
       </div>
 
-      <ul className="columns-1 gap-5 sm:columns-2 lg:columns-3 [&>li]:mb-5">
-        {filtered.map((item, index) => (
-          <li key={item._id} className="break-inside-avoid">
-            <button
-              type="button"
-              onClick={() => open(index)}
-              className="group block w-full text-left"
-              aria-label={`Open image: ${item.title}`}
-            >
-              <span className="image-frame block aspect-[4/5]">
-                {item.imageUrl ? (
-                  <Image
-                    src={item.imageUrl}
-                    alt={item.altText ?? item.title}
-                    fill
-                    loading={index === 0 ? "eager" : undefined}
-                    fetchPriority={index === 0 ? "high" : undefined}
-                    sizes="(max-width: 640px) 100vw, (max-width: 1024px) 50vw, 33vw"
-                    className="object-cover"
-                  />
-                ) : (
-                  <span className="grid h-full place-items-center bg-mist text-xs uppercase tracking-widest text-navy/50">
-                    Image unavailable
-                  </span>
-                )}
-              </span>
-              <span className="mt-3 block font-display text-lg text-navy">
-                {item.title}
-              </span>
-              {item.category ? (
-                <span className="mt-1 block text-xs uppercase tracking-widest text-charcoal/55">
-                  {item.category}
-                </span>
+      <div className="space-y-3">
+        {sets.map((set, setIndex) => {
+          const [feature, ...remaining] = set;
+          if (!feature) return null;
+          const side = remaining.slice(0, 2);
+          const strip = remaining.slice(2);
+
+          return (
+            <div key={setIndex} className="space-y-3">
+              <div className="grid gap-3 lg:grid-cols-[3fr_1fr]">
+                <LookbookTile tile={feature} role="feature" onOpen={open} />
+                {side.length > 0 ? (
+                  <div
+                    className={cn(
+                      "grid gap-3",
+                      side.length === 2 ? "grid-cols-2 lg:grid-cols-1 lg:grid-rows-2" : "grid-cols-1",
+                    )}
+                  >
+                    {side.map((tile) => (
+                      <LookbookTile
+                        key={tile.item._id}
+                        tile={tile}
+                        role={side.length === 1 ? "side-single" : "stack"}
+                        onOpen={open}
+                      />
+                    ))}
+                  </div>
+                ) : null}
+              </div>
+              {strip.length > 0 ? (
+                <div className="grid grid-cols-2 gap-3 sm:grid-cols-4">
+                  {strip.map((tile) => (
+                    <LookbookTile
+                      key={tile.item._id}
+                      tile={tile}
+                      role="strip"
+                      onOpen={open}
+                    />
+                  ))}
+                </div>
               ) : null}
-            </button>
-          </li>
-        ))}
-      </ul>
+            </div>
+          );
+        })}
+      </div>
 
       <AnimatePresence>
         {active ? (
@@ -182,7 +269,7 @@ export function GalleryGrid({ items }: { items: readonly SanityGalleryItem[] }) 
                 type="button"
                 onClick={() =>
                   setActiveIndex((current) =>
-                    current === null ? null : (current + 1) % filtered.length,
+                    current === null ? null : (current + 1 + filtered.length) % filtered.length,
                   )
                 }
                 aria-label="Next image"

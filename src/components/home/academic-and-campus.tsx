@@ -4,7 +4,24 @@ import { ArrowRight } from "lucide-react";
 import { GsapReveal } from "@/components/animations/gsap-reveal";
 import { SectionHeading } from "@/components/ui/section-heading";
 import { homeCopy } from "@/content/pages";
-import { demoImages } from "@/content/images";
+import { demoImages, type DemoImage } from "@/content/images";
+import { cn } from "@/lib/utils";
+
+/** CSS gallery: wide images flank two tall images in three equal columns. */
+const campusGalleryColumns: { images: readonly DemoImage[]; frameAspect: string }[] = [
+  {
+    images: [demoImages.library, demoImages.arts, demoImages.classroom],
+    frameAspect: "aspect-[311/264]",
+  },
+  {
+    images: [demoImages.collaboration, demoImages.campus],
+    frameAspect: "aspect-[311/396]",
+  },
+  {
+    images: [demoImages.sports, demoImages.academics, demoImages.community],
+    frameAspect: "aspect-[311/264]",
+  },
+];
 
 export function AcademicPreview() {
   return (
@@ -67,43 +84,32 @@ export function CampusPreview() {
           title={homeCopy.campusTitle}
           description={homeCopy.campusBody}
         />
-        <div className="mt-12 grid gap-5 md:grid-cols-12">
-          <div className="image-frame aspect-[4/3] md:col-span-7 md:aspect-[16/10]">
-            <Image
-              src={demoImages.library.src}
-              alt={demoImages.library.alt}
-              fill
-              sizes="(max-width: 768px) 100vw, 58vw"
-              className="object-cover"
-            />
-          </div>
-          <div className="image-frame aspect-[4/3] md:col-span-5 md:aspect-[4/5]">
-            <Image
-              src={demoImages.collaboration.src}
-              alt={demoImages.collaboration.alt}
-              fill
-              sizes="(max-width: 768px) 100vw, 42vw"
-              className="object-cover"
-            />
-          </div>
-          <div className="image-frame aspect-[4/3] md:col-span-5 md:aspect-[4/3]">
-            <Image
-              src={demoImages.sports.src}
-              alt={demoImages.sports.alt}
-              fill
-              sizes="(max-width: 768px) 100vw, 42vw"
-              className="object-cover"
-            />
-          </div>
-          <div className="image-frame aspect-[4/3] md:col-span-7 md:aspect-[16/9]">
-            <Image
-              src={demoImages.campus.src}
-              alt={demoImages.campus.alt}
-              fill
-              sizes="(max-width: 768px) 100vw, 58vw"
-              className="object-cover"
-            />
-          </div>
+        <div className="mx-auto mt-12 grid max-w-5xl gap-3 md:grid-cols-3">
+          {campusGalleryColumns.map((column, columnIndex) => (
+            <div
+              key={columnIndex}
+              className="flex flex-col gap-3 md:aspect-[311/792]"
+            >
+              {column.images.map((image) => (
+                <div
+                  key={image.src}
+                  className={cn(
+                    "image-frame relative shrink-0",
+                    column.frameAspect,
+                    "md:min-h-0 md:flex-1 md:shrink md:aspect-auto",
+                  )}
+                >
+                  <Image
+                    src={image.src}
+                    alt={image.alt}
+                    fill
+                    sizes="(max-width: 768px) 100vw, 33vw"
+                    className="object-cover"
+                  />
+                </div>
+              ))}
+            </div>
+          ))}
         </div>
         <p className="mt-5 text-xs text-charcoal/55">
           {homeCopy.campusCaption}

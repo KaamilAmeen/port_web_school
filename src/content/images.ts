@@ -74,6 +74,29 @@ export const demoImages = {
   ),
 } satisfies Record<string, DemoImage>;
 
+export const facultyImages = {
+  elaine: demoImage(
+    "faculty-elaine",
+    "Teacher standing confidently in front of a chalkboard",
+    "Vitaly Gariev",
+  ),
+  daniel: demoImage(
+    "faculty-daniel",
+    "Teacher working with pupils in a bright classroom",
+    "Basil Otshudi",
+  ),
+  priya: demoImage(
+    "faculty-priya",
+    "Teacher holding books in a classroom",
+    "kaboompics",
+  ),
+  sofia: demoImage(
+    "faculty-sofia",
+    "Teacher in a blazer standing in a classroom",
+    "Mikhail Nilov",
+  ),
+} satisfies Record<string, DemoImage>;
+
 export const demoGalleryImages: readonly DemoImage[] = [
   demoImages.hero,
   demoImages.classroom,

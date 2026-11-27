@@ -127,6 +127,14 @@
     transform: scale(1.035);
   }
 
+  .hide-scrollbar {
+    scrollbar-width: none;
+  }
+
+  .hide-scrollbar::-webkit-scrollbar {
+    display: none;
+  }
+
   .placeholder-note {
     border: 1px solid color-mix(in srgb, var(--color-gold) 55%, transparent);
     background: color-mix(in srgb, var(--color-gold) 9%, var(--color-ivory));
